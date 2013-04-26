@@ -1,15 +1,21 @@
-#include "jpake.h"
 
-#include <openssl/crypto.h>
-#include <openssl/sha.h>
-#include <openssl/err.h>
-#include <memory.h>
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * In the definition, (xa, xb, xc, xd) are Alice's (x1, x2, x3, x4) or
  * Bob's (x3, x4, x1, x2). If you see what I mean.
  */
-
 typedef struct
     {
     char *name;  /* Must be unique */
@@ -508,4 +514,3 @@ const BIGNUM *JPAKE_get_shared_key(JPAKE_CTX *ctx)
     {
     return ctx->key;
     }
-

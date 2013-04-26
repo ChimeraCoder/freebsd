@@ -1,60 +1,17 @@
-//===-- PeepholeOptimizer.cpp - Peephole Optimizations --------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Perform peephole optimizations on the machine code:
-//
-// - Optimize Extensions
-//
-//     Optimization of sign / zero extension instructions. It may be extended to
-//     handle other instructions with similar properties.
-//
-//     On some targets, some instructions, e.g. X86 sign / zero extension, may
-//     leave the source value in the lower part of the result. This optimization
-//     will replace some uses of the pre-extension value with uses of the
-//     sub-register of the results.
-//
-// - Optimize Comparisons
-//
-//     Optimization of comparison instructions. For instance, in this code:
-//
-//       sub r1, 1
-//       cmp r1, 0
-//       bz  L1
-//
-//     If the "sub" instruction all ready sets (or could be modified to set) the
-//     same flag that the "cmp" instruction sets and that "bz" uses, then we can
-//     eliminate the "cmp" instruction.
-//
-//     Another instance, in this code:
-//
-//       sub r1, r3 | sub r1, imm
-//       cmp r3, r1 or cmp r1, r3 | cmp r1, imm
-//       bge L1
-//
-//     If the branch instruction can use flag from "sub", then we can replace
-//     "sub" with "subs" and eliminate the "cmp" instruction.
-//
-// - Optimize Bitcast pairs:
-//
-//     v1 = bitcast v0
-//     v2 = bitcast v1
-//        = v2
-//   =>
-//     v1 = bitcast v0
-//        = v0
-//
-// - Optimize Loads:
-//
-//     Loads that can be folded into a later instruction. A load is foldable
-//     if it loads to virtual registers and the virtual register defined has 
-//     a single use.
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "peephole-opt"
 #include "llvm/CodeGen/Passes.h"

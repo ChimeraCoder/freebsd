@@ -1,24 +1,17 @@
-//===- ExecutionDepsFix.cpp - Fix execution dependecy issues ----*- C++ -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file contains the execution dependency fix pass.
-//
-// Some X86 SSE instructions like mov, and, or, xor are available in different
-// variants for different operand types. These variant instructions are
-// equivalent, but on Nehalem and newer cpus there is extra latency
-// transferring data between integer and floating point domains.  ARM cores
-// have similar issues when they are configured with both VFP and NEON
-// pipelines.
-//
-// This pass changes the variant instructions to minimize domain crossings.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "execution-fix"
 #include "llvm/CodeGen/Passes.h"

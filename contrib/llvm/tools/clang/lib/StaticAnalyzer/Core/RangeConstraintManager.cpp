@@ -1,16 +1,17 @@
-//== RangeConstraintManager.cpp - Manage range constraints.------*- C++ -*--==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This file defines RangeConstraintManager, a class that tracks simple
-//  equality and inequality constraints on symbolic values of ProgramState.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "SimpleConstraintManager.h"
 #include "clang/StaticAnalyzer/Core/PathSensitive/APSIntType.h"

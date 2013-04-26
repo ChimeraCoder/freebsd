@@ -1,21 +1,16 @@
+
 /*
- * hostapd / EAP Full Authenticator state machine (RFC 4137)
- * Copyright (c) 2004-2007, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This state machine is based on the full authenticator state machine defined
- * in RFC 4137. However, to support backend authentication in RADIUS
- * authentication server functionality, parts of backend authenticator (also
- * from RFC 4137) are mixed in. This functionality is enabled by setting
- * backend_auth configuration variable to TRUE.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

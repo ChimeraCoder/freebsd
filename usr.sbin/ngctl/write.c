@@ -1,36 +1,16 @@
 
 /*
- * write.c
- *
- * Copyright (c) 2002 Archie L. Cobbs
- * All rights reserved.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * Subject to the following obligations and disclaimer of warranty, use and
- * redistribution of this software, in source or object code forms, with or
- * without modifications are expressly permitted by Archie L. Cobbs;
- * provided, however, that:
- * 1. Any and all reproductions of the source or object code must include the
- *    copyright notice above and the following disclaimer of warranties
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * THIS SOFTWARE IS BEING PROVIDED BY ARCHIE L. COBBS AS IS", AND TO
- * THE MAXIMUM EXTENT PERMITTED BY LAW, ARCHIE L. COBBS MAKES NO
- * REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, REGARDING THIS SOFTWARE,
- * INCLUDING WITHOUT LIMITATION, ANY AND ALL IMPLIED WARRANTIES OF
- * MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
- * ARCHIE L. COBBS DOES NOT WARRANT, GUARANTEE, OR MAKE ANY
- * REPRESENTATIONS REGARDING THE USE OF, OR THE RESULTS OF THE USE OF THIS
- * SOFTWARE IN TERMS OF ITS CORRECTNESS, ACCURACY, RELIABILITY OR OTHERWISE.
- * IN NO EVENT SHALL ARCHIE L. COBBS BE LIABLE FOR ANY DAMAGES
- * RESULTING FROM OR ARISING OUT OF ANY USE OF THIS SOFTWARE, INCLUDING
- * WITHOUT LIMITATION, ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY,
- * PUNITIVE, OR CONSEQUENTIAL DAMAGES, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES, LOSS OF USE, DATA OR PROFITS, HOWEVER CAUSED AND UNDER ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ARCHIE L. COBBS IS ADVISED OF THE POSSIBILITY
- * OF SUCH DAMAGE.
- *
- * $FreeBSD$
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/types.h>
@@ -118,4 +98,3 @@ WriteCmd(int ac, char **av)
 	/* Done */
 	return (CMDRTN_OK);
 }
-

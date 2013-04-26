@@ -1,109 +1,15 @@
 #!/usr/bin/perl
-#
-# re-mqueue -- requeue messages from queueA to queueB based on age.
-#
-#	Contributed by Paul Pomes <ppomes@Qualcomm.COM>.
-#		http://www.qualcomm.com/~ppomes/
-#
-# Usage: re-mqueue [-d] queueA queueB seconds
-#
-#  -d		enable debugging
-#  queueA	source directory
-#  queueB	destination directory
-#  seconds	select files older than this number of seconds 
-#
-# Example: re-mqueue /var/spool/mqueue /var/spool/mqueue2 2700
-#
-# Moves the qf* and df* files for a message from /var/spool/mqueue to
-# /var/spool/mqueue2 if the df* file is over 2700 seconds old.
-#
-# The qf* file can't be used for age checking as it's partially re-written
-# with the results of the last queue run.
-#
-# Rationale: With a limited number of sendmail processes allowed to run,
-# messages that can't be delivered immediately slow down the ones that can.
-# This becomes especially important when messages are being queued instead
-# of delivered right away, or when the queue becomes excessively deep.
-# By putting messages that have already failed one or more delivery attempts
-# into another queue, the primary queue can be kept small and fast.
-#
-# On postoffice.cso.uiuc.edu, the primary sendmail daemon runs the queue
-# every thirty minutes.  Messages over 45 minutues old are moved to
-# /var/spool/mqueue2 where sendmail runs every hour.  Messages more than
-# 3.25 hours old are moved to /var/spool/mqueue3 where sendmail runs every
-# four hours.  Messages more than a day old are moved to /var/spool/mqueue4
-# where sendmail runs three times a day.  The idea is that a message is
-# tried at least twice in the first three queues before being moved to the
-# old-age ghetto.
-#
-# (Each must be re-formed into a single line before using in crontab)
-#
-# 08 * * * *	/usr/local/libexec/re-mqueue /var/spool/mqueue ##						/var/spool/mqueue2 2700
-# 11 * * * *	/usr/lib/sendmail -oQ/var/spool/mqueue2 -q > ##							> /var/log/mqueue2 2>&1
-# 38 * * * *	/usr/local/libexec/re-mqueue /var/spool/mqueue2
-#					/var/spool/mqueue3 11700
-# 41 1,5,9,13,17,21 * * * /usr/lib/sendmail -oQ/var/spool/mqueue3 -q ##							> /var/log/mqueue3 2>&1
-# 48 * * * *	/usr/local/libexec/re-mqueue /var/spool/mqueue3
-#					/var/spool/mqueue4 100000
-#53 3,11,19 * * * /usr/lib/sendmail -oQ/var/spool/mqueue4 -q > ##							> /var/log/mqueue4 2>&1
-#
-#
-# N.B., the moves are done with link().  This has two effects: 1) the mqueue*
-# directories must all be on the same filesystem, and 2) the file modification
-# times are not changed.  All times must be cumulative from when the df*
-# file was created.
-#
-# Copyright (c) 1995 University of Illinois Board of Trustees and Paul Pomes
-# All rights reserved.
-#
-# Redistribution and use in source and binary forms, with or without
-# modification, are permitted provided that the following conditions
-# are met:
-# 1. Redistributions of source code must retain the above copyright
-#    notice, this list of conditions and the following disclaimer.
-# 2. Redistributions in binary form must reproduce the above copyright
-#    notice, this list of conditions and the following disclaimer in the
-#    documentation and/or other materials provided with the distribution.
-# 3. All advertising materials mentioning features or use of this software
-#    must display the following acknowledgement:
-#       This product includes software developed by the University of
-#       Illinois at Urbana and their contributors.
-# 4. Neither the name of the University nor the names of their contributors
-#    may be used to endorse or promote products derived from this software
-#    without specific prior written permission.
-#
-# THIS SOFTWARE IS PROVIDED BY THE TRUSTEES AND CONTRIBUTORS ``AS IS'' AND
-# ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
-# IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-# ARE DISCLAIMED.  IN NO EVENT SHALL THE TRUSTEES OR CONTRIBUTORS BE LIABLE
-# FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
-# DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
-# OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
-# HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
-# LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
-# OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
-# SUCH DAMAGE.
-#
-# @(#)$OrigId: re-mqueue,v 1.3 1995/05/25 18:14:53 p-pomes Exp $
-#
-# Updated by Graeme Hewson <ghewson@uk.oracle.com> May 1999
-#
-#	'use Sys::Syslog' for Perl 5
-#	Move transcript (xf) files if they exist
-#	Allow zero-length df files (empty message body)
-#	Preserve $! for error messages
-#
-# Updated by Graeme Hewson <ghewson@uk.oracle.com> April 2000
-#
-#	Improve handling of race between re-mqueue and sendmail
-#
-# Updated by Graeme Hewson <graeme.hewson@oracle.com> June 2000
-#
-#	Don't exit(0) at end so can be called as subroutine
-#
-# NB This program can't handle separate qf/df/xf subdirectories
-# as introduced in sendmail 8.10.0.
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 use Sys::Syslog;
 

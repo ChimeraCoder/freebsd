@@ -1,27 +1,17 @@
-//===- SROA.cpp - Scalar Replacement Of Aggregates ------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-/// \file
-/// This transformation implements the well known scalar replacement of
-/// aggregates transformation. It tries to identify promotable elements of an
-/// aggregate alloca, and promote them to registers. It will also try to
-/// convert uses of an element (or set of elements) of an alloca into a vector
-/// or bitfield-style integer scalar if appropriate.
-///
-/// It works to do this with minimal slicing of the alloca so that regions
-/// which are merely transferred in and out of external memory remain unchanged
-/// and are not decomposed to scalar code.
-///
-/// Because this also performs alloca promotion, it can be thought of as also
-/// serving the purpose of SSA formation. The algorithm iterates on the
-/// function until all opportunities for promotion have been realized.
-///
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "sroa"
 #include "llvm/Transforms/Scalar.h"

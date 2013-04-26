@@ -1,25 +1,18 @@
 
-#include <yaml.h>
-
-#include <stdlib.h>
-#include <stdio.h>
-
-int
-main(int argc, char *argv[])
-{
-    int help = 0;
-    int canonical = 0;
-    int unicode = 0;
-    int k;
-    int done = 0;
-
-    yaml_parser_t parser;
-    yaml_emitter_t emitter;
-    yaml_event_t input_event;
-    yaml_event_t output_event;
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
     /* Clear the objects. */
-
     memset(&parser, 0, sizeof(parser));
     memset(&emitter, 0, sizeof(emitter));
     memset(&input_event, 0, sizeof(input_event));
@@ -1127,4 +1120,3 @@ event_error:
 
     return 1;
 }
-

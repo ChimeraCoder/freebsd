@@ -1,36 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# SHA512 block transform for x86. September 2007.
-#
-# Performance in clock cycles per processed byte (less is better):
-#
-#		Pentium	PIII	P4	AMD K8	Core2
-# gcc		100	75	116	54	66
-# icc		97	77	95	55	57
-# x86 asm	61	56	82	36	40
-# SSE2 asm	-	-	38	24	20
-# x86_64 asm(*)	-	-	30	10.0	10.5
-#
-# (*) x86_64 assembler performance is presented for reference
-#     purposes.
-#
-# IALU code-path is optimized for elder Pentiums. On vanilla Pentium
-# performance improvement over compiler generated code reaches ~60%,
-# while on PIII - ~35%. On newer µ-archs improvement varies from 15%
-# to 50%, but it's less important as they are expected to execute SSE2
-# code-path, which is commonly ~2-3x faster [than compiler generated
-# code]. SSE2 code-path is as fast as original sha512-sse2.pl, even
-# though it does not use 128-bit operations. The latter means that
-# SSE2-aware kernel is no longer required to execute the code. Another
-# difference is that new code optimizes amount of writes, but at the
-# cost of increased data cache "footprint" by 1/2KB.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $0 =~ m/(.*[\/\\])[^\/\\]+$/; $dir=$1;
 push(@INC,"${dir}","${dir}../../perlasm");

@@ -1,21 +1,17 @@
-//===- AnalysisWrappers.cpp - Wrappers around non-pass analyses -----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines pass wrappers around LLVM analyses that don't make sense to
-// be passes.  It provides a nice standard pass interface to these classes so
-// that they can be printed out by analyze.
-//
-// These classes are separated out of analyze.cpp so that it is more clear which
-// code is the integral part of the analyze tool, and which part of the code is
-// just making it so more passes are available.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/Analysis/CallGraph.h"
 #include "llvm/IR/Module.h"

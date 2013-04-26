@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*      $OpenBSD: cast.c,v 1.2 2000/06/06 06:49:47 deraadt Exp $       */
 /*-
  *	CAST-128 in C
@@ -5,7 +19,6 @@
  *	100% Public Domain - no warranty
  *	Released 1997.10.11
  */
-
 #include <sys/cdefs.h>
 __FBSDID("$FreeBSD$");
 
@@ -241,4 +254,3 @@ int i;
 }
 
 /* Made in Canada */
-

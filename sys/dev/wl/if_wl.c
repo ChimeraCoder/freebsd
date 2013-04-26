@@ -1,123 +1,16 @@
-/*-
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain all copyright 
- *    notices, this list of conditions and the following disclaimer.
- * 2. The names of the authors may not be used to endorse or promote products
- *    derived from this software without specific prior written permission
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHORS ``AS IS'' AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- * 
- */
+
 /*
- * if_wl.c - original MACH, then BSDI ISA wavelan driver
- *	ported to mach by Anders Klemets
- *	to BSDI by Robert Morris
- *	to FreeBSD by Jim Binkley
- *      to FreeBSD 2.2+ by Michael Smith
- *
- * 2.2 update:
- * Changed interface to match 2.1-2.2 differences.
- * Implement IRQ selection logic in wlprobe()
- * Implement PSA updating.
- * Pruned heading comments for relevance.
- * Ripped out all the 'interface counters' cruft.
- * Cut the missing-interrupt timer back to 100ms.
- * 2.2.1 update:
- * now supports all multicast mode (mrouted will work),
- *	but unfortunately must do that by going into promiscuous mode
- * NWID sysctl added so that normally promiscuous mode is NWID-specific
- *	but can be made NWID-inspecific
- *			7/14/97 jrb
- *
- * Work done:
- * Ported to FreeBSD, got promiscuous mode working with bpfs,
- * and rewired timer routine.  The i82586 will hang occasionally on output 
- * and the watchdog timer will kick it if so and log an entry.
- * 2 second timeout there.  Apparently the chip loses an interrupt.
- * Code borrowed from if_ie.c for watchdog timer.
- *
- * The wavelan card is a 2mbit radio modem that emulates ethernet;
- * i.e., it uses MAC addresses.  This should not be a surprise since
- * it uses an ethernet controller as a major hw item.
- * It can broadcast, unicast or apparently multicast in a base cell 
- * using an omni-directional antennae that is 
- * about 800 feet around the base cell barring walls and metal.  
- * With directional antennae, it can be used point to point over a mile
- * or so apparently (haven't tried that).
- *
- * There are ISA and pcmcia versions (not supported by this code).
- * The ISA card has an Intel 82586 lan controller on it.  It consists
- * of 2 pieces of hw, the lan controller (intel) and a radio-modem.
- * The latter has an extra set of controller registers that has nothing
- * to do with the i82586 and allows setting and monitoring of radio
- * signal strength, etc.  There is a nvram area called the PSA that
- * contains a number of setup variables including the IRQ and so-called
- * NWID or Network ID.  The NWID must be set the same for all radio
- * cards to communicate (unless you are using the ATT/NCR roaming feature
- * with their access points.  There is no support for that here. Roaming
- * involves a link-layer beacon sent out from the access points.  End
- * stations monitor the signal strength and only use the strongest
- * access point).  This driver assumes that the base ISA port, IRQ, 
- * and NWID are first set in nvram via the dos-side "instconf.exe" utility 
- * supplied with the card. This driver takes the ISA port from 
- * the kernel configuration setup, and then determines the IRQ either 
- * from the kernel config (if an explicit IRQ is set) or from the 
- * PSA on the card if not.
- * The hw also magically just uses the IRQ set in the nvram.
- * The NWID is used magically as well by the radio-modem
- * to determine which packets to keep or throw out.  
- *
- * sample config:
- *
- * device wl0 at isa? port 0x300 net irq ?
- *
- * Ifdefs:
- * 1. WLDEBUG. (off) - if turned on enables IFF_DEBUG set via ifconfig debug
- * 2. MULTICAST (on) - turned on and works up to and including mrouted
- * 3. WLCACHE (off) -  define to turn on a signal strength 
- * (and other metric) cache that is indexed by sender MAC address.  
- * Apps can read this out to learn the remote signal strength of a 
- * sender.  Note that it has a switch so that it only stores 
- * broadcast/multicast senders but it could be set to store unicast 
- * too only.  Size is hardwired in if_wl_wavelan.h
- *
- * one further note: promiscuous mode is a curious thing.  In this driver,
- * promiscuous mode apparently CAN catch ALL packets and ignore the NWID
- * setting.  This is probably more useful in a sense (for snoopers) if
- * you are interested in all traffic as opposed to if you are interested
- * in just your own.  There is a driver specific sysctl to turn promiscuous
- * from just promiscuous to wildly promiscuous...
- *
- * This driver also knows how to load the synthesizers in the 2.4 Gz
- * ISA Half-card, Product number 847647476 (USA/FCC IEEE Channel set).
- * This product consists of a "mothercard" that contains the 82586,
- * NVRAM that holds the PSA, and the ISA-buss interface custom ASIC. 
- * The radio transceiver is a "daughtercard" called the WaveMODEM which
- * connects to the mothercard through two single-inline connectors: a
- * 20-pin connector provides DC-power and modem signals, and a 3-pin
- * connector which exports the antenna connection. The code herein
- * loads the receive and transmit synthesizers and the corresponding
- * transmitter output power value from an EEPROM controlled through
- * additional registers via the MMC. The EEPROM address selected
- * are those whose values are preset by the DOS utility programs
- * provided with the product, and this provides compatible operation
- * with the DOS Packet Driver software. A future modification will
- * add the necessary functionality to this driver and to the wlconfig
- * utility to completely replace the DOS Configuration Utilities.
- * The 2.4 Gz WaveMODEM is described in document number 407-024692/E,
- * and is available through Lucent Technologies OEM supply channels.
- * --RAB 1997/06/08.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #define MULTICAST  1

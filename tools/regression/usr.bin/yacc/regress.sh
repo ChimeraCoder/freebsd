@@ -1,5 +1,16 @@
-# $FreeBSD$
 
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# $FreeBSD$
 LC_ALL=C; export LC_ALL
 
 echo 1..15
@@ -23,4 +34,3 @@ REGRESSION_TEST(`13', `/usr/obj/usr/src/usr.bin/yacc/yacc -b regress -o /dev/std
 REGRESSION_TEST(`14', `/usr/obj/usr/src/usr.bin/yacc/yacc -b regress -o /dev/stdout quote_calc4.y')
 
 REGRESSION_END()
-

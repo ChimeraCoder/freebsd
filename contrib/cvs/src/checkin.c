@@ -1,23 +1,16 @@
+
 /*
- * Copyright (C) 1986-2005 The Free Software Foundation, Inc.
- *
- * Portions Copyright (C) 1998-2005 Derek Price, Ximbiot <http://ximbiot.com>,
- *                                  and others.
- *
- * Portions Copyright (C) 1992, Brian Berliner and Jeff Polk
- * Portions Copyright (C) 1989-1992, Brian Berliner
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * You may distribute under the terms of the GNU General Public License as
- * specified in the README file that comes with the CVS source distribution.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * Check In
- * 
- * Does a very careful checkin of the file "user", and tries not to spoil its
- * modification time (to avoid needless recompilations). When RCS ID keywords
- * get expanded on checkout, however, the modification time is updated and
- * there is no good way to get around this.
- * 
- * Returns non-zero on error.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <assert.h>

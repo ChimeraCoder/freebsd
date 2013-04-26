@@ -1,24 +1,17 @@
-//===-- MachineLICM.cpp - Machine Loop Invariant Code Motion Pass ---------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass performs loop invariant code motion on machine instructions. We
-// attempt to remove as much code from the body of a loop as possible.
-//
-// This pass does not attempt to throttle itself to limit register pressure.
-// The register allocation phases are expected to perform rematerialization
-// to recover when register pressure is high.
-//
-// This pass is not intended to be a replacement or a complete alternative
-// for the LLVM-IR-level LICM pass. It is only designed to hoist simple
-// constructs that are not exposed before lowering and instruction selection.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "machine-licm"
 #include "llvm/CodeGen/Passes.h"

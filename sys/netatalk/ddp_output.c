@@ -1,24 +1,16 @@
-/*-
- * Copyright (c) 1990, 1991 Regents of The University of Michigan.
- * All Rights Reserved.
- *
- * Permission to use, copy, modify, and distribute this software and
- * its documentation for any purpose and without fee is hereby granted,
- * provided that the above copyright notice appears in all copies and
- * that both that copyright notice and this permission notice appear
- * in supporting documentation, and that the name of The University
- * of Michigan not be used in advertising or publicity pertaining to
- * distribution of the software without specific, written prior
- * permission. This software is supplied as is without expressed or
- * implied warranties of any kind.
- *
- *	Research Systems Unix Group
- *	The University of Michigan
- *	c/o Mike Clark
- *	535 W. William Street
- *	Ann Arbor, Michigan
- *	+1-313-763-0525
- *	netatalk@itd.umich.edu
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /* $FreeBSD$ */

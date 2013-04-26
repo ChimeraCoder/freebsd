@@ -1,19 +1,17 @@
-//===--- CodeGenTypes.cpp - TBAA information for LLVM CodeGen -------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This is the code that manages TBAA information and defines the TBAA policy
-// for the optimizer to use. Relevant standards text includes:
-//
-//   C99 6.5p7
-//   C++ [basic.lval] (p10 in n3126, p15 in some earlier versions)
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "CodeGenTBAA.h"
 #include "clang/AST/ASTContext.h"

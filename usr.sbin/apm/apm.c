@@ -1,16 +1,16 @@
+
 /*
- * APM BIOS utility for FreeBSD
- *
- * Copyright (C) 1994-1996 by Tatsumi Hosokawa <hosokawa@jp.FreeBSD.org>
- *
- * This software may be used, modified, copied, distributed, and sold,
- * in both source and binary form provided that the above copyright and
- * these terms are retained. Under no circumstances is the author
- * responsible for the proper functioning of this software, nor does
- * the author assume any responsibility for damages incurred with its
- * use.
- *
- * Sep., 1994	Implemented on FreeBSD 1.1.5.1R (Toshiba AVS001WD)
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

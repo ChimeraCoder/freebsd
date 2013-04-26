@@ -1,34 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#define YYPURE 0
-
-#line 2 "code_error.y"
-
-#ifdef YYBISON
-int yylex(void);
-static void yyerror(const char *);
-#endif
-
-#line 25 "code_error.code.c"
-
-#ifndef YYSTYPE
-typedef int YYSTYPE;
-#endif
-
-/* compatibility with bison */
-#ifdef YYPARSE_PARAM
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* compatibility with bison */#ifdef YYPARSE_PARAM
 /* compatibility with FreeBSD */
 # ifdef YYPARSE_PARAM_TYPE
 #  define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)

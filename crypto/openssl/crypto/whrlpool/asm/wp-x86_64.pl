@@ -1,34 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. Rights for redistribution and usage in source and binary
-# forms are granted according to the OpenSSL license.
-# ====================================================================
-#
-# whirlpool_block for x86_64.
-#
-# 2500 cycles per 64-byte input block on AMD64, which is *identical*
-# to 32-bit MMX version executed on same CPU. So why did I bother?
-# Well, it's faster than gcc 3.3.2 generated code by over 50%, and
-# over 80% faster than PathScale 1.4, an "ambitious" commercial
-# compiler. Furthermore it surpasses gcc 3.4.3 by 170% and Sun Studio
-# 10 - by 360%[!]... What is it with x86_64 compilers? It's not the
-# first example when they fail to generate more optimal code, when
-# I believe they had *all* chances to...
-#
-# Note that register and stack frame layout are virtually identical
-# to 32-bit MMX version, except that %r8-15 are used instead of
-# %mm0-8. You can even notice that K[i] and S[i] are loaded to
-# %eax:%ebx as pair of 32-bit values and not as single 64-bit one.
-# This is done in order to avoid 64-bit shift penalties on Intel
-# EM64T core. Speaking of which! I bet it's possible to improve
-# Opteron performance by compressing the table to 2KB and replacing
-# unaligned references with complementary rotations [which would
-# incidentally replace lea instructions], but it would definitely
-# just "kill" EM64T, because it has only 1 shifter/rotator [against
-# 3 on Opteron] and which is *unacceptably* slow with 64-bit
-# operand.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 $output  = shift;

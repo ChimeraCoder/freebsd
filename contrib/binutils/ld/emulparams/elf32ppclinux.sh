@@ -1,8 +1,12 @@
-. ${srcdir}/emulparams/elf32ppc.sh
-TEXT_START_ADDR=0x10000000
-unset EXECUTABLE_SYMBOLS
-unset OTHER_END_SYMBOLS
-test -z "${RELOCATING}" || OTHER_SECTIONS="/DISCARD/	: { *(.fixup) }"
-OTHER_RELRO_SECTIONS="
-  .got1         ${RELOCATING-0} : { *(.got1) }
-  .got2         ${RELOCATING-0} : { *(.got2) }"
+
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.

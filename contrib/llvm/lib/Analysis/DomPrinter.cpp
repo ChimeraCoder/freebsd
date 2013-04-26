@@ -1,22 +1,17 @@
-//===- DomPrinter.cpp - DOT printer for the dominance trees    ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines '-dot-dom' and '-dot-postdom' analysis passes, which emit
-// a dom.<fnname>.dot or postdom.<fnname>.dot file for each function in the
-// program, with a graph of the dominance/postdominance tree of that
-// function.
-//
-// There are also passes available to directly call dotty ('-view-dom' or
-// '-view-postdom'). By appending '-only' like '-dot-dom-only' only the
-// names of the bbs are printed, but the content is hidden.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/Analysis/DomPrinter.h"
 #include "llvm/Analysis/DOTGraphTraitsPass.h"

@@ -1,47 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# March, May, June 2010
-#
-# The module implements "4-bit" GCM GHASH function and underlying
-# single multiplication operation in GF(2^128). "4-bit" means that it
-# uses 256 bytes per-key table [+64/128 bytes fixed table]. It has two
-# code paths: vanilla x86 and vanilla MMX. Former will be executed on
-# 486 and Pentium, latter on all others. MMX GHASH features so called
-# "528B" variant of "4-bit" method utilizing additional 256+16 bytes
-# of per-key storage [+512 bytes shared table]. Performance results
-# are for streamed GHASH subroutine and are expressed in cycles per
-# processed byte, less is better:
-#
-#		gcc 2.95.3(*)	MMX assembler	x86 assembler
-#
-# Pentium	105/111(**)	-		50
-# PIII		68 /75		12.2		24
-# P4		125/125		17.8		84(***)
-# Opteron	66 /70		10.1		30
-# Core2		54 /67		8.4		18
-#
-# (*)	gcc 3.4.x was observed to generate few percent slower code,
-#	which is one of reasons why 2.95.3 results were chosen,
-#	another reason is lack of 3.4.x results for older CPUs;
-#	comparison with MMX results is not completely fair, because C
-#	results are for vanilla "256B" implementation, while
-#	assembler results are for "528B";-)
-# (**)	second number is result for code compiled with -fPIC flag,
-#	which is actually more relevant, because assembler code is
-#	position-independent;
-# (***)	see comment in non-MMX routine for further details;
-#
-# To summarize, it's >2-5 times faster than gcc-generated code. To
-# anchor it to something else SHA1 assembler processes one byte in
-# 11-13 cycles on contemporary x86 cores. As for choice of MMX in
-# particular, see comment at the end of the file...
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # May 2010
 #

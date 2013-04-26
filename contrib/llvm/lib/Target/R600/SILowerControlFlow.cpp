@@ -1,52 +1,17 @@
-//===-- SILowerControlFlow.cpp - Use predicates for control flow ----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-/// \file
-/// \brief This pass lowers the pseudo control flow instructions to real
-/// machine instructions.
-///
-/// All control flow is handled using predicated instructions and
-/// a predicate stack.  Each Scalar ALU controls the operations of 64 Vector
-/// ALUs.  The Scalar ALU can update the predicate for any of the Vector ALUs
-/// by writting to the 64-bit EXEC register (each bit corresponds to a
-/// single vector ALU).  Typically, for predicates, a vector ALU will write
-/// to its bit of the VCC register (like EXEC VCC is 64-bits, one for each
-/// Vector ALU) and then the ScalarALU will AND the VCC register with the
-/// EXEC to update the predicates.
-///
-/// For example:
-/// %VCC = V_CMP_GT_F32 %VGPR1, %VGPR2
-/// %SGPR0 = SI_IF %VCC
-///   %VGPR0 = V_ADD_F32 %VGPR0, %VGPR0
-/// %SGPR0 = SI_ELSE %SGPR0
-///   %VGPR0 = V_SUB_F32 %VGPR0, %VGPR0
-/// SI_END_CF %SGPR0
-///
-/// becomes:
-///
-/// %SGPR0 = S_AND_SAVEEXEC_B64 %VCC  // Save and update the exec mask
-/// %SGPR0 = S_XOR_B64 %SGPR0, %EXEC  // Clear live bits from saved exec mask
-/// S_CBRANCH_EXECZ label0            // This instruction is an optional
-///                                   // optimization which allows us to
-///                                   // branch if all the bits of
-///                                   // EXEC are zero.
-/// %VGPR0 = V_ADD_F32 %VGPR0, %VGPR0 // Do the IF block of the branch
-///
-/// label0:
-/// %SGPR0 = S_OR_SAVEEXEC_B64 %EXEC   // Restore the exec mask for the Then block
-/// %EXEC = S_XOR_B64 %SGPR0, %EXEC    // Clear live bits from saved exec mask
-/// S_BRANCH_EXECZ label1              // Use our branch optimization
-///                                    // instruction again.
-/// %VGPR0 = V_SUB_F32 %VGPR0, %VGPR   // Do the THEN block
-/// label1:
-/// %EXEC = S_OR_B64 %EXEC, %SGPR0     // Re-enable saved exec mask bits
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "AMDGPU.h"
 #include "SIInstrInfo.h"

@@ -1,4 +1,15 @@
 #!/usr/bin/perl
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # doublebounce.pl
 #
 # Return a doubly-bounced e-mail to postmaster.  Specific to sendmail,
@@ -33,7 +44,6 @@
 ##	postmaster at one of these sites in the hope that they can
 ##	return the message to the original sender, or do something about
 ##	the fact that that sender's return address is not valid.
-
 use Socket;
 use Getopt::Std;
 use File::Temp;
@@ -222,4 +232,3 @@ sub main {
 
 main();
 exit(0);
-

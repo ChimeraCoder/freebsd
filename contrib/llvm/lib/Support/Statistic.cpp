@@ -1,25 +1,17 @@
-//===-- Statistic.cpp - Easy way to expose stats information --------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the 'Statistic' class, which is designed to be an easy
-// way to expose various success metrics from passes.  These statistics are
-// printed at the end of a run, when the -stats command line option is enabled
-// on the command line.
-//
-// This is useful for reporting information like the number of instructions
-// simplified, optimized or removed by various transformations, like this:
-//
-// static Statistic NumInstEliminated("GCSE", "Number of instructions killed");
-//
-// Later, in the code: ++NumInstEliminated;
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/ADT/Statistic.h"
 #include "llvm/ADT/StringExtras.h"

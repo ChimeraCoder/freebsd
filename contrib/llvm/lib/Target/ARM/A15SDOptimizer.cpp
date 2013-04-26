@@ -1,28 +1,17 @@
-//=== A15SDOptimizerPass.cpp - Optimize DPR and SPR register accesses on A15==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// The Cortex-A15 processor employs a tracking scheme in its register renaming
-// in order to process each instruction's micro-ops speculatively and
-// out-of-order with appropriate forwarding. The ARM architecture allows VFP
-// instructions to read and write 32-bit S-registers.  Each S-register
-// corresponds to one half (upper or lower) of an overlaid 64-bit D-register.
-//
-// There are several instruction patterns which can be used to provide this
-// capability which can provide higher performance than other, potentially more
-// direct patterns, specifically around when one micro-op reads a D-register
-// operand that has recently been written as one or more S-register results.
-//
-// This file defines a pre-regalloc pass which looks for SPR producers which
-// are going to be used by a DPR (or QPR) consumers and creates the more
-// optimized access pattern.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "a15-sd-optimizer"
 #include "ARM.h"

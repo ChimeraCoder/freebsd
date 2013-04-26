@@ -1,21 +1,17 @@
-//===----- HexagonPacketizer.cpp - vliw packetizer ---------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This implements a simple VLIW packetizer using DFA. The packetizer works on
-// machine basic blocks. For each instruction I in BB, the packetizer consults
-// the DFA to see if machine resources are available to execute I. If so, the
-// packetizer checks if I depends on any instruction J in the current packet.
-// If no dependency is found, I is added to current packet and machine resource
-// is marked as taken. If any dependency is found, a target API call is made to
-// prune the dependence.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #define DEBUG_TYPE "packets"
 #include "llvm/CodeGen/DFAPacketizer.h"
 #include "llvm/CodeGen/Passes.h"
@@ -3083,4 +3079,3 @@ HexagonPacketizerList::addToPacket(MachineInstr *MI) {
 FunctionPass *llvm::createHexagonPacketizer() {
   return new HexagonPacketizer();
 }
-

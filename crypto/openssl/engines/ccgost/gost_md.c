@@ -1,11 +1,17 @@
-/**********************************************************************
- *                          md_gost.c                                 *
- *             Copyright (c) 2005-2006 Cryptocom LTD                  *
- *         This file is distributed under the same license as OpenSSL *
- *                                                                    *
- *       OpenSSL interface to GOST R 34.11-94 hash functions          *
- *          Requires OpenSSL 0.9.9 for compilation                    *
- **********************************************************************/
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include <string.h>
 #include "gost_lcl.h"
 #include "gosthash.h"

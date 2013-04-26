@@ -1,38 +1,17 @@
-//===- LowerInvoke.cpp - Eliminate Invoke & Unwind instructions -----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This transformation is designed for use by code generators which do not yet
-// support stack unwinding.  This pass supports two models of exception handling
-// lowering, the 'cheap' support and the 'expensive' support.
-//
-// 'Cheap' exception handling support gives the program the ability to execute
-// any program which does not "throw an exception", by turning 'invoke'
-// instructions into calls and by turning 'unwind' instructions into calls to
-// abort().  If the program does dynamically use the unwind instruction, the
-// program will print a message then abort.
-//
-// 'Expensive' exception handling support gives the full exception handling
-// support to the program at the cost of making the 'invoke' instruction
-// really expensive.  It basically inserts setjmp/longjmp calls to emulate the
-// exception handling as necessary.
-//
-// Because the 'expensive' support slows down programs a lot, and EH is only
-// used for a subset of the programs, it must be specifically enabled by an
-// option.
-//
-// Note that after this pass runs the CFG is not entirely accurate (exceptional
-// control flow edges are not correct anymore) so only very simple things should
-// be done after the lowerinvoke pass has run (like generation of native code).
-// This should not be used as a general purpose "my LLVM-to-LLVM pass doesn't
-// support the invoke instruction yet" lowering pass.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "lowerinvoke"
 #include "llvm/Transforms/Scalar.h"

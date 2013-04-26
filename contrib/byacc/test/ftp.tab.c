@@ -1,104 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    ftp_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      ftp_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    ftp_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     ftp_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      ftp_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     ftp_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    ftp_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    ftp_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  ftp_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      ftp_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      ftp_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   ftp_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    ftp_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   ftp_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   ftp_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   ftp_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    ftp_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    ftp_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     ftp_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     ftp_rule
-#endif /* yyrule */
-#define YYPREFIX "ftp_"
-
-#define YYPURE 0
-
-#line 26 "ftp.y"
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* sccsid[] = "@(#)ftpcmd.y	5.20.1.1 (Berkeley) 3/2/89"; */
-
 #include <sys/param.h>
 #include <sys/socket.h>
 

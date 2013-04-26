@@ -1,13 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. Rights for redistribution and usage in source and binary
-# forms are granted according to the OpenSSL license.
-# ====================================================================
-#
-# whirlpool_block_mmx implementation.
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 *SCALE=\(2); # 2 or 8, that is the question:-) Value of 8 results
 # in 16KB large table, which is tough on L1 cache, but eliminates
 # unaligned references to it. Value of 2 results in 4KB table, but

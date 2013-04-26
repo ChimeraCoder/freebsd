@@ -1,4 +1,15 @@
 #!/bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Module: mkisoimages.sh
 # Author: Jordan K Hubbard
@@ -22,7 +33,6 @@
 # resulting ISO image, base-bits-dir contains the image contents and
 # extra-bits-dir, if provided, contains additional files to be merged
 # into base-bits-dir as part of making the image.
-
 if [ "x$1" = "x-b" ]; then
 	# Apple boot code
 	uudecode -o /tmp/hfs-boot-block.bz2 `dirname $0`/hfs-boot.bz2.uu

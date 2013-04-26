@@ -1,46 +1,21 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/param.h>
-#include <sys/systm.h>
-#include <sys/malloc.h>
-#include <sys/module.h>
-#include <sys/kernel.h>
-#include <sys/queue.h>
-#include <sys/sysctl.h>
-#include <sys/types.h>
-
-#include <sys/bus.h>
-#include <machine/bus.h>
-#include <sys/rman.h>
-#include <machine/resource.h>
-
-#include <dev/spibus/spibusvar.h>
-#include <dev/spibus/spi.h>
-#include "spibus_if.h"
-
-static int
-spibus_probe(device_t dev)
-{
-	device_set_desc(dev, "spibus bus");
-	return (0);
-}
-
-static int
-spibus_attach(device_t dev)
-{
-	struct spibus_softc *sc = SPIBUS_SOFTC(dev);
-
-	sc->dev = dev;
-	bus_enumerate_hinted_children(dev);
-	return (bus_generic_attach(dev));
-}
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * Since this is not a self-enumerating bus, and since we always add
  * children in attach, we have to always delete children here.
- */
-static int
+ */static int
 spibus_detach(device_t dev)
 {
 	int err, ndevs, i;

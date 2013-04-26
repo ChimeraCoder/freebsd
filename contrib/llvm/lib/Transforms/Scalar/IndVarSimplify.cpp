@@ -1,28 +1,17 @@
-//===- IndVarSimplify.cpp - Induction Variable Elimination ----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This transformation analyzes and transforms the induction variables (and
-// computations derived from them) into simpler forms suitable for subsequent
-// analysis and transformation.
-//
-// If the trip count of a loop is computable, this pass also makes the following
-// changes:
-//   1. The exit condition for the loop is canonicalized to compare the
-//      induction value against the exit value.  This turns loops like:
-//        'for (i = 7; i*i < 1000; ++i)' into 'for (i = 0; i != 25; ++i)'
-//   2. Any use outside of the loop of an expression derived from the indvar
-//      is changed to compute the derived value outside of the loop, eliminating
-//      the dependence on the exit value of the induction variable.  If the only
-//      purpose of the loop is to compute the exit value of some derived
-//      expression, this transformation will make the loop dead.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "indvars"
 #include "llvm/Transforms/Scalar.h"

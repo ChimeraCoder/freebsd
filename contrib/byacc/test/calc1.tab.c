@@ -1,104 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    calc1_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      calc1_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    calc1_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     calc1_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      calc1_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     calc1_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    calc1_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    calc1_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  calc1_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      calc1_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      calc1_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   calc1_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    calc1_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   calc1_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   calc1_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   calc1_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    calc1_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    calc1_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     calc1_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     calc1_rule
-#endif /* yyrule */
-#define YYPREFIX "calc1_"
-
-#define YYPURE 0
-
-#line 2 "calc1.y"
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* http://dinosaur.compilertools.net/yacc/index.html */
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <ctype.h>

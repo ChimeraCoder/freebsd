@@ -1,33 +1,17 @@
-//===-- ArgumentPromotion.cpp - Promote by-reference arguments ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass promotes "by reference" arguments to be "by value" arguments.  In
-// practice, this means looking for internal functions that have pointer
-// arguments.  If it can prove, through the use of alias analysis, that an
-// argument is *only* loaded, then it can pass the value into the function
-// instead of the address of the value.  This can cause recursive simplification
-// of code and lead to the elimination of allocas (especially in C++ template
-// code like the STL).
-//
-// This pass also handles aggregate arguments that are passed into a function,
-// scalarizing them if the elements of the aggregate are only loaded.  Note that
-// by default it refuses to scalarize aggregates which would require passing in
-// more than three operands to the function, because passing thousands of
-// operands for a large array or structure is unprofitable! This limit can be
-// configured or disabled, however.
-//
-// Note that this transformation could also be done for arguments that are only
-// stored to (returning the value instead), but does not currently.  This case
-// would be best handled when and if LLVM begins supporting multiple return
-// values from functions.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "argpromotion"
 #include "llvm/Transforms/IPO.h"

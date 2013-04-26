@@ -1,28 +1,16 @@
-MACHINE=
-SCRIPT_NAME=elf
-TEMPLATE_NAME=elf32
-OUTPUT_FORMAT="elf32-bigscore"
-BIG_OUTPUT_FORMAT="elf32-bigscore"
-LITTLE_OUTPUT_FORMAT="elf32-littlescore"
-GROUP="-lm -lc -lglsim -lgcc -lstdc++"
 
-TEXT_START_ADDR=0x00000000
-MAXPAGESIZE=256
-NONPAGED_TEXT_START_ADDR=0x0400000
-SHLIB_TEXT_START_ADDR=0x5ffe0000
-OTHER_GOT_SYMBOLS='
-  _gp = ALIGN(16) + 0x3ff0;
-'
-
-OTHER_BSS_START_SYMBOLS='_bss_start__ = . + ALIGN(4);'
-OTHER_BSS_END_SYMBOLS='_bss_end__ = . ; __bss_end__ = . ; __end__ = . ;'
-DATA_START_SYMBOLS='_fdata = . ;'
-SDATA_START_SYMBOLS='_sdata_begin = . ;'
-OTHER_BSS_SYMBOLS='
-  _bss_start = ALIGN(4) ;
-'
-# This sets the stack to the top of the simulator memory (2^19 bytes).
-STACK_ADDR=0x8000000
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# This sets the stack to the top of the simulator memory (2^19 bytes).STACK_ADDR=0x8000000
 
 ARCH=score
 MACHINE=

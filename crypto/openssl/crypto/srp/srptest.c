@@ -1,46 +1,18 @@
-#include <openssl/opensslconf.h>
-#ifdef OPENSSL_NO_SRP
 
-#include <stdio.h>
-
-int main(int argc, char *argv[])
-	{
-	printf("No SRP support\n");
-	return(0);
-	}
-
-#else
-
-#include <openssl/srp.h>
-#include <openssl/rand.h>
-#include <openssl/err.h>
-
-static void showbn(const char *name, const BIGNUM *bn)
-	{
-	fputs(name, stdout);
-	fputs(" = ", stdout);
-	BN_print_fp(stdout, bn);
-	putc('\n', stdout);
-	}
-
-#define RANDOM_SIZE 32	/* use 256 bits on each side */
-
-static int run_srp(const char *username, const char *client_pass, const char *server_pass)
-	{
-	int ret=-1;
-	BIGNUM *s = NULL;
-	BIGNUM *v = NULL;
-	BIGNUM *a = NULL;
-	BIGNUM *b = NULL;
-	BIGNUM *u = NULL;
-	BIGNUM *x = NULL;
-	BIGNUM *Apub = NULL;
-	BIGNUM *Bpub = NULL;
-	BIGNUM *Kclient = NULL;
-	BIGNUM *Kserver = NULL;
-	unsigned char rand_tmp[RANDOM_SIZE];
-	/* use builtin 1024-bit params */
-	SRP_gN *GN = SRP_get_default_gN("1024");
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+	/* use builtin 1024-bit params */	SRP_gN *GN = SRP_get_default_gN("1024");
 
 	if(GN == NULL)
 		{

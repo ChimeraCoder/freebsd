@@ -1,8 +1,21 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* crypto/o_dir.h -*- mode:C; c-file-style: "eay" -*- */
 /* Copied from Richard Levitte's (richard@levitte.org) LP library.  All
  * symbol names have been changed, with permission from the author.
  */
-
 /* $LP: LPlib/test/test_dir.c,v 1.1 2004/06/16 22:59:47 _cvs_levitte Exp $ */
 /*
  * Copyright (c) 2004, Richard Levitte <richard@levitte.org>

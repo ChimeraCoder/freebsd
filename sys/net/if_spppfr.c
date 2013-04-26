@@ -1,26 +1,16 @@
-/*-
- * Synchronous Frame Relay link level subroutines.
- * ANSI T1.617-compaible link management signaling
- * implemented for Frame Relay mode.
- * Cisco-type Frame Relay framing added, thanks Alex Tutubalin.
- * Only one DLCI per channel for now.
- *
- * Copyright (C) 1994-2000 Cronyx Engineering.
- * Author: Serge Vakulenko, <vak@cronyx.ru>
- *
- * Copyright (C) 1999-2004 Cronyx Engineering.
- * Author: Kurakin Roman, <rik@cronyx.ru>
- *
- * This software is distributed with NO WARRANTIES, not even the implied
- * warranties for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * Authors grant any other persons or organisations a permission to use,
- * modify and redistribute this software in source and binary forms,
- * as long as this message is kept with the software, all derivative
- * works or modified versions.
- *
- * $Cronyx Id: if_spppfr.c,v 1.1.2.10 2004/06/29 09:02:30 rik Exp $
- * $FreeBSD$
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/param.h>

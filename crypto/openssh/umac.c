@@ -1,26 +1,17 @@
-/* $OpenBSD: umac.c,v 1.4 2011/10/19 10:39:48 djm Exp $ */
-/* -----------------------------------------------------------------------
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * umac.c -- C Implementation UMAC Message Authentication
- *
- * Version 0.93b of rfc4418.txt -- 2006 July 18
- *
- * For a full description of UMAC message authentication see the UMAC
- * world-wide-web page at http://www.cs.ucdavis.edu/~rogaway/umac
- * Please report bugs and suggestions to the UMAC webpage.
- *
- * Copyright (c) 1999-2006 Ted Krovetz
- *                                                                 
- * Permission to use, copy, modify, and distribute this software and
- * its documentation for any purpose and with or without fee, is hereby
- * granted provided that the above copyright notice appears in all copies
- * and in supporting documentation, and that the name of the copyright
- * holder not be used in advertising or publicity pertaining to
- * distribution of the software without specific, written prior permission.
- *
- * Comments should be directed to Ted Krovetz (tdk@acm.org)                                        
- *                                                                   
- * ---------------------------------------------------------------------- */
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
  
  /* ////////////////////// IMPORTANT NOTES /////////////////////////////////
   *

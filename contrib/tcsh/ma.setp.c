@@ -1,85 +1,16 @@
+
 /*
- * Copyright (c) 1990 Carnegie Mellon University
- * All Rights Reserved.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * Permission to use, copy, modify and distribute this software and its
- * documentation is hereby granted, provided that both the copyright
- * notice and this permission notice appear in all copies of the
- * software, derivative works or modified versions, and any portions
- * thereof, and that both notices appear in supporting documentation.
- *
- * THE SOFTWARE IS PROVIDED "AS IS" AND CARNEGIE MELLON UNIVERSITY
- * DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS.  IN NO EVENT
- * SHALL CARNEGIE MELLON UNIVERSITY BE LIABLE FOR ANY SPECIAL, DIRECT,
- * INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER
- * RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF
- * CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- * Users of this software agree to return to Carnegie Mellon any
- * improvements or extensions that they make and grant Carnegie the
- * rights to redistribute these changes.
- *
- * Export of this software is permitted only after complying with the
- * regulations of the U.S. Deptartment of Commerce relating to the
- * Export of Technical Data.
- */
-/*
- *  setpath --- smart interface for setting path variables
- *
- *  usage:	setpath(paths, cmds, localsyspath, dosuffix, printerrors)
- *		char **paths, **cmds, *localsyspath;
- *		int dosuffix, printerrors;
- *
- *  The 'paths' argument is a list of pointers to path lists of the
- *  form "name=value" where name is the name of the path and value
- *  is a colon separated list of directories.  There can never be
- *  more than MAXDIRS (64) directories in a path.
- *
- *  The 'cmds' argument may be a sequence of any of the following:
- *	-r			reset path to default
- *	-i newpath		insert newpath before localsyspath
- *	-ia oldpath newpath	insert newpath after oldpath
- *	-ib oldpath newpath	insert newpath before oldpath
- *	-i# newpath		insert newpath at position #
- *	-d oldpath		delete oldpath
- *	-d#			delete path at position #
- *	-c oldpath newpath	change oldpath to newpath
- *	-c# newpath		change position # to newpath
- *
- *  The "-i newpath" command is equivilent to "-ib 'localsyspath' newpath".
- *
- *  If 'dosuffix' is true, the appropriate suffix will be added to
- *  all command operands for any system path in 'paths'.
- *
- *  Both of the 'paths' and 'cmds' lists are terminated by a NULL
- *  entry.
- *
- *  if 'printerrors' is true, setpath will printf error diagnostics.
- *
- *  WARNING !!!: Under no circumstances should anyone change this
- *  module without fully understanding the impact on the C shell.
- *  The C shell has it's own malloc and printf routines and this
- *  module was carefully written taking that into account.  Do not
- *  use any stdio routines from this module except printf.
- *
- **********************************************************************
- * HISTORY
- *
- * Revision 1.4  90/12/11  17:58:44  mja
- * 	Add copyright/disclaimer for distribution.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * 05-Jun-88  Glenn Marcy (gm0w) at Carnegie-Mellon University
- *	Make all non-entry points static.
- *
- * 30-Apr-88  Glenn Marcy (gm0w) at Carnegie-Mellon University
- *	Added -r switch to reset paths to their default values.
- *
- * 06-Jan-86  Glenn Marcy (gm0w) at Carnegie-Mellon University
- *	Created from old setpath program for the shell.
- *
- **********************************************************************
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "sh.h"
 RCSID("$tcsh: ma.setp.c,v 1.19 2007/11/20 20:03:51 christos Exp $")

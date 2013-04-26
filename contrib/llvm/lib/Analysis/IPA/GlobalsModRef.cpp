@@ -1,18 +1,17 @@
-//===- GlobalsModRef.cpp - Simple Mod/Ref Analysis for Globals ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This simple pass provides alias and mod/ref information for global values
-// that do not have their address taken, and keeps track of whether functions
-// read or write memory (are "pure").  For this simple (but very common) case,
-// we can provide pretty accurate and useful information.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "globalsmodref-aa"
 #include "llvm/Analysis/Passes.h"

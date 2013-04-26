@@ -1,20 +1,17 @@
-//===-- llvm-nm.cpp - Symbol table dumping utility for llvm ---------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This program is a utility that works like traditional Unix "nm", that is, it
-// prints out the names of symbols in a bitcode or object file, along with some
-// information about each symbol.
-//
-// This "nm" supports many of the features of GNU "nm", including its different
-// output formats.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/Bitcode/Archive.h"

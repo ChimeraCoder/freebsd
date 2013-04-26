@@ -1,62 +1,16 @@
-/*	$NetBSD: crunchide.c,v 1.8 1997/11/01 06:51:45 lukem Exp $	*/
+
 /*
- * Copyright (c) 1997 Christopher G. Demetriou.  All rights reserved.
- * Copyright (c) 1994 University of Maryland
- * All Rights Reserved.
- *
- * Permission to use, copy, modify, distribute, and sell this software and its
- * documentation for any purpose is hereby granted without fee, provided that
- * the above copyright notice appear in all copies and that both that
- * copyright notice and this permission notice appear in supporting
- * documentation, and that the name of U.M. not be used in advertising or
- * publicity pertaining to distribution of the software without specific,
- * written prior permission.  U.M. makes no representations about the
- * suitability of this software for any purpose.  It is provided "as is"
- * without express or implied warranty.
- *
- * U.M. DISCLAIMS ALL WARRANTIES WITH REGARD TO THIS SOFTWARE, INCLUDING ALL
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS, IN NO EVENT SHALL U.M.
- * BE LIABLE FOR ANY SPECIAL, INDIRECT OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES
- * WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION
- * OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF OR IN
- * CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
- *
- * Author: James da Silva, Systems Design and Analysis Group
- *			   Computer Science Department
- *			   University of Maryland at College Park
- */
-/*
- * crunchide.c - tiptoes through an a.out symbol table, hiding all defined
- *	global symbols.  Allows the user to supply a "keep list" of symbols
- *	that are not to be hidden.  This program relies on the use of the
- * 	linker's -dc flag to actually put global bss data into the file's
- * 	bss segment (rather than leaving it as undefined "common" data).
- *
- * 	The point of all this is to allow multiple programs to be linked
- *	together without getting multiple-defined errors.
- *
- *	For example, consider a program "foo.c".  It can be linked with a
- *	small stub routine, called "foostub.c", eg:
- *	    int foo_main(int argc, char **argv){ return main(argc, argv); }
- *      like so:
- *	    cc -c foo.c foostub.c
- *	    ld -dc -r foo.o foostub.o -o foo.combined.o
- *	    crunchide -k _foo_main foo.combined.o
- *	at this point, foo.combined.o can be linked with another program
- * 	and invoked with "foo_main(argc, argv)".  foo's main() and any
- * 	other globals are hidden and will not conflict with other symbols.
- *
- * TODO:
- *	- resolve the theoretical hanging reloc problem (see check_reloc()
- *	  below). I have yet to see this problem actually occur in any real
- *	  program. In what cases will gcc/gas generate code that needs a
- *	  relative reloc from a global symbol, other than PIC?  The
- *	  solution is to not hide the symbol from the linker in this case,
- *	  but to generate some random name for it so that it doesn't link
- *	  with anything but holds the place for the reloc.
- *      - arrange that all the BSS segments start at the same address, so
- *	  that the final crunched binary BSS size is the max of all the
- *	  component programs' BSS sizes, rather than their sum.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

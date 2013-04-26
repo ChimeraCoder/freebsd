@@ -1,8 +1,18 @@
 #!/bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # $FreeBSD$
 #
-
 uidrange="60000:100000"
 gidrange="60000:100000"
 uidinrange="nobody"
@@ -164,4 +174,3 @@ su -fm $uidinrange -c "$command1 && echo good"
 ugidfw set 1 subject uid $uidrange object type r mode rasx
 echo -n "object type: "
 su -fm $uidinrange -c "$command1 || echo good"
-

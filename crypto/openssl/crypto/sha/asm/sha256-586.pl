@@ -1,28 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# SHA256 block transform for x86. September 2007.
-#
-# Performance in clock cycles per processed byte (less is better):
-#
-#		Pentium	PIII	P4	AMD K8	Core2
-# gcc		46	36	41	27	26
-# icc		57	33	38	25	23	
-# x86 asm	40	30	33	20	18
-# x86_64 asm(*)	-	-	21	16	16
-#
-# (*) x86_64 assembler performance is presented for reference
-#     purposes.
-#
-# Performance improvement over compiler generated code varies from
-# 10% to 40% [see above]. Not very impressive on some µ-archs, but
-# it's 5 times smaller and optimizies amount of writes.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $0 =~ m/(.*[\/\\])[^\/\\]+$/; $dir=$1;
 push(@INC,"${dir}","${dir}../../perlasm");

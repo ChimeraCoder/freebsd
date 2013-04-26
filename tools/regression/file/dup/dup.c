@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * $OpenBSD: dup2test.c,v 1.3 2003/07/31 21:48:08 deraadt Exp $
  * $OpenBSD: dup2_self.c,v 1.3 2003/07/31 21:48:08 deraadt Exp $
@@ -7,7 +21,6 @@
  *
  * $FreeBSD$
  */
-
 /*
  * Test #1:  check if dup(2) works.
  * Test #2:  check if dup2(2) works.

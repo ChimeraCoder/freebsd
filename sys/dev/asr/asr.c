@@ -1,112 +1,16 @@
-/*-
- * Copyright (c) 1996-2000 Distributed Processing Technology Corporation
- * Copyright (c) 2000-2001 Adaptec Corporation
- * All rights reserved.
- *
- * TERMS AND CONDITIONS OF USE
- *
- * Redistribution and use in source form, with or without modification, are
- * permitted provided that redistributions of source code must retain the
- * above copyright notice, this list of conditions and the following disclaimer.
- *
- * This software is provided `as is' by Adaptec and any express or implied
- * warranties, including, but not limited to, the implied warranties of
- * merchantability and fitness for a particular purpose, are disclaimed. In no
- * event shall Adaptec be liable for any direct, indirect, incidental, special,
- * exemplary or consequential damages (including, but not limited to,
- * procurement of substitute goods or services; loss of use, data, or profits;
- * or business interruptions) however caused and on any theory of liability,
- * whether in contract, strict liability, or tort (including negligence or
- * otherwise) arising in any way out of the use of this driver software, even
- * if advised of the possibility of such damage.
- *
- * SCSI I2O host adapter driver
- *
- *	V1.10 2004/05/05 scottl@freebsd.org
- *		- Massive cleanup of the driver to remove dead code and
- *		  non-conformant style.
- *		- Removed most i386-specific code to make it more portable.
- *		- Converted to the bus_space API.
- *	V1.08 2001/08/21 Mark_Salyzyn@adaptec.com
- *		- The 2000S and 2005S do not initialize on some machines,
- *		  increased timeout to 255ms from 50ms for the StatusGet
- *		  command.
- *	V1.07 2001/05/22 Mark_Salyzyn@adaptec.com
- *		- I knew this one was too good to be true. The error return
- *		  on ioctl commands needs to be compared to CAM_REQ_CMP, not
- *		  to the bit masked status.
- *	V1.06 2001/05/08 Mark_Salyzyn@adaptec.com
- *		- The 2005S that was supported is affectionately called the
- *		  Conjoined BAR Firmware. In order to support RAID-5 in a
- *		  16MB low-cost configuration, Firmware was forced to go
- *		  to a Split BAR Firmware. This requires a separate IOP and
- *		  Messaging base address.
- *	V1.05 2001/04/25 Mark_Salyzyn@adaptec.com
- *		- Handle support for 2005S Zero Channel RAID solution.
- *		- System locked up if the Adapter locked up. Do not try
- *		  to send other commands if the resetIOP command fails. The
- *		  fail outstanding command discovery loop was flawed as the
- *		  removal of the command from the list prevented discovering
- *		  all the commands.
- *		- Comment changes to clarify driver.
- *		- SysInfo searched for an EATA SmartROM, not an I2O SmartROM.
- *		- We do not use the AC_FOUND_DEV event because of I2O.
- *		  Removed asr_async.
- *	V1.04 2000/09/22 Mark_Salyzyn@adaptec.com, msmith@freebsd.org,
- *			 lampa@fee.vutbr.cz and Scott_Long@adaptec.com.
- *		- Removed support for PM1554, PM2554 and PM2654 in Mode-0
- *		  mode as this is confused with competitor adapters in run
- *		  mode.
- *		- critical locking needed in ASR_ccbAdd and ASR_ccbRemove
- *		  to prevent operating system panic.
- *		- moved default major number to 154 from 97.
- *	V1.03 2000/07/12 Mark_Salyzyn@adaptec.com
- *		- The controller is not actually an ASR (Adaptec SCSI RAID)
- *		  series that is visible, it's more of an internal code name.
- *		  remove any visible references within reason for now.
- *		- bus_ptr->LUN was not correctly zeroed when initially
- *		  allocated causing a possible panic of the operating system
- *		  during boot.
- *	V1.02 2000/06/26 Mark_Salyzyn@adaptec.com
- *		- Code always fails for ASR_getTid affecting performance.
- *		- initiated a set of changes that resulted from a formal
- *		  code inspection by Mark_Salyzyn@adaptec.com,
- *		  George_Dake@adaptec.com, Jeff_Zeak@adaptec.com,
- *		  Martin_Wilson@adaptec.com and Vincent_Trandoan@adaptec.com.
- *		  Their findings were focussed on the LCT & TID handler, and
- *		  all resulting changes were to improve code readability,
- *		  consistency or have a positive effect on performance.
- *	V1.01 2000/06/14 Mark_Salyzyn@adaptec.com
- *		- Passthrough returned an incorrect error.
- *		- Passthrough did not migrate the intrinsic scsi layer wakeup
- *		  on command completion.
- *		- generate control device nodes using make_dev and delete_dev.
- *		- Performance affected by TID caching reallocing.
- *		- Made suggested changes by Justin_Gibbs@adaptec.com
- *			- use splcam instead of splbio.
- *			- use cam_imask instead of bio_imask.
- *			- use u_int8_t instead of u_char.
- *			- use u_int16_t instead of u_short.
- *			- use u_int32_t instead of u_long where appropriate.
- *			- use 64 bit context handler instead of 32 bit.
- *			- create_ccb should only allocate the worst case
- *			  requirements for the driver since CAM may evolve
- *			  making union ccb much larger than needed here.
- *			  renamed create_ccb to asr_alloc_ccb.
- *			- go nutz justifying all debug prints as macros
- *			  defined at the top and remove unsightly ifdefs.
- *			- INLINE STATIC viewed as confusing. Historically
- *			  utilized to affect code performance and debug
- *			  issues in OS, Compiler or OEM specific situations.
- *	V1.00 2000/05/31 Mark_Salyzyn@adaptec.com
- *		- Ported from FreeBSD 2.2.X DPT I2O driver.
- *			changed struct scsi_xfer to union ccb/struct ccb_hdr
- *			changed variable name xs to ccb
- *			changed struct scsi_link to struct cam_path
- *			changed struct scsibus_data to struct cam_sim
- *			stopped using fordriver for holding on to the TID
- *			use proprietary packet creation instead of scsi_inquire
- *			CAM layer sends synchronize commands.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

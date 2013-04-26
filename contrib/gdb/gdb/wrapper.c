@@ -1,5 +1,18 @@
-/* Longjump free calls to gdb internal routines.
-   Copyright 1999, 2000 Free Software Foundation, Inc.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Longjump free calls to gdb internal routines.   Copyright 1999, 2000 Free Software Foundation, Inc.
 
    This program is free software; you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -330,4 +343,3 @@ do_captured_value_struct_elt (struct ui_out *uiout, void *data)
 			     cargs->static_memfuncp, cargs->err);
   return GDB_RC_OK;
 }
-

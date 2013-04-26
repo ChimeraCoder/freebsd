@@ -1,44 +1,16 @@
-/*	$OpenBSD: xform.c,v 1.16 2001/08/28 12:20:43 ben Exp $	*/
-/*-
- * The authors of this code are John Ioannidis (ji@tla.org),
- * Angelos D. Keromytis (kermit@csd.uch.gr),
- * Niels Provos (provos@physnet.uni-hamburg.de) and
- * Damien Miller (djm@mindrot.org).
- *
- * This code was written by John Ioannidis for BSD/OS in Athens, Greece,
- * in November 1995.
- *
- * Ported to OpenBSD and NetBSD, with additional transforms, in December 1996,
- * by Angelos D. Keromytis.
- *
- * Additional transforms and features in 1997 and 1998 by Angelos D. Keromytis
- * and Niels Provos.
- *
- * Additional features in 1999 by Angelos D. Keromytis.
- *
- * AES XTS implementation in 2008 by Damien Miller
- *
- * Copyright (C) 1995, 1996, 1997, 1998, 1999 by John Ioannidis,
- * Angelos D. Keromytis and Niels Provos.
- *
- * Copyright (C) 2001, Angelos D. Keromytis.
- *
- * Copyright (C) 2008, Damien Miller
- *
- * Permission to use, copy, and modify this software with or without fee
- * is hereby granted, provided that this entire notice is included in
- * all copies of any software which is or includes a copy or
- * modification of this software.
- * You may use this code under the GNU public license if you so wish. Please
- * contribute changes back to the authors under this freer than GPL license
- * so that we may further the use of strong encryption without limitations to
- * all.
- *
- * THIS SOFTWARE IS BEING PROVIDED "AS IS", WITHOUT ANY EXPRESS OR
- * IMPLIED WARRANTY. IN PARTICULAR, NONE OF THE AUTHORS MAKES ANY
- * REPRESENTATION OR WARRANTY OF ANY KIND CONCERNING THE
- * MERCHANTABILITY OF THIS SOFTWARE OR ITS FITNESS FOR ANY PARTICULAR
- * PURPOSE.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

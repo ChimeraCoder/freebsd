@@ -1,20 +1,17 @@
-//===- Reg2Mem.cpp - Convert registers to allocas -------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file demotes all registers to memory references.  It is intended to be
-// the inverse of PromoteMemoryToRegister.  By converting to loads, the only
-// values live across basic blocks are allocas and loads before phi nodes.
-// It is intended that this should make CFG hacking much easier.
-// To make later hacking easier, the entry block is split into two, such that
-// all introduced allocas and nothing else are in the entry block.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "reg2mem"
 #include "llvm/Transforms/Scalar.h"

@@ -1,41 +1,16 @@
+
 /*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <phk@FreeBSD.org> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- * ----------------------------------------------------------------------------
- *
- * $FreeBSD$
- *
- * This is the client program of 'CTM'.  It will apply a CTM-patch to a
- * collection of files.
- *
- * Options we'd like to see:
- *
- * -a 			Attempt best effort.
- * -d <int>		Debug TBD.
- * -m <mail-addr>	Email me instead.
- * -r <name>		Reconstruct file.
- * -R <file>		Read list of files to reconstruct.
- *
- * Options we have:
- * -b <dir>		Base-dir
- * -B <file>		Backup to tar-file.
- * -t 			Tar command (default as in TARCMD).
- * -c			Check it out, don't do anything.
- * -F      		Force
- * -q 			Tell us less.
- * -T <tmpdir>.		Temporary files.
- * -u			Set all file modification times to the timestamp
- * -v 			Tell us more.
- * -V <level>		Tell us more level = number of -v
- * -k			Keep files and directories that would have been removed.
- * -l			List actions.
- *
- * Options we don't actually use:
- * -p			Less paranoid.
- * -P			Paranoid.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #define EXTERN /* */

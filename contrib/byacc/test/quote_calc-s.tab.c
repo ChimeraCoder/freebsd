@@ -1,118 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    quote_calc_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      quote_calc_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    quote_calc_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     quote_calc_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      quote_calc_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     quote_calc_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    quote_calc_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    quote_calc_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  quote_calc_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      quote_calc_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      quote_calc_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   quote_calc_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    quote_calc_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   quote_calc_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   quote_calc_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   quote_calc_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    quote_calc_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    quote_calc_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     quote_calc_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     quote_calc_rule
-#endif /* yyrule */
-#define YYPREFIX "quote_calc_"
-
-#define YYPURE 0
-
-#line 2 "quote_calc.y"
-# include <stdio.h>
-# include <ctype.h>
-
-int regs[26];
-int base;
-
-int yylex(void);
-static void yyerror(const char *s);
-
-#line 109 "quote_calc-s.tab.c"
-
-#ifndef YYSTYPE
-typedef int YYSTYPE;
-#endif
-
-/* compatibility with bison */
-#ifdef YYPARSE_PARAM
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* compatibility with bison */#ifdef YYPARSE_PARAM
 /* compatibility with FreeBSD */
 # ifdef YYPARSE_PARAM_TYPE
 #  define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)

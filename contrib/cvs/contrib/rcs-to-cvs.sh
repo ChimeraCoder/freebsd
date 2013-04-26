@@ -1,42 +1,15 @@
 #! /bin/sh
-#
-#   Copyright (c) 1989-2005 The Free Software Foundation, Inc.
-#   Portions Copyright (c) 1989, Brian Berliner
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2, or (at your option)
-# any later version.
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
-# Based on the CVS 1.0 checkin csh script.
-# Contributed by Per Cederqvist <ceder@signum.se>.
-# Rewritten in sh by David MacKenzie <djm@cygnus.com>.
-#
-#############################################################################
-#
-# Check in sources that previously were under RCS or no source control system.
-#
-# The repository is the directory where the sources should be deposited.
-#
-# Traverses the current directory, ensuring that an
-# identical directory structure exists in the repository directory.  It
-# then checks the files in in the following manner:
-#
-#		1) If the file doesn't yet exist, check it in as revision 1.1
-#
-# The script also is somewhat verbose in letting the user know what is
-# going on.  It prints a diagnostic when it creates a new file, or updates
-# a file that has been modified on the trunk.
-#
-# Bugs: doesn't put the files in branch 1.1.1
-#       doesn't put in release and vendor tags
-#
-#############################################################################
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 usage="Usage: rcs-to-cvs [-v] [-m message] [-f message_file] repository"
 vbose=0

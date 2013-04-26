@@ -1,22 +1,17 @@
-//===-- LiveInterval.cpp - Live Interval Representation -------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the LiveRange and LiveInterval classes.  Given some
-// numbering of each the machine instructions an interval [i, j) is said to be a
-// live interval for register v if there is no instruction with number j' > j
-// such that v is live at j' and there is no instruction with number i' < i such
-// that v is live at i'. In this implementation intervals can have holes,
-// i.e. an interval might look like [1,20), [50,65), [1000,1001).  Each
-// individual range is represented as an instance of LiveRange, and the whole
-// interval is represented as an instance of LiveInterval.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/CodeGen/LiveInterval.h"
 #include "RegisterCoalescer.h"

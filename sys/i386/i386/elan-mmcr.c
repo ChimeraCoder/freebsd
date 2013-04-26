@@ -1,41 +1,16 @@
-/*-
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <phk@FreeBSD.org> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- * ----------------------------------------------------------------------------
- *
- *
- * The AMD Elan sc520 is a system-on-chip gadget which is used in embedded
- * kind of things, see www.soekris.com for instance, and it has a few quirks
- * we need to deal with.
- * Unfortunately we cannot identify the gadget by CPUID output because it
- * depends on strapping options and only the stepping field may be useful
- * and those are undocumented from AMDs side.
- *
- * So instead we recognize the on-chip host-PCI bridge and call back from
- * sys/i386/pci/pci_bus.c to here if we find it.
- *
- * #ifdef CPU_ELAN_PPS
- *   The Elan has three general purpose counters, and when two of these
- *   are used just right they can hardware timestamp external events with
- *   approx 125 nsec resolution and +/- 125 nsec precision.
- *
- *   Connect the signal to TMR1IN and a GPIO pin, and configure the GPIO pin
- *   with a 'P' in sysctl machdep.elan_gpio_config.
- *
- *   The rising edge of the signal will start timer 1 counting up from
- *   zero, and when the timecounter polls for PPS, both counter 1 & 2 is
- *   read, as well as the GPIO bit.  If a rising edge has happened, the
- *   contents of timer 1 which is how long time ago the edge happened,
- *   is subtracted from timer 2 to give us a "true time stamp".
- *
- *   Echoing the PPS signal on any GPIO pin is supported (set it to 'e'
- *   or 'E' (inverted) in the sysctl)  The echo signal should only be
- *   used as a visual indication, not for calibration since it suffers
- *   from 1/hz (or more) jitter which the timestamps are compensated for.
- * #endif CPU_ELAN_PPS
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>
@@ -502,4 +477,3 @@ elan_drvinit(void)
 }
 
 SYSINIT(elan, SI_SUB_PSEUDO, SI_ORDER_MIDDLE, elan_drvinit, NULL);
-

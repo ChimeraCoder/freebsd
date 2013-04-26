@@ -1,20 +1,17 @@
-//===-- EarlyIfConversion.cpp - If-conversion on SSA form machine code ----===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Early if-conversion is for out-of-order CPUs that don't have a lot of
-// predicable instructions. The goal is to eliminate conditional branches that
-// may mispredict.
-//
-// Instructions from both sides of the branch are executed specutatively, and a
-// cmov instruction selects the result.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "early-ifcvt"
 #include "llvm/ADT/BitVector.h"

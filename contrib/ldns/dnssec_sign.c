@@ -1,18 +1,20 @@
-#include <ldns/config.h>
 
-#include <ldns/ldns.h>
-
-#include <ldns/dnssec.h>
-#include <ldns/dnssec_sign.h>
-
-#include <strings.h>
-#include <time.h>
-
-#ifdef HAVE_SSL
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* this entire file is rather useless when you don't have
  * crypto...
- */
-#include <openssl/ssl.h>
+ */#include <openssl/ssl.h>
 #include <openssl/evp.h>
 #include <openssl/rand.h>
 #include <openssl/err.h>
@@ -1418,5 +1420,3 @@ ldns_zone_sign_nsec3(ldns_zone *zone, ldns_key_list *key_list, uint8_t algorithm
 	return signed_zone;
 }
 #endif /* HAVE_SSL */
-
-

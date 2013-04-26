@@ -1,30 +1,17 @@
-//===-- LoopUnswitch.cpp - Hoist loop-invariant conditionals in loop ------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass transforms loops that contain branches on loop-invariant conditions
-// to have multiple loops.  For example, it turns the left into the right code:
-//
-//  for (...)                  if (lic)
-//    A                          for (...)
-//    if (lic)                     A; B; C
-//      B                      else
-//    C                          for (...)
-//                                 A; C
-//
-// This can increase the size of the code exponentially (doubling it every time
-// a loop is unswitched) so we only unswitch if the resultant code will be
-// smaller than a threshold.
-//
-// This pass expects LICM to be run before it to hoist invariant conditions out
-// of the loop, to make the unswitching opportunity obvious.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "loop-unswitch"
 #include "llvm/Transforms/Scalar.h"

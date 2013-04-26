@@ -1,22 +1,15 @@
-;#
-;# lr.pl,v 3.1 1993/07/06 01:09:08 jbj Exp
-;#
-;#
-;# Linear Regression Package for perl
-;# to be 'required' from perl
-;#
-;#  Copyright (c) 1992 
-;#  Frank Kardel, Rainer Pruy
-;#  Friedrich-Alexander Universitaet Erlangen-Nuernberg
-;#
-;#  Copyright (c) 1997 by
-;#  Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de>
-;#  (Converted to a PERL 5.004 package)
-;#
-;#############################################################
 
-package lr;
-
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 ##
 ## y = A + Bx
 ##
@@ -24,7 +17,6 @@ package lr;
 ##
 ## A = (Sum(y) - B * Sum(x)) / n
 ##
-
 ##
 ## interface
 ##

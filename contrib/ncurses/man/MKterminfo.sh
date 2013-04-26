@@ -1,46 +1,15 @@
 #!/bin/sh
-# $Id: MKterminfo.sh,v 1.12 2003/01/11 21:42:12 tom Exp $
-#
-# MKterminfo.sh -- generate terminfo.5 from Caps tabular data
-#
-#***************************************************************************
-# Copyright (c) 1998,2002,2003 Free Software Foundation, Inc.              *
-#                                                                          *
-# Permission is hereby granted, free of charge, to any person obtaining a  *
-# copy of this software and associated documentation files (the            *
-# "Software"), to deal in the Software without restriction, including      *
-# without limitation the rights to use, copy, modify, merge, publish,      *
-# distribute, distribute with modifications, sublicense, and/or sell       *
-# copies of the Software, and to permit persons to whom the Software is    *
-# furnished to do so, subject to the following conditions:                 *
-#                                                                          *
-# The above copyright notice and this permission notice shall be included  *
-# in all copies or substantial portions of the Software.                   *
-#                                                                          *
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS  *
-# OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF               *
-# MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.   *
-# IN NO EVENT SHALL THE ABOVE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,   *
-# DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR    *
-# OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR    *
-# THE USE OR OTHER DEALINGS IN THE SOFTWARE.                               *
-#                                                                          *
-# Except as contained in this notice, the name(s) of the above copyright   *
-# holders shall not be used in advertising or otherwise to promote the     *
-# sale, use or other dealings in this Software without prior written       *
-# authorization.                                                           *
-#***************************************************************************
-#
-# This script takes terminfo.head and terminfo.tail and splices in between
-# them a table derived from the Caps data file.  Besides avoiding having
-# the docs fall out of sync with the table, this also lets us set up tbl
-# commands for better formatting of the table.
-#
-# NOTE: The s in this script really are control characters.  It translates
-#  to \n because I couldn't get used to inserting linefeeds directly.  There
-# had better be no s in the table source text.
-#
-# keep the order independent of locale:
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 if test "${LANGUAGE+set}"    = set; then LANGUAGE=C;    export LANGUAGE;    fi
 if test "${LANG+set}"        = set; then LANG=C;        export LANG;        fi
 if test "${LC_ALL+set}"      = set; then LC_ALL=C;      export LC_ALL;      fi

@@ -1,15 +1,16 @@
-/* ===-- ucmpdi2.c - Implement __ucmpdi2 -----------------------------------===
- *
- *                     The LLVM Compiler Infrastructure
- *
- * This file is dual licensed under the MIT and the University of Illinois Open
- * Source Licenses. See LICENSE.TXT for details.
- *
- * ===----------------------------------------------------------------------===
- *
- * This file implements __ucmpdi2 for the compiler_rt library.
- *
- * ===----------------------------------------------------------------------===
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "int_lib.h"
@@ -48,4 +49,3 @@ __aeabi_ulcmp(di_int a, di_int b)
 	return __ucmpdi2(a, b) - 1;
 }
 #endif
-

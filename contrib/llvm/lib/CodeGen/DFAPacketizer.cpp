@@ -1,27 +1,17 @@
-//=- llvm/CodeGen/DFAPacketizer.cpp - DFA Packetizer for VLIW -*- C++ -*-=====//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-// This class implements a deterministic finite automaton (DFA) based
-// packetizing mechanism for VLIW architectures. It provides APIs to
-// determine whether there exists a legal mapping of instructions to
-// functional unit assignments in a packet. The DFA is auto-generated from
-// the target's Schedule.td file.
-//
-// A DFA consists of 3 major elements: states, inputs, and transitions. For
-// the packetizing mechanism, the input is the set of instruction classes for
-// a target. The state models all possible combinations of functional unit
-// consumption for a given set of instructions in a packet. A transition
-// models the addition of an instruction to a packet. In the DFA constructed
-// by this class, if an instruction can be added to a packet, then a valid
-// transition exists from the corresponding state. Invalid transitions
-// indicate that the instruction cannot be added to the current packet.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/CodeGen/DFAPacketizer.h"
 #include "llvm/CodeGen/MachineInstr.h"

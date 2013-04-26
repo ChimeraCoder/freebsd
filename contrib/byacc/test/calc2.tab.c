@@ -1,120 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    calc2_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      calc2_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    calc2_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     calc2_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      calc2_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     calc2_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    calc2_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    calc2_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  calc2_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      calc2_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      calc2_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   calc2_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    calc2_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   calc2_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   calc2_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   calc2_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    calc2_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    calc2_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     calc2_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     calc2_rule
-#endif /* yyrule */
-#define YYPREFIX "calc2_"
-
-#define YYPURE 0
-
-#line 7 "calc2.y"
-# include <stdio.h>
-# include <ctype.h>
-
-#ifdef YYBISON
-#define YYLEX_PARAM base
-#define YYLEX_DECL() yylex(int *YYLEX_PARAM)
-#define YYERROR_DECL() yyerror(int regs[26], int *base, const char *s)
-int YYLEX_DECL();
-static void YYERROR_DECL();
-#endif
-
-#line 111 "calc2.tab.c"
-
-#ifndef YYSTYPE
-typedef int YYSTYPE;
-#endif
-
-/* compatibility with bison */
-#ifdef YYPARSE_PARAM
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* compatibility with bison */#ifdef YYPARSE_PARAM
 /* compatibility with FreeBSD */
 # ifdef YYPARSE_PARAM_TYPE
 #  define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)

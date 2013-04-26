@@ -1,46 +1,17 @@
-//==- IdempotentOperationChecker.cpp - Idempotent Operations ----*- C++ -*-==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines a set of path-sensitive checks for idempotent and/or
-// tautological operations. Each potential operation is checked along all paths
-// to see if every path results in a pointless operation.
-//                 +-------------------------------------------+
-//                 |Table of idempotent/tautological operations|
-//                 +-------------------------------------------+
-//+--------------------------------------------------------------------------+
-//|Operator | x op x | x op 1 | 1 op x | x op 0 | 0 op x | x op ~0 | ~0 op x |
-//+--------------------------------------------------------------------------+
-//  +, +=   |        |        |        |   x    |   x    |         |
-//  -, -=   |        |        |        |   x    |   -x   |         |
-//  *, *=   |        |   x    |   x    |   0    |   0    |         |
-//  /, /=   |   1    |   x    |        |  N/A   |   0    |         |
-//  &, &=   |   x    |        |        |   0    |   0    |   x     |    x
-//  |, |=   |   x    |        |        |   x    |   x    |   ~0    |    ~0
-//  ^, ^=   |   0    |        |        |   x    |   x    |         |
-//  <<, <<= |        |        |        |   x    |   0    |         |
-//  >>, >>= |        |        |        |   x    |   0    |         |
-//  ||      |   1    |   1    |   1    |   x    |   x    |   1     |    1
-//  &&      |   1    |   x    |   x    |   0    |   0    |   x     |    x
-//  =       |   x    |        |        |        |        |         |
-//  ==      |   1    |        |        |        |        |         |
-//  >=      |   1    |        |        |        |        |         |
-//  <=      |   1    |        |        |        |        |         |
-//  >       |   0    |        |        |        |        |         |
-//  <       |   0    |        |        |        |        |         |
-//  !=      |   0    |        |        |        |        |         |
-//===----------------------------------------------------------------------===//
-//
-// Things TODO:
-// - Improved error messages
-// - Handle mixed assumptions (which assumptions can belong together?)
-// - Finer grained false positive control (levels)
-// - Handling ~0 values
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ClangSACheckers.h"
 #include "clang/AST/Stmt.h"

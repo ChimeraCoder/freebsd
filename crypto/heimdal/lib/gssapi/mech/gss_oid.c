@@ -1,5 +1,18 @@
-/* Generated file */
-#include "mech_locl.h"
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Generated file */#include "mech_locl.h"
 
 /* GSS_KRB5_COPY_CCACHE_X - 1.2.752.43.13.1 */
 gss_OID_desc GSSAPI_LIB_VARIABLE __gss_krb5_copy_ccache_x_oid_desc = { 6, rk_UNCONST("\x2a\x85\x70\x2b\x0d\x01") };
@@ -263,4 +276,3 @@ struct _gss_oid_name_table _gss_ont_mech[] = {
   { GSS_NTLM_MECHANISM, "GSS_NTLM_MECHANISM", "NTLM", "Heimdal NTLM mechanism" },
   { NULL }
 };
-

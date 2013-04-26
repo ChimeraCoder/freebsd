@@ -1,82 +1,16 @@
-/*-
- * Copyright (c) 1998 Matthew Dillon.  All Rights Reserved.
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 4. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS
- * OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY
- * DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
- * GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
- * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
- * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+
 /*
- * BLIST.C -	Bitmap allocator/deallocator, using a radix tree with hinting
- *
- *	This module implements a general bitmap allocator/deallocator.  The
- *	allocator eats around 2 bits per 'block'.  The module does not 
- *	try to interpret the meaning of a 'block' other than to return 
- *	SWAPBLK_NONE on an allocation failure.
- *
- *	A radix tree is used to maintain the bitmap.  Two radix constants are
- *	involved:  One for the bitmaps contained in the leaf nodes (typically
- *	32), and one for the meta nodes (typically 16).  Both meta and leaf
- *	nodes have a hint field.  This field gives us a hint as to the largest
- *	free contiguous range of blocks under the node.  It may contain a
- *	value that is too high, but will never contain a value that is too 
- *	low.  When the radix tree is searched, allocation failures in subtrees
- *	update the hint. 
- *
- *	The radix tree also implements two collapsed states for meta nodes:
- *	the ALL-ALLOCATED state and the ALL-FREE state.  If a meta node is
- *	in either of these two states, all information contained underneath
- *	the node is considered stale.  These states are used to optimize
- *	allocation and freeing operations.
- *
- * 	The hinting greatly increases code efficiency for allocations while
- *	the general radix structure optimizes both allocations and frees.  The
- *	radix tree should be able to operate well no matter how much 
- *	fragmentation there is and no matter how large a bitmap is used.
- *
- *	The blist code wires all necessary memory at creation time.  Neither
- *	allocations nor frees require interaction with the memory subsystem.
- *	The non-blocking features of the blist code are used in the swap code
- *	(vm/swap_pager.c).
- *
- *	LAYOUT: The radix tree is layed out recursively using a
- *	linear array.  Each meta node is immediately followed (layed out
- *	sequentially in memory) by BLIST_META_RADIX lower level nodes.  This
- *	is a recursive structure but one that can be easily scanned through
- *	a very simple 'skip' calculation.  In order to support large radixes, 
- *	portions of the tree may reside outside our memory allocation.  We 
- *	handle this with an early-termination optimization (when bighint is 
- *	set to -1) on the scan.  The memory allocation is only large enough 
- *	to cover the number of blocks requested at creation time even if it
- *	must be encompassed in larger root-node radix.
- *
- *	NOTE: the allocator cannot currently allocate more than 
- *	BLIST_BMAP_RADIX blocks per call.  It will panic with 'allocation too 
- *	large' if you try.  This is an area that could use improvement.  The 
- *	radix is large enough that this restriction does not effect the swap 
- *	system, though.  Currently only the allocation code is effected by
- *	this algorithmic unfeature.  The freeing code can handle arbitrary
- *	ranges.
- *
- *	This code can be compiled stand-alone for debugging.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>
@@ -1092,4 +1026,3 @@ panic(const char *ctl, ...)
 }
 
 #endif
-

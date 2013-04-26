@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * tg.c generate WWV or IRIG signals for test
  */
@@ -15,8 +29,7 @@
  * Alernatively, the initial epoch can be set to an arbitrary time. This
  * is useful when searching for bugs and testing for correct response to
  * a leap second in UTC. Note however, the ultimate accuracy is limited
- * by the intrinsic frequency error of the codec sample clock, which can
- # reach well over 100 PPM.
+ * by the intrinsic frequency error of the codec sample clock, which can # reach well over 100 PPM.
  *
  * The default is to route generated signals to the line output
  * jack; the s option on the command line routes these signals to the

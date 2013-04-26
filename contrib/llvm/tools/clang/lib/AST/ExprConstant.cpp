@@ -1,37 +1,17 @@
-//===--- ExprConstant.cpp - Expression Constant Evaluator -----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the Expr constant evaluator.
-//
-// Constant expression evaluation produces four main results:
-//
-//  * A success/failure flag indicating whether constant folding was successful.
-//    This is the 'bool' return value used by most of the code in this file. A
-//    'false' return value indicates that constant folding has failed, and any
-//    appropriate diagnostic has already been produced.
-//
-//  * An evaluated result, valid only if constant folding has not failed.
-//
-//  * A flag indicating if evaluation encountered (unevaluated) side-effects.
-//    These arise in cases such as (sideEffect(), 0) and (sideEffect() || 1),
-//    where it is possible to determine the evaluated result regardless.
-//
-//  * A set of notes indicating why the evaluation was not a constant expression
-//    (under the C++11 rules only, at the moment), or, if folding failed too,
-//    why the expression could not be folded.
-//
-// If we are checking for a potential constant expression, failure to constant
-// fold a potential constant sub-expression will be indicated by a 'false'
-// return value (the expression could not be folded) and no diagnostic (the
-// expression is not necessarily non-constant).
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "clang/AST/APValue.h"
 #include "clang/AST/ASTContext.h"

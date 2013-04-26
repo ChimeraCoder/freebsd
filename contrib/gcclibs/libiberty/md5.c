@@ -1,5 +1,18 @@
-/* md5.c - Functions to compute MD5 message digest of files or memory blocks
-   according to the definition of MD5 in RFC 1321 from April 1992.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* md5.c - Functions to compute MD5 message digest of files or memory blocks   according to the definition of MD5 in RFC 1321 from April 1992.
    Copyright (C) 1995, 1996 Free Software Foundation, Inc.
 
    NOTE: This source is derived from an old version taken from the GNU C

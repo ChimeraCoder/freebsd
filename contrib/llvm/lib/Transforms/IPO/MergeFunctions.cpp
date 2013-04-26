@@ -1,47 +1,17 @@
-//===- MergeFunctions.cpp - Merge identical functions ---------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass looks for equivalent functions that are mergable and folds them.
-//
-// A hash is computed from the function, based on its type and number of
-// basic blocks.
-//
-// Once all hashes are computed, we perform an expensive equality comparison
-// on each function pair. This takes n^2/2 comparisons per bucket, so it's
-// important that the hash function be high quality. The equality comparison
-// iterates through each instruction in each basic block.
-//
-// When a match is found the functions are folded. If both functions are
-// overridable, we move the functionality into a new internal function and
-// leave two overridable thunks to it.
-//
-//===----------------------------------------------------------------------===//
-//
-// Future work:
-//
-// * virtual functions.
-//
-// Many functions have their address taken by the virtual function table for
-// the object they belong to. However, as long as it's only used for a lookup
-// and call, this is irrelevant, and we'd like to fold such functions.
-//
-// * switch from n^2 pair-wise comparisons to an n-way comparison for each
-// bucket.
-//
-// * be smarter about bitcasts.
-//
-// In order to fold functions, we will sometimes add either bitcast instructions
-// or bitcast constant expressions. Unfortunately, this can confound further
-// analysis since the two functions differ where one has a bitcast and the
-// other doesn't. We should learn to look through bitcasts.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "mergefunc"
 #include "llvm/Transforms/IPO.h"

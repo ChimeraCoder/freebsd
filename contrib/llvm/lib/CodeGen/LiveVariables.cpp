@@ -1,30 +1,17 @@
-//===-- LiveVariables.cpp - Live Variable Analysis for Machine Code -------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the LiveVariable analysis pass.  For each machine
-// instruction in the function, this pass calculates the set of registers that
-// are immediately dead after the instruction (i.e., the instruction calculates
-// the value, but it is never used) and the set of registers that are used by
-// the instruction, but are never used after the instruction (i.e., they are
-// killed).
-//
-// This class computes live variables using a sparse implementation based on
-// the machine code SSA form.  This class computes live variable information for
-// each virtual and _register allocatable_ physical register in a function.  It
-// uses the dominance properties of SSA form to efficiently compute live
-// variables for virtual registers, and assumes that physical registers are only
-// live within a single basic block (allowing it to do a single local analysis
-// to resolve physical register lifetimes in each basic block).  If a physical
-// register is not register allocatable, it is not tracked.  This is useful for
-// things like the stack pointer and condition codes.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/CodeGen/LiveVariables.h"
 #include "llvm/ADT/DepthFirstIterator.h"

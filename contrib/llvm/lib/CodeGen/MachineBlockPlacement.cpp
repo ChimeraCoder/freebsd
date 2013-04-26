@@ -1,29 +1,17 @@
-//===-- MachineBlockPlacement.cpp - Basic Block Code Layout optimization --===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements basic block placement transformations using the CFG
-// structure and branch probability estimates.
-//
-// The pass strives to preserve the structure of the CFG (that is, retain
-// a topological ordering of basic blocks) in the absence of a *strong* signal
-// to the contrary from probabilities. However, within the CFG structure, it
-// attempts to choose an ordering which favors placing more likely sequences of
-// blocks adjacent to each other.
-//
-// The algorithm works from the inner-most loop within a function outward, and
-// at each stage walks through the basic blocks, trying to coalesce them into
-// sequential chains where allowed by the CFG (or demanded by heavy
-// probabilities). Finally, it walks the blocks in topological order, and the
-// first time it reaches a chain of basic blocks, it schedules them in the
-// function in-order.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "block-placement2"
 #include "llvm/CodeGen/Passes.h"
@@ -1162,4 +1150,3 @@ bool MachineBlockPlacementStats::runOnMachineFunction(MachineFunction &F) {
 
   return false;
 }
-

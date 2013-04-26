@@ -1,35 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <openssl/objects.h>
-#include <openssl/comp.h>
 
-static int rle_compress_block(COMP_CTX *ctx, unsigned char *out,
-	unsigned int olen, unsigned char *in, unsigned int ilen);
-static int rle_expand_block(COMP_CTX *ctx, unsigned char *out,
-	unsigned int olen, unsigned char *in, unsigned int ilen);
-
-static COMP_METHOD rle_method={
-	NID_rle_compression,
-	LN_rle_compression,
-	NULL,
-	NULL,
-	rle_compress_block,
-	rle_expand_block,
-	NULL,
-	NULL,
-	};
-
-COMP_METHOD *COMP_rle(void)
-	{
-	return(&rle_method);
-	}
-
-static int rle_compress_block(COMP_CTX *ctx, unsigned char *out,
-	     unsigned int olen, unsigned char *in, unsigned int ilen)
-	{
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 	/* int i; */
-
 	if (ilen == 0 || olen < (ilen-1))
 		{
 		/* ZZZZZZZZZZZZZZZZZZZZZZ */

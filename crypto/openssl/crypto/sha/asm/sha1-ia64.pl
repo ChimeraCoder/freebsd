@@ -1,18 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# Eternal question is what's wrong with compiler generated code? The
-# trick is that it's possible to reduce the number of shifts required
-# to perform rotations by maintaining copy of 32-bit value in upper
-# bits of 64-bit register. Just follow mux2 and shrp instructions...
-# Performance under big-endian OS such as HP-UX is 179MBps*1GHz, which
-# is >50% better than HP C and >2x better than gcc.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $code=<<___;
 .ident  \"sha1-ia64.s, version 1.3\"

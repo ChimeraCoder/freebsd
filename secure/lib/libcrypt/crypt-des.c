@@ -1,59 +1,16 @@
+
 /*
- * FreeSec: libcrypt for NetBSD
- *
- * Copyright (c) 1994 David Burren
- * All rights reserved.
- *
- * Adapted for FreeBSD-2.0 by Geoffrey M. Rehmet
- *	this file should now *only* export crypt(), in order to make
- *	binaries of libcrypt exportable from the USA
- *
- * Adapted for FreeBSD-4.0 by Mark R V Murray
- *	this file should now *only* export crypt_des(), in order to make
- *	a module that can be optionally included in libcrypt.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the author nor the names of other contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- * This is an original implementation of the DES and the crypt(3) interfaces
- * by David Burren <davidb@werj.com.au>.
- *
- * An excellent reference on the underlying algorithm (and related
- * algorithms) is:
- *
- *	B. Schneier, Applied Cryptography: protocols, algorithms,
- *	and source code in C, John Wiley & Sons, 1994.
- *
- * Note that in that book's description of DES the lookups for the initial,
- * pbox, and final permutations are inverted (this has been brought to the
- * attention of the author).  A list of errata for this book has been
- * posted to the sci.crypt newsgroup by the author and is available for FTP.
- *
- * ARCHITECTURE ASSUMPTIONS:
- *	It is assumed that the 8-byte arrays passed by reference can be
- *	addressed as arrays of u_int32_t's (ie. the CPU is not picky about
- *	alignment).
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

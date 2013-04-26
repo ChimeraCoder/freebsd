@@ -1,36 +1,17 @@
-//===-- ShrinkWrapping.cpp - Reduce spills/restores of callee-saved regs --===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements a shrink wrapping variant of prolog/epilog insertion:
-// - Spills and restores of callee-saved registers (CSRs) are placed in the
-//   machine CFG to tightly surround their uses so that execution paths that
-//   do not use CSRs do not pay the spill/restore penalty.
-//
-// - Avoiding placment of spills/restores in loops: if a CSR is used inside a
-//   loop the spills are placed in the loop preheader, and restores are
-//   placed in the loop exit nodes (the successors of loop _exiting_ nodes).
-//
-// - Covering paths without CSR uses:
-//   If a region in a CFG uses CSRs and has multiple entry and/or exit points,
-//   the use info for the CSRs inside the region is propagated outward in the
-//   CFG to ensure validity of the spill/restore placements. This decreases
-//   the effectiveness of shrink wrapping but does not require edge splitting
-//   in the machine CFG.
-//
-// This shrink wrapping implementation uses an iterative analysis to determine
-// which basic blocks require spills and restores for CSRs.
-//
-// This pass uses MachineDominators and MachineLoopInfo. Loop information
-// is used to prevent placement of callee-saved register spills/restores
-// in the bodies of loops.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "shrink-wrap"
 

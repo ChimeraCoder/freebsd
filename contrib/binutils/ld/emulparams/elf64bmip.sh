@@ -1,11 +1,16 @@
-. ${srcdir}/emulparams/elf64bmip-defs.sh
-OUTPUT_FORMAT="elf64-bigmips"
-BIG_OUTPUT_FORMAT="elf64-bigmips"
-LITTLE_OUTPUT_FORMAT="elf64-littlemips"
-SHLIB_TEXT_START_ADDR=0x3ffffe0000
 
-# IRIX6 defines these symbols.  0x40 is the size of the ELF header.
-EXECUTABLE_SYMBOLS="
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# IRIX6 defines these symbols.  0x40 is the size of the ELF header.EXECUTABLE_SYMBOLS="
   __dso_displacement = 0;
   ${CREATE_SHLIB-${CREATE_PIE-__elf_header = ${TEXT_START_ADDR};}}
   ${CREATE_SHLIB+__elf_header = ${SHLIB_TEXT_START_ADDR};}

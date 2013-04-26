@@ -1,5 +1,18 @@
-/* This is simple demonstration of how to use expat. This program
-   reads an XML document from standard input and writes a line with
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* This is simple demonstration of how to use expat. This program   reads an XML document from standard input and writes a line with
    the name of each element to standard output indenting child
    elements by one tab stop more than their parent element.
    It must be used with Expat compiled for UTF-8 output.

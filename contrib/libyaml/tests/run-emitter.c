@@ -1,93 +1,18 @@
-#include <yaml.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-#ifdef NDEBUG
-#undef NDEBUG
-#endif
-#include <assert.h>
-
-#define BUFFER_SIZE 65536
-#define MAX_EVENTS  1024
-
-int copy_event(yaml_event_t *event_to, yaml_event_t *event_from)
-{
-    switch (event_from->type)
-    {
-        case YAML_STREAM_START_EVENT:
-            return yaml_stream_start_event_initialize(event_to,
-                    event_from->data.stream_start.encoding);
-
-        case YAML_STREAM_END_EVENT:
-            return yaml_stream_end_event_initialize(event_to);
-
-        case YAML_DOCUMENT_START_EVENT:
-            return yaml_document_start_event_initialize(event_to,
-                    event_from->data.document_start.version_directive,
-                    event_from->data.document_start.tag_directives.start,
-                    event_from->data.document_start.tag_directives.end,
-                    event_from->data.document_start.implicit);
-
-        case YAML_DOCUMENT_END_EVENT:
-            return yaml_document_end_event_initialize(event_to,
-                    event_from->data.document_end.implicit);
-
-        case YAML_ALIAS_EVENT:
-            return yaml_alias_event_initialize(event_to,
-                    event_from->data.alias.anchor);
-
-        case YAML_SCALAR_EVENT:
-            return yaml_scalar_event_initialize(event_to,
-                    event_from->data.scalar.anchor,
-                    event_from->data.scalar.tag,
-                    event_from->data.scalar.value,
-                    event_from->data.scalar.length,
-                    event_from->data.scalar.plain_implicit,
-                    event_from->data.scalar.quoted_implicit,
-                    event_from->data.scalar.style);
-
-        case YAML_SEQUENCE_START_EVENT:
-            return yaml_sequence_start_event_initialize(event_to,
-                    event_from->data.sequence_start.anchor,
-                    event_from->data.sequence_start.tag,
-                    event_from->data.sequence_start.implicit,
-                    event_from->data.sequence_start.style);
-
-        case YAML_SEQUENCE_END_EVENT:
-            return yaml_sequence_end_event_initialize(event_to);
-
-        case YAML_MAPPING_START_EVENT:
-            return yaml_mapping_start_event_initialize(event_to,
-                    event_from->data.mapping_start.anchor,
-                    event_from->data.mapping_start.tag,
-                    event_from->data.mapping_start.implicit,
-                    event_from->data.mapping_start.style);
-
-        case YAML_MAPPING_END_EVENT:
-            return yaml_mapping_end_event_initialize(event_to);
-
-        default:
-            assert(1);
-    }
-
-    return 0;
-}
-
-int compare_events(yaml_event_t *event1, yaml_event_t *event2)
-{
-    int k;
-
-    if (event1->type != event2->type)
-        return 0;
-
-    switch (event1->type)
-    {
-        case YAML_STREAM_START_EVENT:
-            return 1;
-            /* return (event1->data.stream_start.encoding ==
-                    event2->data.stream_start.encoding); */
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+            /* return (event1->data.stream_start.encoding ==                    event2->data.stream_start.encoding); */
 
         case YAML_DOCUMENT_START_EVENT:
             if ((event1->data.document_start.version_directive && !event2->data.document_start.version_directive)

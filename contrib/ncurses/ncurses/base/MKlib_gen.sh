@@ -1,58 +1,15 @@
 #!/bin/sh
-#
-# MKlib_gen.sh -- generate sources from curses.h macro definitions
-#
-# ($Id: MKlib_gen.sh,v 1.34 2008/08/30 19:20:50 tom Exp $)
-#
-##############################################################################
-# Copyright (c) 1998-2007,2008 Free Software Foundation, Inc.                #
-#                                                                            #
-# Permission is hereby granted, free of charge, to any person obtaining a    #
-# copy of this software and associated documentation files (the "Software"), #
-# to deal in the Software without restriction, including without limitation  #
-# the rights to use, copy, modify, merge, publish, distribute, distribute    #
-# with modifications, sublicense, and/or sell copies of the Software, and to #
-# permit persons to whom the Software is furnished to do so, subject to the  #
-# following conditions:                                                      #
-#                                                                            #
-# The above copyright notice and this permission notice shall be included in #
-# all copies or substantial portions of the Software.                        #
-#                                                                            #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR #
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   #
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL    #
-# THE ABOVE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      #
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING    #
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER        #
-# DEALINGS IN THE SOFTWARE.                                                  #
-#                                                                            #
-# Except as contained in this notice, the name(s) of the above copyright     #
-# holders shall not be used in advertising or otherwise to promote the sale, #
-# use or other dealings in this Software without prior written               #
-# authorization.                                                             #
-##############################################################################
-#
-# The XSI Curses standard requires all curses entry points to exist as
-# functions, even though many definitions would normally be shadowed
-# by macros.  Rather than hand-hack all that code, we actually
-# generate functions from the macros.
-#
-# This script accepts a file of prototypes on standard input.  It discards
-# any that don't have a `generated' comment attached. It then parses each
-# prototype (relying on the fact that none of the macros take function
-# pointer or array arguments) and generates C source from it.
-#
-# Here is what the pipeline stages are doing:
-#
-# 1. sed: extract prototypes of generated functions
-# 2. sed: decorate prototypes with generated arguments a1. a2,...z
-# 3. awk: generate the calls with args matching the formals
-# 4. sed: prefix function names in prototypes so the preprocessor won't expand
-#         them.
-# 5. cpp: macro-expand the file so the macro calls turn into C calls
-# 6. awk: strip the expansion junk off the front and add the new header
-# 7. sed: squeeze spaces, strip off gen_ prefix, create needed #undef
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # keep the editing independent of locale:
 if test "${LANGUAGE+set}"    = set; then LANGUAGE=C;    export LANGUAGE;    fi

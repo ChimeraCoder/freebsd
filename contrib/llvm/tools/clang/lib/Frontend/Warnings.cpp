@@ -1,25 +1,17 @@
-//===--- Warnings.cpp - C-Language Front-end ------------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Command line warning options handler.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file is responsible for handling all warning options. This includes
-// a number of -Wfoo options and their variants, which are driven by TableGen-
-// generated data, and the special cases -pedantic, -pedantic-errors, -w,
-// -Werror and -Wfatal-errors.
-//
-// Each warning option controls any number of actual warnings.
-// Given a warning option 'foo', the following are valid:
-//    -Wfoo, -Wno-foo, -Werror=foo, -Wfatal-errors=foo
-//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "clang/Frontend/Utils.h"
 #include "clang/Basic/Diagnostic.h"
 #include "clang/Basic/DiagnosticOptions.h"

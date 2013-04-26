@@ -1,27 +1,17 @@
-//===-- X86FloatingPoint.cpp - Floating point Reg -> Stack converter ------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines the pass which converts floating point instructions from
-// pseudo registers into register stack instructions.  This pass uses live
-// variable information to indicate where the FPn registers are used and their
-// lifetimes.
-//
-// The x87 hardware tracks liveness of the stack registers, so it is necessary
-// to implement exact liveness tracking between basic blocks. The CFG edges are
-// partitioned into bundles where the same FP registers must be live in
-// identical stack positions. Instructions are inserted at the end of each basic
-// block to rearrange the live registers to match the outgoing bundle.
-//
-// This approach avoids splitting critical edges at the potential cost of more
-// live register shuffling instructions when critical edges are present.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "x86-codegen"
 #include "X86.h"

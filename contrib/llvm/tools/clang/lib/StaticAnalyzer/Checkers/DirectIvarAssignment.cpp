@@ -1,25 +1,17 @@
-//=- DirectIvarAssignment.cpp - Check rules on ObjC properties -*- C++ ----*-==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  Check that Objective C properties are set with the setter, not though a
-//      direct assignment.
-//
-//  Two versions of a checker exist: one that checks all methods and the other
-//      that only checks the methods annotated with
-//      __attribute__((annotate("objc_no_direct_instance_variable_assignment")))
-//
-//  The checker does not warn about assignments to Ivars, annotated with
-//       __attribute__((objc_allow_direct_instance_variable_assignment"))). This
-//      annotation serves as a false positive suppression mechanism for the
-//      checker. The annotation is allowed on properties and Ivars.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ClangSACheckers.h"
 #include "clang/AST/Attr.h"

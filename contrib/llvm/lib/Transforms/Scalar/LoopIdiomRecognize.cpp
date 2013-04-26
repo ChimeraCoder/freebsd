@@ -1,45 +1,17 @@
-//===-- LoopIdiomRecognize.cpp - Loop idiom recognition -------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass implements an idiom recognizer that transforms simple loops into a
-// non-loop form.  In cases that this kicks in, it can be a significant
-// performance win.
-//
-//===----------------------------------------------------------------------===//
-//
-// TODO List:
-//
-// Future loop memory idioms to recognize:
-//   memcmp, memmove, strlen, etc.
-// Future floating point idioms to recognize in -ffast-math mode:
-//   fpowi
-// Future integer operation idioms to recognize:
-//   ctpop, ctlz, cttz
-//
-// Beware that isel's default lowering for ctpop is highly inefficient for
-// i64 and larger types when i64 is legal and the value has few bits set.  It
-// would be good to enhance isel to emit a loop for ctpop in this case.
-//
-// We should enhance the memset/memcpy recognition to handle multiple stores in
-// the loop.  This would handle things like:
-//   void foo(_Complex float *P)
-//     for (i) { __real__(*P) = 0;  __imag__(*P) = 0; }
-//
-// We should enhance this to handle negative strides through memory.
-// Alternatively (and perhaps better) we could rely on an earlier pass to force
-// forward iteration through memory, which is generally better for cache
-// behavior.  Negative strides *do* happen for memset/memcpy loops.
-//
-// This could recognize common matrix multiplies and dot product idioms and
-// replace them with calls to BLAS (if linked in??).
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "loop-idiom"
 #include "llvm/Transforms/Scalar.h"

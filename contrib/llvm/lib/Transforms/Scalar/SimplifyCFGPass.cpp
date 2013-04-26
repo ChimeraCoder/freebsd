@@ -1,25 +1,17 @@
-//===- SimplifyCFGPass.cpp - CFG Simplification Pass ----------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements dead code elimination and basic block merging, along
-// with a collection of other peephole control flow optimizations.  For example:
-//
-//   * Removes basic blocks with no predecessors.
-//   * Merges a basic block into its predecessor if there is only one and the
-//     predecessor only has one successor.
-//   * Eliminates PHI nodes for basic blocks with a single predecessor.
-//   * Eliminates a basic block that only contains an unconditional branch.
-//   * Changes invoke instructions to nounwind functions to be calls.
-//   * Change things like "if (x) if (y)" into "if (x&y)".
-//   * etc..
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "simplifycfg"
 #include "llvm/Transforms/Scalar.h"

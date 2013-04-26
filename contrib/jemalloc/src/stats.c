@@ -1,42 +1,19 @@
-#define	JEMALLOC_STATS_C_
-#include "jemalloc/internal/jemalloc_internal.h"
 
-#define	CTL_GET(n, v, t) do {						\
-	size_t sz = sizeof(t);						\
-	xmallctl(n, v, &sz, NULL, 0);					\
-} while (0)
-
-#define	CTL_I_GET(n, v, t) do {						\
-	size_t mib[6];							\
-	size_t miblen = sizeof(mib) / sizeof(size_t);			\
-	size_t sz = sizeof(t);						\
-	xmallctlnametomib(n, mib, &miblen);				\
-	mib[2] = i;							\
-	xmallctlbymib(mib, miblen, v, &sz, NULL, 0);			\
-} while (0)
-
-#define	CTL_J_GET(n, v, t) do {						\
-	size_t mib[6];							\
-	size_t miblen = sizeof(mib) / sizeof(size_t);			\
-	size_t sz = sizeof(t);						\
-	xmallctlnametomib(n, mib, &miblen);				\
-	mib[2] = j;							\
-	xmallctlbymib(mib, miblen, v, &sz, NULL, 0);			\
-} while (0)
-
-#define	CTL_IJ_GET(n, v, t) do {					\
-	size_t mib[6];							\
-	size_t miblen = sizeof(mib) / sizeof(size_t);			\
-	size_t sz = sizeof(t);						\
-	xmallctlnametomib(n, mib, &miblen);				\
-	mib[2] = i;							\
-	mib[4] = j;							\
-	xmallctlbymib(mib, miblen, v, &sz, NULL, 0);			\
-} while (0)
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /******************************************************************************/
 /* Data. */
-
 bool	opt_stats_print = false;
 
 size_t	stats_cactive = 0;

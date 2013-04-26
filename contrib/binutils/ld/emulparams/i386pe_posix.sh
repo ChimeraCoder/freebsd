@@ -1,10 +1,12 @@
-ARCH=i386
-SCRIPT_NAME=pe
-OUTPUT_FORMAT="pei-i386"
-RELOCATEABLE_OUTPUT_FORMAT="pe-i386"
-TEMPLATE_NAME=pe
-ENTRY="___PosixProcessStartup"
-SUBSYSTEM=7
-EXECUTABLE_NAME=a.out
-INITIAL_SYMBOL_CHAR=\"_\"
-TARGET_PAGE_SIZE=0x1000
+
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.

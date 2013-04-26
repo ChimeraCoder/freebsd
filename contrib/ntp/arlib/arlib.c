@@ -1,10 +1,23 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * arlib.c (C)opyright 1993 Darren Reed. All rights reserved.
  * This file may not be distributed without the author's permission in any
  * shape or form. The author takes no responsibility for any damage or loss
  * of property which results from the use of this software.
- */
-#ifndef lint
+ */#ifndef lint
 static	char	sccsid[] = "@(#)arlib.c	1.9 6/5/93 (C)opyright 1992 Darren \
 Reed. ASYNC DNS";
 #endif

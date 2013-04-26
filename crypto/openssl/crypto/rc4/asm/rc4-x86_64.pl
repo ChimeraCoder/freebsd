@@ -1,25 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# July 2004
-#
-# 2.22x RC4 tune-up:-) It should be noted though that my hand [as in
-# "hand-coded assembler"] doesn't stand for the whole improvement
-# coefficient. It turned out that eliminating RC4_CHAR from config
-# line results in ~40% improvement (yes, even for C implementation).
-# Presumably it has everything to do with AMD cache architecture and
-# RAW or whatever penalties. Once again! The module *requires* config
-# line *without* RC4_CHAR! As for coding "secret," I bet on partial
-# register arithmetics. For example instead of 'inc %r8; and $255,%r8'
-# I simply 'inc %r8b'. Even though optimization manual discourages
-# to operate on partial registers, it turned out to be the best bet.
-# At least for AMD... How IA32E would perform remains to be seen...
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # November 2004
 #

@@ -1,25 +1,17 @@
-//===-- UnrollLoopRuntime.cpp - Runtime Loop unrolling utilities ----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements some loop unrolling utilities for loops with run-time
-// trip counts.  See LoopUnroll.cpp for unrolling loops with compile-time
-// trip counts.
-//
-// The functions in this file are used to generate extra code when the
-// run-time trip count modulo the unroll factor is not 0.  When this is the
-// case, we need to generate code to execute these 'left over' iterations.
-//
-// The current strategy generates an if-then-else sequence prior to the
-// unrolled loop to execute the 'left over' iterations.  Other strategies
-// include generate a loop before or after the unrolled loop.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "loop-unroll"
 #include "llvm/Transforms/Utils/UnrollLoop.h"

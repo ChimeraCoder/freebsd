@@ -1,19 +1,17 @@
-//===-- llvm-symbolizer.cpp - Simple addr2line-like symbolizer ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This utility works much like "addr2line". It is able of transforming
-// tuples (module name, module offset) to code locations (function name,
-// file, line number, column number). It is targeted for compiler-rt tools
-// (especially AddressSanitizer and ThreadSanitizer) that can use it
-// to symbolize stack traces in their error reports.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "LLVMSymbolize.h"
 #include "llvm/ADT/StringRef.h"

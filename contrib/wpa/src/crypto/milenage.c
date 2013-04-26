@@ -1,24 +1,16 @@
+
 /*
- * 3GPP AKA - Milenage algorithm (3GPP TS 35.205, .206, .207, .208)
- * Copyright (c) 2006-2007 <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This file implements an example authentication algorithm defined for 3GPP
- * AKA. This can be used to implement a simple HLR/AuC into hlr_auc_gw to allow
- * EAP-AKA to be tested properly with real USIM cards.
- *
- * This implementations assumes that the r1..r5 and c1..c5 constants defined in
- * TS 35.206 are used, i.e., r1=64, r2=0, r3=32, r4=64, r5=96, c1=00..00,
- * c2=00..01, c3=00..02, c4=00..04, c5=00..08. The block cipher is assumed to
- * be AES (Rijndael).
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

@@ -1,24 +1,17 @@
-//===- FunctionAttrs.cpp - Pass which marks functions attributes ----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements a simple interprocedural pass which walks the
-// call-graph, looking for functions which do not access or only read
-// non-local memory, and marking them readnone/readonly.  In addition,
-// it marks function arguments (of pointer type) 'nocapture' if a call
-// to the function does not create any copies of the pointer value that
-// outlive the call.  This more or less means that the pointer is only
-// dereferenced, and not returned from the function or stored in a global.
-// Finally, well-known library call declarations are marked with all
-// attributes that are consistent with the function's standard definition.
-// This pass is implemented as a bottom-up traversal of the call-graph.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "functionattrs"
 #include "llvm/Transforms/IPO.h"

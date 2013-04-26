@@ -1,50 +1,14 @@
-long udivmodsi4 ();
 
-long
-__divsi3 (long a, long b)
-{
-  int neg = 0;
-  long res;
-
-  if (a < 0)
-    {
-      a = -a;
-      neg = !neg;
-    }
-
-  if (b < 0)
-    {
-      b = -b;
-      neg = !neg;
-    }
-
-  res = udivmodsi4 (a, b, 0);
-
-  if (neg)
-    res = -res;
-
-  return res;
-}
-
-long
-__modsi3 (long a, long b)
-{
-  int neg = 0;
-  long res;
-
-  if (a < 0)
-    {
-      a = -a;
-      neg = 1;
-    }
-
-  if (b < 0)
-    b = -b;
-
-  res = udivmodsi4 (a, b, 1);
-
-  if (neg)
-    res = -res;
-
-  return res;
-}
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */

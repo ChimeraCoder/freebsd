@@ -1,41 +1,16 @@
+
 /*
- * httpread - Manage reading file(s) from HTTP/TCP socket
- * Author: Ted Merrill
- * Copyright 2008 Atheros Communications
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * The files are buffered via internal callbacks from eloop, then presented to
- * an application callback routine when completely read into memory. May also
- * be used if no file is expected but just to get the header, including HTTP
- * replies (e.g. HTTP/1.1 200 OK etc.).
- *
- * This does not attempt to be an optimally efficient implementation, but does
- * attempt to be of reasonably small size and memory consumption; assuming that
- * only small files are to be read. A maximum file size is provided by
- * application and enforced.
- *
- * It is assumed that the application does not expect any of the following:
- * -- transfer encoding other than chunked
- * -- trailer fields
- * It is assumed that, even if the other side requested that the connection be
- * kept open, that we will close it (thus HTTP messages sent by application
- * should have the connection closed field); this is allowed by HTTP/1.1 and
- * simplifies things for us.
- *
- * Other limitations:
- * -- HTTP header may not exceed a hard-coded size.
- *
- * Notes:
- * This code would be massively simpler without some of the new features of
- * HTTP/1.1, especially chunked data.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

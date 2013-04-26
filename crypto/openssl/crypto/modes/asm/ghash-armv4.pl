@@ -1,40 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# April 2010
-#
-# The module implements "4-bit" GCM GHASH function and underlying
-# single multiplication operation in GF(2^128). "4-bit" means that it
-# uses 256 bytes per-key table [+32 bytes shared table]. There is no
-# experimental performance data available yet. The only approximation
-# that can be made at this point is based on code size. Inner loop is
-# 32 instructions long and on single-issue core should execute in <40
-# cycles. Having verified that gcc 3.4 didn't unroll corresponding
-# loop, this assembler loop body was found to be ~3x smaller than
-# compiler-generated one...
-#
-# July 2010
-#
-# Rescheduling for dual-issue pipeline resulted in 8.5% improvement on
-# Cortex A8 core and ~25 cycles per processed byte (which was observed
-# to be ~3 times faster than gcc-generated code:-)
-#
-# February 2011
-#
-# Profiler-assisted and platform-specific optimization resulted in 7%
-# improvement on Cortex A8 core and ~23.5 cycles per byte.
-#
-# March 2011
-#
-# Add NEON implementation featuring polynomial multiplication, i.e. no
-# lookup tables involved. On Cortex A8 it was measured to process one
-# byte in 15 cycles or 55% faster than integer-only code.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # ====================================================================
 # Note about "528B" variant. In ARM case it makes lesser sense to

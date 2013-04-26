@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* mach64_dma.c -- DMA support for mach64 (Rage Pro) driver -*- linux-c -*- */
 /**
  * \file mach64_dma.c
@@ -8,7 +22,6 @@
  * \author Leif Delgass <ldelgass@retinalburn.net>
  * \author José Fonseca <j_r_fonseca@yahoo.co.uk>
  */
-
 /*-
  * Copyright 2000 Gareth Hughes
  * Copyright 2002 Frank C. Earl

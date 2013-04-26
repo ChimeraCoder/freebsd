@@ -1,11 +1,16 @@
+
 /*
- * a generic (simple) parser. Use to parse rr's, private key
- * information and /etc/resolv.conf files
- *
- * a Net::DNS like library for C
- * LibDNS Team @ NLnet Labs
- * (c) NLnet Labs, 2005-2006
- * See the file LICENSE for the license
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include <ldns/config.h>
 #include <ldns/ldns.h>
@@ -427,4 +432,3 @@ ldns_bget_keyword_data(ldns_buffer *b, const char *keyword, const char *k_del, c
                return -1;
        }
 }
-

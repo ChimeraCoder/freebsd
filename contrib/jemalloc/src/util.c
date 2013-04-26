@@ -1,30 +1,19 @@
-#define	assert(e) do {							\
-	if (config_debug && !(e)) {					\
-		malloc_write("<jemalloc>: Failed assertion\n");		\
-		abort();						\
-	}								\
-} while (0)
 
-#define	not_reached() do {						\
-	if (config_debug) {						\
-		malloc_write("<jemalloc>: Unreachable code reached\n");	\
-		abort();						\
-	}								\
-} while (0)
-
-#define	not_implemented() do {						\
-	if (config_debug) {						\
-		malloc_write("<jemalloc>: Not implemented\n");		\
-		abort();						\
-	}								\
-} while (0)
-
-#define	JEMALLOC_UTIL_C_
-#include "jemalloc/internal/jemalloc_internal.h"
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /******************************************************************************/
 /* Function prototypes for non-inline static functions. */
-
 static void	wrtmessage(void *cbopaque, const char *s);
 #define	U2S_BUFSIZE	((1U << (LG_SIZEOF_INTMAX_T + 3)) + 1)
 static char	*u2s(uintmax_t x, unsigned base, bool uppercase, char *s,

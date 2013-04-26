@@ -1,44 +1,17 @@
-//===--- TransUnbridgedCasts.cpp - Transformations to ARC mode ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// rewriteUnbridgedCasts:
-//
-// A cast of non-objc pointer to an objc one is checked. If the non-objc pointer
-// is from a file-level variable, __bridge cast is used to convert it.
-// For the result of a function call that we know is +1/+0,
-// __bridge/CFBridgingRelease is used.
-//
-//  NSString *str = (NSString *)kUTTypePlainText;
-//  str = b ? kUTTypeRTF : kUTTypePlainText;
-//  NSString *_uuidString = (NSString *)CFUUIDCreateString(kCFAllocatorDefault,
-//                                                         _uuid);
-// ---->
-//  NSString *str = (__bridge NSString *)kUTTypePlainText;
-//  str = (__bridge NSString *)(b ? kUTTypeRTF : kUTTypePlainText);
-// NSString *_uuidString = (NSString *)
-//            CFBridgingRelease(CFUUIDCreateString(kCFAllocatorDefault, _uuid));
-//
-// For a C pointer to ObjC, for casting 'self', __bridge is used.
-//
-//  CFStringRef str = (CFStringRef)self;
-// ---->
-//  CFStringRef str = (__bridge CFStringRef)self;
-//
-// Uses of Block_copy/Block_release macros are rewritten:
-//
-//  c = Block_copy(b);
-//  Block_release(c);
-// ---->
-//  c = [b copy];
-//  <removed>
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "Transforms.h"
 #include "Internals.h"

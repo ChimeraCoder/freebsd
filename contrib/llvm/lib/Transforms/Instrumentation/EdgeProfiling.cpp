@@ -1,21 +1,17 @@
-//===- EdgeProfiling.cpp - Insert counters for edge profiling -------------===//
-//
-//                      The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass instruments the specified program with counters for edge profiling.
-// Edge profiling can give a reasonable approximation of the hot paths through a
-// program, and is used for a wide variety of program transformations.
-//
-// Note that this implementation is very naive.  We insert a counter for *every*
-// edge in the program, instead of using control flow information to prune the
-// number of counters inserted.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #define DEBUG_TYPE "insert-edge-profiling"
 
 #include "llvm/Transforms/Instrumentation.h"
@@ -114,4 +110,3 @@ bool EdgeProfiler::runOnModule(Module &M) {
   InsertProfilingInitCall(Main, "llvm_start_edge_profiling", Counters);
   return true;
 }
-

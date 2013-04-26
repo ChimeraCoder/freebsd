@@ -1,41 +1,17 @@
-//===-- lib/comparesf2.c - Single-precision comparisons -----------*- C -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is dual licensed under the MIT and the University of Illinois Open
-// Source Licenses. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the following soft-fp_t comparison routines:
-//
-//   __eqsf2   __gesf2   __unordsf2
-//   __lesf2   __gtsf2
-//   __ltsf2
-//   __nesf2
-//
-// The semantics of the routines grouped in each column are identical, so there
-// is a single implementation for each, and wrappers to provide the other names.
-//
-// The main routines behave as follows:
-//
-//   __lesf2(a,b) returns -1 if a < b
-//                         0 if a == b
-//                         1 if a > b
-//                         1 if either a or b is NaN
-//
-//   __gesf2(a,b) returns -1 if a < b
-//                         0 if a == b
-//                         1 if a > b
-//                        -1 if either a or b is NaN
-//
-//   __unordsf2(a,b) returns 0 if both a and b are numbers
-//                           1 if either a or b is NaN
-//
-// Note that __lesf2( ) and __gesf2( ) are identical except in their handling of
-// NaN values.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define SINGLE_PRECISION
 #include "fp_lib.h"

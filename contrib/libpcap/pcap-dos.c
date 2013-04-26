@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  *  This file is part of DOS-libpcap
  *  Ported to DOS/DOSX by G. Vanem <gvanem@broadpark.no>
@@ -7,7 +21,6 @@
  *
  * @(#) $Header: /tcpdump/master/libpcap/pcap-dos.c,v 1.7 2008-04-22 17:16:30 guy Exp $ (LBL)
  */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -1476,4 +1489,3 @@ static void pktq_clear (struct rx_ringbuf *q)
 #include "msdos/pm_drvr/dma.h"
 
 #endif /* USE_32BIT_DRIVERS */
-

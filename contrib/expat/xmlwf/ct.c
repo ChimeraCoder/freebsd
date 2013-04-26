@@ -1,71 +1,18 @@
-#define CHARSET_MAX 41
 
-static const char *
-getTok(const char **pp)
-{
-  enum { inAtom, inString, init, inComment };
-  int state = init;
-  const char *tokStart = 0;
-  for (;;) {
-    switch (**pp) {
-    case '\0':
-      return 0;
-    case ' ':
-    case '\r':
-    case '\t':
-    case '\n':
-      if (state == inAtom)
-        return tokStart;
-      break;
-    case '(':
-      if (state == inAtom)
-        return tokStart;
-      if (state != inString)
-        state++;
-      break;
-    case ')':
-      if (state > init)
-        --state;
-      else if (state != inString)
-        return 0;
-      break;
-    case ';':
-    case '/':
-    case '=':
-      if (state == inAtom)
-        return tokStart;
-      if (state == init)
-        return (*pp)++;
-      break;
-    case '\\':
-      ++*pp;
-      if (**pp == '\0')
-        return 0;
-      break;
-    case '"':
-      switch (state) {
-      case inString:
-        ++*pp;
-        return tokStart;
-      case inAtom:
-        return tokStart;
-      case init:
-        tokStart = *pp;
-        state = inString;
-        break;
-      }
-      break;
-    default:
-      if (state == init) {
-        tokStart = *pp;
-        state = inAtom;
-      }
-      break;
-    }
-    ++*pp;
-  }
-  /* not reached */
-}
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+  /* not reached */}
 
 /* key must be lowercase ASCII */
 

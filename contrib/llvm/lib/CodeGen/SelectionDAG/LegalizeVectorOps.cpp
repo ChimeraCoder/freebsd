@@ -1,31 +1,17 @@
-//===-- LegalizeVectorOps.cpp - Implement SelectionDAG::LegalizeVectors ---===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the SelectionDAG::LegalizeVectors method.
-//
-// The vector legalizer looks for vector operations which might need to be
-// scalarized and legalizes them. This is a separate step from Legalize because
-// scalarizing can introduce illegal types.  For example, suppose we have an
-// ISD::SDIV of type v2i64 on x86-32.  The type is legal (for example, addition
-// on a v2i64 is legal), but ISD::SDIV isn't legal, so we have to unroll the
-// operation, which introduces nodes with the illegal type i64 which must be
-// expanded.  Similarly, suppose we have an ISD::SRA of type v16i8 on PowerPC;
-// the operation must be unrolled, which introduces nodes with the illegal
-// type i8 which must be promoted.
-//
-// This does not legalize vector manipulations like ISD::BUILD_VECTOR,
-// or operations that happen to take a vector which are custom-lowered;
-// the legalization for such operations never produces nodes
-// with illegal types, so it's okay to put off legalizing them until
-// SelectionDAG::Legalize runs.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/CodeGen/SelectionDAG.h"
 #include "llvm/Target/TargetLowering.h"

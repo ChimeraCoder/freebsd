@@ -1,28 +1,18 @@
-#include <openssl/bn.h>
-#include <openssl/rand.h>
 
-static int Rand(n)
-{
-    unsigned char x[2];
-    RAND_pseudo_bytes(x,2);
-    return (x[0] + 2*x[1]);
-}
-
-static void bug(char *m, BIGNUM *a, BIGNUM *b)
-{
-    printf("%s!\na=",m);
-    BN_print_fp(stdout, a);
-    printf("\nb=");
-    BN_print_fp(stdout, b);
-    printf("\n");
-    fflush(stdout);
-}
-
-main()
-{
-    BIGNUM *a=BN_new(), *b=BN_new(), *c=BN_new(), *d=BN_new(),
-	*C=BN_new(), *D=BN_new();
-    BN_RECP_CTX *recp=BN_RECP_CTX_new();
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+	*C=BN_new(), *D=BN_new();    BN_RECP_CTX *recp=BN_RECP_CTX_new();
     BN_CTX *ctx=BN_CTX_new();
 
     for(;;) {

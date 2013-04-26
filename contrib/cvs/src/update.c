@@ -1,43 +1,16 @@
+
 /*
- * Copyright (C) 1986-2005 The Free Software Foundation, Inc.
- *
- * Portions Copyright (C) 1998-2005 Derek Price, Ximbiot <http://ximbiot.com>,
- *                                  and others.
- *
- * Portions Copyright (C) 1992, Brian Berliner and Jeff Polk
- * Portions Copyright (C) 1989-1992, Brian Berliner
- *
- * You may distribute under the terms of the GNU General Public License as
- * specified in the README file that comes with the CVS source distribution.
- *
- * "update" updates the version in the present directory with respect to the RCS
- * repository.  The present version must have been created by "checkout". The
- * user can keep up-to-date by calling "update" whenever he feels like it.
- *
- * The present version can be committed by "commit", but this keeps the version
- * in tact.
- *
- * Arguments following the options are taken to be file names to be updated,
- * rather than updating the entire directory.
- *
- * Modified or non-existent RCS files are checked out and reported as U
- * <user_file>
- *
- * Modified user files are reported as M <user_file>.  If both the RCS file and
- * the user file have been modified, the user file is replaced by the result
- * of rcsmerge, and a backup file is written for the user in .#file.version.
- * If this throws up irreconcilable differences, the file is reported as C
- * <user_file>, and as M <user_file> otherwise.
- *
- * Files added but not yet committed are reported as A <user_file>. Files
- * removed but not yet committed are reported as R <user_file>.
- *
- * If the current directory contains subdirectories that hold concurrent
- * versions, these are updated too.  If the -d option was specified, new
- * directories added to the repository are automatically created and updated
- * as well.
- *
- * $FreeBSD$
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "cvs.h"

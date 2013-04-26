@@ -1,19 +1,17 @@
-//===-- BypassSlowDivision.cpp - Bypass slow division ---------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file contains an optimization for div and rem on architectures that
-// execute short instructions significantly faster than longer instructions.
-// For example, on Intel Atom 32-bit divides are slow enough that during
-// runtime it is profitable to check the value of the operands, and if they are
-// positive and less than 256 use an unsigned 8-bit divide.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "bypass-slow-division"
 #include "llvm/Transforms/Utils/BypassSlowDivision.h"

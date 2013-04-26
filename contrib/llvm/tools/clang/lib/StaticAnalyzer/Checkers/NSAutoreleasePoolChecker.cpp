@@ -1,19 +1,17 @@
-//=- NSAutoreleasePoolChecker.cpp --------------------------------*- C++ -*-==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This file defines a NSAutoreleasePoolChecker, a small checker that warns
-//  about subpar uses of NSAutoreleasePool.  Note that while the check itself
-//  (in its current form) could be written as a flow-insensitive check, in
-//  can be potentially enhanced in the future with flow-sensitive information.
-//  It is also a good example of the CheckerVisitor interface. 
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ClangSACheckers.h"
 #include "clang/AST/Decl.h"

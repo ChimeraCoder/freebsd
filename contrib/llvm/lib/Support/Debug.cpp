@@ -1,27 +1,17 @@
-//===-- Debug.cpp - An easy way to add debug output to your code ----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements a handy way of adding debugging information to your
-// code, without it being enabled all of the time, and without having to add
-// command line options to enable it.
-//
-// In particular, just wrap your code with the DEBUG() macro, and it will be
-// enabled automatically if you specify '-debug' on the command-line.
-// Alternatively, you can also use the SET_DEBUG_TYPE("foo") macro to specify
-// that your debug code belongs to class "foo".  Then, on the command line, you
-// can specify '-debug-only=foo' to enable JUST the debug information for the
-// foo class.
-//
-// When compiling without assertions, the -debug-* options and all code in
-// DEBUG() statements disappears, so it does not affect the runtime of the code.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/Support/Debug.h"
 #include "llvm/Support/CommandLine.h"

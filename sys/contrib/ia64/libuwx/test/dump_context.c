@@ -1,44 +1,23 @@
-#include <stdio.h>
-#include <inttypes.h>
 
-#define IP 0
-#define SP 1
-#define BSP 2
-#define CFM 3
-#define RP 4
-#define PSP 5
-#define PFS 6
-#define PREDS 7
-#define PRIUNAT 8
-#define AR_BSPSTORE 9
-#define AR_RNAT 10
-#define AR_UNAT 11
-#define AR_FPSR 12
-#define AR_LC 13
-#define AR_PFS 14
-#define GR4 16
-#define GR5 17
-#define GR6 18
-#define GR7 19
-#define BR1 20
-#define BR2 21
-#define BR3 22
-#define BR4 23
-#define BR5 24
-
-void dump_context(uint64_t *context)
-{
-    int i, j;
-    unsigned int valid;
-    uint64_t val;
-    static char *names[] = {
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 	/*  0 */ "ip", "sp", "bsp", "cfm",
 	/*  4 */ "rp", "psp", "pfs", "preds",
 	/*  8 */ "priunat", "ar.bspstore", "ar.rnat", "ar.unat",
 	/* 12 */ "ar.fpsr", "ar.lc", "ar.pfs", "(pad)",
 	/* 16 */ "gr4", "gr5", "gr6", "gr7",
-	/* 20 */ "br1", "br2", "br3", "br4", "br5"
-    };
+	/* 20 */ "br1", "br2", "br3", "br4", "br5"    };
     static int col1[] = {
 	IP,
 	SP,

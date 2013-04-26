@@ -1,49 +1,18 @@
-#ifdef HAVE_CONFIG_H
-# include <config.h>
-#endif
 
-#include <stdio.h>
-#include <sys/types.h>
-#include <signal.h>
-
-#include "ntp_syslog.h"
-#include "ntp_stdlib.h"
-
-#ifdef HAVE_SIGACTION
-
-void
-signal_no_reset(
-#if defined(__STDC__) || defined(HAVE_STDARG_H)
-	int sig,
-	void (*func) (int)
-#else
-	sig, func
-#endif
-	)
-#if defined(__STDC__) || defined(HAVE_STDARG_H)
-#else
-	 int sig;
-	 void (*func) P((int));
-#endif
-{
-	int n;
-	struct sigaction vec;
-
-	vec.sa_handler = func;
-	sigemptyset(&vec.sa_mask);
-#if 0
-#ifdef SA_RESTART
-	vec.sa_flags = SA_RESTART;
-#else
-	vec.sa_flags = 0;
-#endif
-#else
-	vec.sa_flags = 0;
-#endif
-
-#ifdef SA_RESTART
-/* Added for PPS clocks on Solaris 7 which get EINTR errors */
-# ifdef SIGPOLL
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Added for PPS clocks on Solaris 7 which get EINTR errors */# ifdef SIGPOLL
 	if (sig == SIGPOLL) vec.sa_flags = SA_RESTART;
 # endif
 # ifdef SIGIO

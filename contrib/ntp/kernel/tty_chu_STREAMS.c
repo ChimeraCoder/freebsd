@@ -1,72 +1,16 @@
+
 /*
- * CHU STREAMS module for SunOS
- *
- * Version 2.6
- *
- * Copyright 1991-1994, Nick Sayer
- *
- * Special thanks to Greg Onufer for his debug assists.
- * Special thanks to Matthias Urlichs for the 4.1.x loadable driver support
- *   code.
- * Special wet-noodle whippings to Sun for not properly documenting
- *   ANYTHING that makes this stuff at all possible.
- *
- * Should be PUSHed directly on top of a serial I/O channel.
- * Provides complete chucode structures to user space.
- *
- * COMPILATION:
- *
- *
- * To make a SunOS 4.1.x compatable loadable module (from the ntp kernel
- * directory):
- *
- * % cc -c -I../include -DLOADABLE tty_chu_STREAMS.c
- *
- * The resulting .o file is the loadable module. Modload it
- * thusly:
- *
- * % modload tty_chu_STREAMS.o -entry _chuinit
- *
- * When none of the instances are pushed in a STREAM, you can
- * modunload the driver in the usual manner if you wish.
- *
- * As an alternative to loading it dynamically you can compile it
- * directly into the kernel by hacking str_conf.c. See the README
- * file for more details on doing it the old fashioned way.
- *
- *
- * To make a Solaris 2.x compatable module (from the ntp kernel
- * directory):
- *
- * % {gcc,cc} -c -I../include -DSOLARIS2 tty_chu_STREAMS.c
- * % ld -r -o /usr/kernel/strmod/chu tty_chu_STREAMS.o
- * % chmod 755 /usr/kernel/strmod/chu
- *
- * The OS will load it for you automagically when it is first pushed.
- *
- * If you get syntax errors from <sys/timer.h> (really references
- * to types that weren't typedef'd in gcc's version of types.h),
- * add -D_SYS_TIMER_H to blot out the miscreants.
- *
- * Under Solaris 2.2 and previous, do not attempt to modunload the
- * module unless you're SURE it's not in use. I haven't tried it, but
- * I've been told it won't do the right thing. Under Solaris 2.3 (and
- * presumably future revs) an attempt to unload the module when it's in
- * use will properly refuse with a "busy" message.
- *
- *
- * HISTORY:
- *
- * v2.6 - Mutexed the per-instance chucode just to be safe.
- * v2.5 - Fixed show-stopper bug in Solaris 2.x - qprocson().
- * v2.4 - Added dynamic allocation support for Solaris 2.x.
- * v2.3 - Added support for Solaris 2.x.
- * v2.2 - Added SERVICE IMMEDIATE hack.
- * v2.1 - Added 'sixth byte' heuristics.
- * v2.0 - first version with an actual version number.
- *        Added support for new CHU 'second 31' data format.
- *        Deleted PEDANTIC and ANAL_RETENTIVE.
- *
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifdef SOLARIS2

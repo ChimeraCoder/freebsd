@@ -1,20 +1,17 @@
-//===- DCE.cpp - Code to perform dead code elimination --------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements dead inst elimination and dead code elimination.
-//
-// Dead Inst Elimination performs a single pass over the function removing
-// instructions that are obviously dead.  Dead Code Elimination is similar, but
-// it rechecks instructions that were used by removed instructions to see if
-// they are newly dead.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "dce"
 #include "llvm/Transforms/Scalar.h"
@@ -131,4 +128,3 @@ bool DCE::runOnFunction(Function &F) {
 FunctionPass *llvm::createDeadCodeEliminationPass() {
   return new DCE();
 }
-

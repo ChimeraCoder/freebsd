@@ -1,35 +1,17 @@
-//===--- DAGDeltaAlgorithm.cpp - A DAG Minimization Algorithm --*- C++ -*--===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//===----------------------------------------------------------------------===//
-//
-// The algorithm we use attempts to exploit the dependency information by
-// minimizing top-down. We start by constructing an initial root set R, and
-// then iteratively:
-//
-//   1. Minimize the set R using the test predicate:
-//       P'(S) = P(S union pred*(S))
-//
-//   2. Extend R to R' = R union pred(R).
-//
-// until a fixed point is reached.
-//
-// The idea is that we want to quickly prune entire portions of the graph, so we
-// try to find high-level nodes that can be eliminated with all of their
-// dependents.
-//
-// FIXME: The current algorithm doesn't actually provide a strong guarantee
-// about the minimality of the result. The problem is that after adding nodes to
-// the required set, we no longer consider them for elimination. For strictly
-// well formed predicates, this doesn't happen, but it commonly occurs in
-// practice when there are unmodelled dependencies. I believe we can resolve
-// this by allowing the required set to be minimized as well, but need more test
-// cases first.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/ADT/DAGDeltaAlgorithm.h"
 #include "llvm/ADT/DeltaAlgorithm.h"

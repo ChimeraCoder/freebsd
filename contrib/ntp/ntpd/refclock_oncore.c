@@ -1,101 +1,16 @@
+
 /*
- * ----------------------------------------------------------------------------
- * "THE BEER-WARE LICENSE" (Revision 42):
- * <phk@FreeBSD.ORG> wrote this file.  As long as you retain this notice you
- * can do whatever you want with this stuff. If we meet some day, and you think
- * this stuff is worth it, you can buy me a beer in return.   Poul-Henning Kamp
- * ----------------------------------------------------------------------------
- *
- * refclock_oncore.c
- *
- * Driver for some of the various the Motorola Oncore GPS receivers.
- *   should work with Basic, PVT6, VP, UT, UT+, GT, GT+, SL, M12, M12+T
- *	The receivers with TRAIM (VP, UT, UT+, M12+T), will be more accurate
- *	than the others.
- *	The receivers without position hold (GT, GT+) will be less accurate.
- *
- * Tested with:
- *
- *		(UT)				   (VP)
- *   COPYRIGHT 1991-1997 MOTOROLA INC.	COPYRIGHT 1991-1996 MOTOROLA INC.
- *   SFTW P/N #     98-P36848P		SFTW P/N # 98-P36830P
- *   SOFTWARE VER # 2			SOFTWARE VER # 8
- *   SOFTWARE REV # 2			SOFTWARE REV # 8
- *   SOFTWARE DATE  APR 24 1998 	SOFTWARE DATE  06 Aug 1996
- *   MODEL #	R1121N1114		MODEL #    B4121P1155
- *   HWDR P/N # 1			HDWR P/N # _
- *   SERIAL #	R0010A			SERIAL #   SSG0226478
- *   MANUFACTUR DATE 6H07		MANUFACTUR DATE 7E02
- *					OPTIONS LIST	IB
- *
- *	      (Basic)				   (M12)
- *   COPYRIGHT 1991-1994 MOTOROLA INC.	COPYRIGHT 1991-2000 MOTOROLA INC.
- *   SFTW P/N # 98-P39949M		SFTW P/N # 61-G10002A
- *   SOFTWARE VER # 5			SOFTWARE VER # 1
- *   SOFTWARE REV # 0			SOFTWARE REV # 3
- *   SOFTWARE DATE  20 JAN 1994 	SOFTWARE DATE  Mar 13 2000
- *   MODEL #	A11121P116		MODEL #    P143T12NR1
- *   HDWR P/N # _			HWDR P/N # 1
- *   SERIAL #	SSG0049809		SERIAL #   P003UD
- *   MANUFACTUR DATE 417AMA199		MANUFACTUR DATE 0C27
- *   OPTIONS LIST    AB
- *
- *	      (M12+T)				  (M12+T later version)
- *   COPYRIGHT 1991-2002 MOTOROLA INC.	COPYRIGHT 1991-2003 MOTOROLA INC.
- *   SFTW P/N #     61-G10268A		SFTW P/N #     61-G10268A
- *   SOFTWARE VER # 2			SOFTWARE VER # 2
- *   SOFTWARE REV # 0			SOFTWARE REV # 1
- *   SOFTWARE DATE  AUG 14 2002 	SOFTWARE DATE  APR 16 2003
- *   MODEL #	P283T12T11		MODEL #    P273T12T12
- *   HWDR P/N # 2			HWDR P/N # 2
- *   SERIAL #	P04DC2			SERIAL #   P05Z7Z
- *   MANUFACTUR DATE 2J17		MANUFACTUR DATE 3G15
- *
- * --------------------------------------------------------------------------
- * Reg Clemens (Feb 2006)
- * Fix some gcc4 compiler complaints
- * Fix possible segfault in oncore_init_shmem
- * change all (possible) fprintf(stderr, to record_clock_stats
- * Apply patch from Russell J. Yount <rjy@cmu.edu> Fixed (new) MT12+T UTC not correct
- *   immediately after new Almanac Read.
- * Apply patch for new PPS implementation by Rodolfo Giometti <giometti@linux.it>
- *   now code can use old Ulrich Windl <Ulrich.Windl@rz.uni-regensburg.de> or
- *   the new one.  Compiles depending on timepps.h seen.
- * --------------------------------------------------------------------------
- * Luis Batanero Guerrero <luisba@rao.es> (Dec 2005) Patch for leap seconds
- * (the oncore driver was setting the wrong ntpd variable)
- * --------------------------------------------------------------------------
- * Reg.Clemens (Mar 2004)
- * Support for interfaces other than PPSAPI removed, for Solaris, SunOS,
- * SCO, you now need to use one of the timepps.h files in the root dir.
- * this driver will 'grab' it for you if you dont have one in /usr/include
- * --------------------------------------------------------------------------
- * This code uses the two devices
- *	/dev/oncore.serial.n
- *	/dev/oncore.pps.n
- * which may be linked to the same device.
- * and can read initialization data from the file
- *	/etc/ntp.oncoreN, /etc/ntp.oncore.N, or /etc/ntp.oncore, where
- *	n or N are the unit number, viz 127.127.30.N.
- * --------------------------------------------------------------------------
- * Reg.Clemens <reg@dwf.com> Sep98.
- *  Original code written for FreeBSD.
- *  With these mods it works on FreeBSD, SunOS, Solaris and Linux
- *    (SunOS 4.1.3 + ppsclock)
- *    (Solaris7 + MU4)
- *    (RedHat 5.1 2.0.35 + PPSKit, 2.1.126 + or later).
- *
- *  Lat,Long,Ht, cable-delay, offset, and the ReceiverID (along with the
- *  state machine state) are printed to CLOCKSTATS if that file is enabled
- *  in /etc/ntp.conf.
- *
- * --------------------------------------------------------------------------
- *
- * According to the ONCORE manual (TRM0003, Rev 3.2, June 1998, page 3.13)
- * doing an average of 10000 valid 2D and 3D fixes is what the automatic
- * site survey mode does.  Looking at the output from the receiver
- * it seems like it is only using 3D fixes.
- * When we do it ourselves, take 10000 3D fixes.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #define POS_HOLD_AVERAGE	10000	/* nb, 10000s ~= 2h45m */

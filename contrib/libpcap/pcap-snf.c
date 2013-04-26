@@ -1,114 +1,20 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
-#include <sys/param.h>
-
-#include <stdlib.h>
-#include <string.h>
-#include <errno.h>
-
-#include <ctype.h>
-#include <netinet/in.h>
-#include <sys/mman.h>
-#include <sys/socket.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#include "snf.h"
-#include "pcap-int.h"
-
-#ifdef SNF_ONLY
-#define snf_create pcap_create
-#define snf_platform_finddevs pcap_platform_finddevs
-#endif
-
-static int
-snf_set_datalink(pcap_t *p, int dlt)
-{
-	p->linktype = dlt;
-	return (0);
-}
-
-static int
-snf_pcap_stats(pcap_t *p, struct pcap_stat *ps)
-{
-	struct snf_ring_stats stats;
-	int rc;
-
-	if ((rc = snf_ring_getstats(p->md.snf_ring, &stats))) {
-		snprintf(p->errbuf, PCAP_ERRBUF_SIZE, "snf_get_stats: %s",
-			 pcap_strerror(rc));
-		return -1;
-	}
-	ps->ps_recv = stats.ring_pkt_recv + stats.ring_pkt_overflow;
-	ps->ps_drop = stats.ring_pkt_overflow;
-	ps->ps_ifdrop = stats.nic_pkt_overflow + stats.nic_pkt_bad;
-	return 0;
-}
-
-static void
-snf_platform_cleanup(pcap_t *p)
-{
-	if (p == NULL)
-		return;
-
-	snf_ring_close(p->md.snf_ring);
-	snf_close(p->md.snf_handle);
-	pcap_cleanup_live_common(p);
-}
-
-static int
-snf_getnonblock(pcap_t *p, char *errbuf)
-{
-	return (p->md.snf_timeout == 0);
-}
-
-static int
-snf_setnonblock(pcap_t *p, int nonblock, char *errbuf)
-{
-	if (nonblock)
-		p->md.snf_timeout = 0;
-	else {
-		if (p->md.timeout <= 0)
-			p->md.snf_timeout = -1; /* forever */
-		else
-			p->md.snf_timeout = p->md.timeout;
-	}
-	return (0);
-}
-
-#define _NSEC_PER_SEC 1000000000
-
-static inline
-struct timeval
-snf_timestamp_to_timeval(const int64_t ts_nanosec)
-{
-	struct timeval tv;
-	int32_t rem;
-	if (ts_nanosec == 0)
-		return (struct timeval) { 0, 0 };
-	tv.tv_sec = ts_nanosec / _NSEC_PER_SEC;
-	tv.tv_usec = (ts_nanosec % _NSEC_PER_SEC) / 1000;
-	return tv;
-}
-
-static int
-snf_read(pcap_t *p, int cnt, pcap_handler callback, u_char *user)
-{
-	struct pcap_pkthdr hdr;
-	int i, flags, err, caplen, n;
-	struct snf_recv_req req;
-
-	if (!p || cnt == 0)
-		return -1;
-
-	n = 0;
-	while (n < cnt || cnt < 0) {
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 		/*
 		 * Has "pcap_breakloop()" been called?
-		 */
-		if (p->break_loop) {
+		 */		if (p->break_loop) {
 			if (n == 0) {
 				p->break_loop = 0;
 				return (-2);

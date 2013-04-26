@@ -1,7 +1,20 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * from: FreeBSD: src/sys/tools/fw_stub.awk,v 1.6 2007/03/02 11:42:53 flz
- */
-#include <sys/cdefs.h>
+ */#include <sys/cdefs.h>
 __FBSDID("$FreeBSD$");
 #include <sys/param.h>
 #include <sys/errno.h>
@@ -44,4 +57,3 @@ static moduledata_t mxge_eth_z8e_fw_mod = {
 DECLARE_MODULE(mxge_eth_z8e_fw, mxge_eth_z8e_fw_mod, SI_SUB_DRIVERS, SI_ORDER_FIRST);
 MODULE_VERSION(mxge_eth_z8e_fw, 1);
 MODULE_DEPEND(mxge_eth_z8e_fw, firmware, 1, 1, 1);
-

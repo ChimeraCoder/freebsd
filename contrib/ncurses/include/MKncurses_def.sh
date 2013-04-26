@@ -1,49 +1,15 @@
 #! /bin/sh
-# $Id: MKncurses_def.sh,v 1.2 2003/10/25 16:19:46 tom Exp $
-##############################################################################
-# Copyright (c) 2000 Free Software Foundation, Inc.                          #
-#                                                                            #
-# Permission is hereby granted, free of charge, to any person obtaining a    #
-# copy of this software and associated documentation files (the "Software"), #
-# to deal in the Software without restriction, including without limitation  #
-# the rights to use, copy, modify, merge, publish, distribute, distribute    #
-# with modifications, sublicense, and/or sell copies of the Software, and to #
-# permit persons to whom the Software is furnished to do so, subject to the  #
-# following conditions:                                                      #
-#                                                                            #
-# The above copyright notice and this permission notice shall be included in #
-# all copies or substantial portions of the Software.                        #
-#                                                                            #
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR #
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,   #
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL    #
-# THE ABOVE COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER      #
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING    #
-# FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER        #
-# DEALINGS IN THE SOFTWARE.                                                  #
-#                                                                            #
-# Except as contained in this notice, the name(s) of the above copyright     #
-# holders shall not be used in advertising or otherwise to promote the sale, #
-# use or other dealings in this Software without prior written               #
-# authorization.                                                             #
-##############################################################################
-#
-# MKncurses_def.sh -- generate fallback definitions for ncurses_cfg.h
-#
-# Author: Thomas E. Dickey 2000
-#
-# Given the choice between constructs such as
-#
-#	#if defined(foo) && foo
-#	#if foo
-#
-# we chose the latter.  It is guaranteed by the language standard, and there
-# appear to be no broken compilers that do not honor that detail.  But some
-# people want to use gcc's -Wundef option (corresponding to one of the less
-# useful features in Watcom's compiler) to check for misspellings.  So we
-# generate a set of fallback definitions to quiet the warnings without making
-# the code ugly.
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 DEFS="${1-ncurses_defs}"
 cat <<EOF
 /*

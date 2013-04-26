@@ -1,32 +1,17 @@
-//=- IvarInvalidationChecker.cpp - -*- C++ -------------------------------*-==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This checker implements annotation driven invalidation checking. If a class
-//  contains a method annotated with 'objc_instance_variable_invalidator',
-//  - (void) foo
-//           __attribute__((annotate("objc_instance_variable_invalidator")));
-//  all the "ivalidatable" instance variables of this class should be
-//  invalidated. We call an instance variable ivalidatable if it is an object of
-//  a class which contains an invalidation method. There could be multiple
-//  methods annotated with such annotations per class, either one can be used
-//  to invalidate the ivar. An ivar or property are considered to be
-//  invalidated if they are being assigned 'nil' or an invalidation method has
-//  been called on them. An invalidation method should either invalidate all
-//  the ivars or call another invalidation method (on self).
-//
-//  Partial invalidor annotation allows to addess cases when ivars are 
-//  invalidated by other methods, which might or might not be called from 
-//  the invalidation method. The checker checks that each invalidation
-//  method and all the partial methods cumulatively invalidate all ivars.
-//    __attribute__((annotate("objc_instance_variable_invalidator_partial")));
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ClangSACheckers.h"
 #include "clang/AST/Attr.h"
@@ -736,4 +721,3 @@ void ento::register##name(CheckerManager &mgr) {\
 
 REGISTER_CHECKER(InstanceVariableInvalidation)
 REGISTER_CHECKER(MissingInvalidationMethod)
-

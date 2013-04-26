@@ -1,39 +1,18 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/param.h>
-
-#include "at91rm9200_lowlevel.h"
-#include "at91rm9200.h"
-#include "emac.h"
-#include "lib.h"
-#include "ee.h"
-#include "board.h"
-#include "sd-card.h"
-
-unsigned char mac[6] = { 0x00, 0x0e, 0x42, 0x02, 0x00, 0x28 };
-
-static void USART0_Init();
-static void USART1_Init();
-static void USART2_Init();
-static void USART3_Init();
-static void DS1672_Init();
-
-static void
-DS1672_Init() {
-	char buf[] = {0x00, 0xa9};
-
-	EEWrite(0xd0, buf, sizeof(buf));
-}
-
-static void
-USART0_Init() {
-
-	AT91PS_PIO pPio = (AT91PS_PIO)AT91C_BASE_PIOA;
-	AT91PS_PMC pPMC = (AT91PS_PMC)AT91C_BASE_PMC;
-
-	// setup GPIO
-	pPio->PIO_ASR = AT91C_PA17_TXD0 | AT91C_PA18_RXD0;
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+	// setup GPIO	pPio->PIO_ASR = AT91C_PA17_TXD0 | AT91C_PA18_RXD0;
 	pPio->PIO_PDR = AT91C_PA17_TXD0 | AT91C_PA18_RXD0;
 
 	// enable power

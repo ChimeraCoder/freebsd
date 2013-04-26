@@ -1,18 +1,16 @@
-/* A front-end using readline to "cook" input lines.
- *
- * Copyright (C) 2004, 1999  Per Bothner
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * This front-end program is free software; you can redistribute it and/or
- * modify it under the terms of the GNU General Public License as published
- * by the Free Software Foundation; either version 2, or (at your option)
- * any later version.
- *
- * Some code from Johnson & Troan: "Linux Application Development"
- * (Addison-Wesley, 1998) was used directly or for inspiration.
- *
- * 2003-11-07 Wolfgang Taeuber <wolfgang_taeuber@agilent.com>
- * Specify a history file and the size of the history file with command
- * line options; use EDITOR/VISUAL to set vi/emacs preference.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /* PROBLEMS/TODO:

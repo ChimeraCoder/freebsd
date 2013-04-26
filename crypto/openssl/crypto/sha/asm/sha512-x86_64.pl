@@ -1,44 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. Rights for redistribution and usage in source and binary
-# forms are granted according to the OpenSSL license.
-# ====================================================================
-#
-# sha256/512_block procedure for x86_64.
-#
-# 40% improvement over compiler-generated code on Opteron. On EM64T
-# sha256 was observed to run >80% faster and sha512 - >40%. No magical
-# tricks, just straight implementation... I really wonder why gcc
-# [being armed with inline assembler] fails to generate as fast code.
-# The only thing which is cool about this module is that it's very
-# same instruction sequence used for both SHA-256 and SHA-512. In
-# former case the instructions operate on 32-bit operands, while in
-# latter - on 64-bit ones. All I had to do is to get one flavor right,
-# the other one passed the test right away:-)
-#
-# sha256_block runs in ~1005 cycles on Opteron, which gives you
-# asymptotic performance of 64*1000/1005=63.7MBps times CPU clock
-# frequency in GHz. sha512_block runs in ~1275 cycles, which results
-# in 128*1000/1275=100MBps per GHz. Is there room for improvement?
-# Well, if you compare it to IA-64 implementation, which maintains
-# X[16] in register bank[!], tends to 4 instructions per CPU clock
-# cycle and runs in 1003 cycles, 1275 is very good result for 3-way
-# issue Opteron pipeline and X[16] maintained in memory. So that *if*
-# there is a way to improve it, *then* the only way would be to try to
-# offload X[16] updates to SSE unit, but that would require "deeper"
-# loop unroll, which in turn would naturally cause size blow-up, not
-# to mention increased complexity! And once again, only *if* it's
-# actually possible to noticeably improve overall ILP, instruction
-# level parallelism, on a given CPU implementation in this case.
-#
-# Special note on Intel EM64T. While Opteron CPU exhibits perfect
-# perfromance ratio of 1.5 between 64- and 32-bit flavors [see above],
-# [currently available] EM64T CPUs apparently are far from it. On the
-# contrary, 64-bit version, sha512_block, is ~30% *slower* than 32-bit
-# sha256_block:-( This is presumably because 64-bit shifts/rotates
-# apparently are not atomic instructions, but implemented in microcode.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 $output  = shift;

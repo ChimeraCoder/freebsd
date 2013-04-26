@@ -1,23 +1,16 @@
+
 /*
- * Written by Eivind Eklund <eivind@yes.no>
- *    for Yes Interactive
- *
- * Copyright (C) 1998, Yes Interactive.  All rights reserved.
- *
- * Redistribution and use in any form is permitted.  Redistribution in
- * source form should include the above copyright and this set of
- * conditions, because large sections american law seems to have been
- * created by a bunch of jerks on drugs that are now illegal, forcing
- * me to include this copyright-stuff instead of placing this in the
- * public domain.  The name of of 'Yes Interactive' or 'Eivind Eklund'
- * may not be used to endorse or promote products derived from this
- * software without specific prior written permission.
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND WITHOUT ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, THE IMPLIED
- * WARRANTIES OF MERCHANTIBILITY AND FITNESS FOR A PARTICULAR PURPOSE.
- *
- * $FreeBSD$
- *
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/param.h>

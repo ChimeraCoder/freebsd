@@ -1,41 +1,16 @@
+
 /*
- * Copyright (C) 1986-2005 The Free Software Foundation, Inc.
- *
- * Portions Copyright (C) 1998-2005 Derek Price, Ximbiot <http://ximbiot.com>,
- *                                  and others.
- *
- * Portions Copyright (C) 1992, Brian Berliner and Jeff Polk
- * Portions Copyright (C) 1989-1992, Brian Berliner
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * You may distribute under the terms of the GNU General Public License as
- * specified in the README file that comes with the CVS source distribution.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * Create Version
- * 
- * "checkout" creates a "version" of an RCS repository.  This version is owned
- * totally by the user and is actually an independent copy, to be dealt with
- * as seen fit.  Once "checkout" has been called in a given directory, it
- * never needs to be called again.  The user can keep up-to-date by calling
- * "update" when he feels like it; this will supply him with a merge of his
- * own modifications and the changes made in the RCS original.  See "update"
- * for details.
- * 
- * "checkout" can be given a list of directories or files to be updated and in
- * the case of a directory, will recursivley create any sub-directories that
- * exist in the repository.
- * 
- * When the user is satisfied with his own modifications, the present version
- * can be committed by "commit"; this keeps the present version in tact,
- * usually.
- * 
- * The call is cvs checkout [options] <module-name>...
- * 
- * "checkout" creates a directory ./CVS, in which it keeps its administration,
- * in two files, Repository and Entries. The first contains the name of the
- * repository.  The second contains one line for each registered file,
- * consisting of the version number it derives from, its time stamp at
- * derivation time and its name.  Both files are normal files and can be
- * edited by the user, if necessary (when the repository is moved, e.g.)
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*

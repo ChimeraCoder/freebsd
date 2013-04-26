@@ -1,58 +1,16 @@
-#include "../bn_lcl.h"
-#if !(defined(__GNUC__) && __GNUC__>=2)
-# include "../bn_asm.c"	/* kind of dirty hack for Sun Studio */
-#else
+
 /*
- * x86_64 BIGNUM accelerator version 0.1, December 2002.
- *
- * Implemented by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
- * project.
- *
- * Rights for redistribution and usage in source and binary forms are
- * granted according to the OpenSSL license. Warranty of any kind is
- * disclaimed.
- *
- * Q. Version 0.1? It doesn't sound like Andy, he used to assign real
- *    versions, like 1.0...
- * A. Well, that's because this code is basically a quick-n-dirty
- *    proof-of-concept hack. As you can see it's implemented with
- *    inline assembler, which means that you're bound to GCC and that
- *    there might be enough room for further improvement.
- *
- * Q. Why inline assembler?
- * A. x86_64 features own ABI which I'm not familiar with. This is
- *    why I decided to let the compiler take care of subroutine
- *    prologue/epilogue as well as register allocation. For reference.
- *    Win64 implements different ABI for AMD64, different from Linux.
- *
- * Q. How much faster does it get?
- * A. 'apps/openssl speed rsa dsa' output with no-asm:
- *
- *	                  sign    verify    sign/s verify/s
- *	rsa  512 bits   0.0006s   0.0001s   1683.8  18456.2
- *	rsa 1024 bits   0.0028s   0.0002s    356.0   6407.0
- *	rsa 2048 bits   0.0172s   0.0005s     58.0   1957.8
- *	rsa 4096 bits   0.1155s   0.0018s      8.7    555.6
- *	                  sign    verify    sign/s verify/s
- *	dsa  512 bits   0.0005s   0.0006s   2100.8   1768.3
- *	dsa 1024 bits   0.0014s   0.0018s    692.3    559.2
- *	dsa 2048 bits   0.0049s   0.0061s    204.7    165.0
- *
- *    'apps/openssl speed rsa dsa' output with this module:
- *
- *	                  sign    verify    sign/s verify/s
- *	rsa  512 bits   0.0004s   0.0000s   2767.1  33297.9
- *	rsa 1024 bits   0.0012s   0.0001s    867.4  14674.7
- *	rsa 2048 bits   0.0061s   0.0002s    164.0   5270.0
- *	rsa 4096 bits   0.0384s   0.0006s     26.1   1650.8
- *	                  sign    verify    sign/s verify/s
- *	dsa  512 bits   0.0002s   0.0003s   4442.2   3786.3
- *	dsa 1024 bits   0.0005s   0.0007s   1835.1   1497.4
- *	dsa 2048 bits   0.0016s   0.0020s    620.4    504.6
- *
- *    For the reference. IA-32 assembler implementation performs
- *    very much like 64-bit code compiled with no-asm on the same
- *    machine.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifdef _WIN64

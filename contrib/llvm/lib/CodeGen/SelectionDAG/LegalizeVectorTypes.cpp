@@ -1,24 +1,17 @@
-//===------- LegalizeVectorTypes.cpp - Legalization of vector types -------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file performs vector type splitting and scalarization for LegalizeTypes.
-// Scalarization is the act of changing a computation in an illegal one-element
-// vector type to be a computation in its scalar element type.  For example,
-// implementing <1 x f32> arithmetic in a scalar f32 register.  This is needed
-// as a base case when scalarizing vector arithmetic like <4 x f32>, which
-// eventually decomposes to scalars if the target doesn't support v4f32 or v2f32
-// types.
-// Splitting is the act of changing a computation in an invalid vector type to
-// be a computation in two vectors of half the size.  For example, implementing
-// <128 x f32> operations in terms of two <64 x f32> operations.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "LegalizeTypes.h"
 #include "llvm/IR/DataLayout.h"

@@ -1,14 +1,12 @@
-ARCH=arm
-SCRIPT_NAME=pe
 
-OUTPUT_FORMAT="pei-arm-wince-little"
-LITTLE_OUTPUT_FORMAT="pei-arm-wince-little"
-BIG_OUTPUT_FORMAT="pei-arm-wince-big"
-
-RELOCATEABLE_OUTPUT_FORMAT="pe-arm-wince-little"
-
-TEMPLATE_NAME=pe
-ENTRY="WinMainCRTStartup"
-SUBSYSTEM=PE_DEF_SUBSYSTEM
-INITIAL_SYMBOL_CHAR=\"\"
-TARGET_PAGE_SIZE=0x1000
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.

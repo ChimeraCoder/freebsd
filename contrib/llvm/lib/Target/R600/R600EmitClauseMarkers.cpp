@@ -1,18 +1,17 @@
-//===-- R600EmitClauseMarkers.cpp - Emit CF_ALU ---------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-/// \file
-/// Add CF_ALU. R600 Alu instructions are grouped in clause which can hold
-/// 128 Alu instructions ; these instructions can access up to 4 prefetched
-/// 4 lines of 16 registers from constant buffers. Such ALU clauses are
-/// initiated by CF_ALU instructions.
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "AMDGPU.h"
 #include "R600Defines.h"
@@ -252,4 +251,3 @@ char R600EmitClauseMarkersPass::ID = 0;
 llvm::FunctionPass *llvm::createR600EmitClauseMarkers(TargetMachine &TM) {
   return new R600EmitClauseMarkersPass(TM);
 }
-

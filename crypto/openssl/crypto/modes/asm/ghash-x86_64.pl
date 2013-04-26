@@ -1,33 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# March, June 2010
-#
-# The module implements "4-bit" GCM GHASH function and underlying
-# single multiplication operation in GF(2^128). "4-bit" means that
-# it uses 256 bytes per-key table [+128 bytes shared table]. GHASH
-# function features so called "528B" variant utilizing additional
-# 256+16 bytes of per-key storage [+512 bytes shared table].
-# Performance results are for this streamed GHASH subroutine and are
-# expressed in cycles per processed byte, less is better:
-#
-#		gcc 3.4.x(*)	assembler
-#
-# P4		28.6		14.0		+100%
-# Opteron	19.3		7.7		+150%
-# Core2		17.8		8.1(**)		+120%
-#
-# (*)	comparison is not completely fair, because C results are
-#	for vanilla "256B" implementation, while assembler results
-#	are for "528B";-)
-# (**)	it's mystery [to me] why Core2 result is not same as for
-#	Opteron;
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # May 2010
 #

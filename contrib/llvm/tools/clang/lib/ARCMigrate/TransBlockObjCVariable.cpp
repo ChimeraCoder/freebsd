@@ -1,29 +1,17 @@
-//===--- TransBlockObjCVariable.cpp - Transformations to ARC mode ---------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// rewriteBlockObjCVariable:
-//
-// Adding __block to an obj-c variable could be either because the variable
-// is used for output storage or the user wanted to break a retain cycle.
-// This transformation checks whether a reference of the variable for the block
-// is actually needed (it is assigned to or its address is taken) or not.
-// If the reference is not needed it will assume __block was added to break a
-// cycle so it will remove '__block' and add __weak/__unsafe_unretained.
-// e.g
-//
-//   __block Foo *x;
-//   bar(^ { [x cake]; });
-// ---->
-//   __weak Foo *x;
-//   bar(^ { [x cake]; });
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "Transforms.h"
 #include "Internals.h"

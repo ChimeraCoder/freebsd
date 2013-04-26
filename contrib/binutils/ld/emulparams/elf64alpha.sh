@@ -1,21 +1,17 @@
-ENTRY=_start
-SCRIPT_NAME=elf
-ELFSIZE=64
-TEMPLATE_NAME=elf32
-EXTRA_EM_FILE=alphaelf
-OUTPUT_FORMAT="elf64-alpha"
-TEXT_START_ADDR="0x120000000"
-MAXPAGESIZE="CONSTANT (MAXPAGESIZE)"
-COMMONPAGESIZE="CONSTANT (COMMONPAGESIZE)"
-NONPAGED_TEXT_START_ADDR="0x120000000"
-ARCH=alpha
-MACHINE=
-GENERATE_SHLIB_SCRIPT=yes
-GENERATE_PIE_SCRIPT=yes
 
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # Yes, we want duplicate .plt sections.  The linker chooses the
-# appropriate one magically in alpha_after_open.
-PLT=".plt          ${RELOCATING-0} : SPECIAL { *(.plt) }"
+# appropriate one magically in alpha_after_open.PLT=".plt          ${RELOCATING-0} : SPECIAL { *(.plt) }"
 DATA_PLT=yes
 TEXT_PLT=yes
 

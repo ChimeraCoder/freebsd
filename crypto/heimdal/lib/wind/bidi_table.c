@@ -1,6 +1,19 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* ./bidi_table.c */
 /* Automatically generated at 2012-01-11T14:07:00.535499 */
-
 
 #include <stdlib.h>
 #include "bidi_table.h"
@@ -408,4 +421,3 @@ const struct range_entry _wind_l_table[] = {
 };
 
 const size_t _wind_l_table_size = 360;
-

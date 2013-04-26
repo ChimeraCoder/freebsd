@@ -1,21 +1,17 @@
-//===-- DeadArgumentElimination.cpp - Eliminate dead arguments ------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass deletes dead arguments from internal functions.  Dead argument
-// elimination removes arguments which are directly dead, as well as arguments
-// only passed into function calls as dead arguments of other functions.  This
-// pass also deletes dead return values in a similar way.
-//
-// This pass is often useful as a cleanup pass to run after aggressive
-// interprocedural passes, which add possibly-dead arguments or return values.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "deadargelim"
 #include "llvm/Transforms/IPO.h"

@@ -1,18 +1,16 @@
+
 /*
- * Middle-level code for Cronyx Tau32-PCI adapters.
- *
- * Copyright (C) 2004 Cronyx Engineering
- * Copyright (C) 2004 Roman Kurakin <rik@FreeBSD.org>
- *
- * This software is distributed with NO WARRANTIES, not even the implied
- * warranties for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * Authors grant any other persons or organisations a permission to use,
- * modify and redistribute this software in source and binary forms,
- * as long as this message is kept with the software, all derivative
- * works or modified versions.
- *
- * $Cronyx: ceddk.c,v 1.2.6.2 2005/11/17 16:04:13 rik Exp $
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

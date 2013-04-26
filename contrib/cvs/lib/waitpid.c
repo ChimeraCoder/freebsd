@@ -1,47 +1,18 @@
-#ifdef HAVE_CONFIG_H
-#include "config.h"
-#endif
 
-#include "system.h"
-#include "wait.h"
-
-#include <stdio.h>
-
-struct unreaped {
-  pid_t pid;
-  int status;
-};
-static struct unreaped *unreaped;
-static int n;
-
-static struct unreaped *ualloc (oldptr, n)
-     struct unreaped *oldptr;
-     int n;
-{
-  n *= sizeof (struct unreaped);
-  if (n == 0)
-    n = 1;
-  if (oldptr)
-    oldptr = (struct unreaped *) realloc ((char *) oldptr, n);
-  else
-    oldptr = (struct unreaped *) malloc (n);
-  if (oldptr == 0)
-    {
-      fprintf (stderr, "cannot allocate %d bytes\n", n);
-      exit (1);
-    }
-  return oldptr;
-}
-
-pid_t waitpid (pid, status, options)
-     pid_t pid;
-     int *status;
-     int options;
-{
-  int i;
-
-  /* initialize */
-  if (unreaped == 0)
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+  /* initialize */  if (unreaped == 0)
     {
       unreaped = ualloc (unreaped, 1);
       unreaped[0].pid = 0;

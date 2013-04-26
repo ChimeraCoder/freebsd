@@ -1,19 +1,17 @@
-//===--- llvm-as.cpp - The low-level LLVM assembler -----------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This utility may be invoked in the following manner:
-//   llvm-as --help         - Output information about command line switches
-//   llvm-as [options]      - Read LLVM asm from stdin, write bitcode to stdout
-//   llvm-as [options] x.ll - Read LLVM asm from the x.ll file, write bitcode
-//                            to the x.bc file.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/Analysis/Verifier.h"

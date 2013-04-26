@@ -1,90 +1,16 @@
-/* $Header: /p/tcsh/cvsroot/tcsh/ed.xmap.c,v 3.37 2009/06/25 21:15:37 christos Exp $ */
+
 /*
- * ed.xmap.c: This module contains the procedures for maintaining
- *	      the extended-key map.
- *
- * 	      An extended-key (Xkey) is a sequence of keystrokes
- *	      introduced with an sequence introducer and consisting
- *	      of an arbitrary number of characters.  This module maintains
- *	      a map (the Xmap) to convert these extended-key sequences
- * 	      into input strings (XK_STR), editor functions (XK_CMD), or
- *	      unix commands (XK_EXE). It contains the
- *	      following externally visible functions.
- *
- *		int GetXkey(ch,val);
- *		CStr *ch;
- *		XmapVal *val;
- *
- *	      Looks up *ch in map and then reads characters until a
- *	      complete match is found or a mismatch occurs. Returns the
- *	      type of the match found (XK_STR, XK_CMD, or XK_EXE).
- *	      Returns NULL in val.str and XK_STR for no match.  
- *	      The last character read is returned in *ch.
- *
- *		void AddXkey(Xkey, val, ntype);
- *		CStr *Xkey;
- *		XmapVal *val;
- *		int ntype;
- *
- *	      Adds Xkey to the Xmap and associates the value in val with it.
- *	      If Xkey is already is in Xmap, the new code is applied to the
- *	      existing Xkey. Ntype specifies if code is a command, an
- *	      out string or a unix command.
- *
- *	        int DeleteXkey(Xkey);
- *	        CStr *Xkey;
- *
- *	      Delete the Xkey and all longer Xkeys staring with Xkey, if
- *	      they exists.
- *
- *	      Warning:
- *		If Xkey is a substring of some other Xkeys, then the longer
- *		Xkeys are lost!!  That is, if the Xkeys "abcd" and "abcef"
- *		are in Xmap, adding the key "abc" will cause the first two
- *		definitions to be lost.
- *
- *		void ResetXmap();
- *
- *	      Removes all entries from Xmap and resets the defaults.
- *
- *		void PrintXkey(Xkey);
- *		CStr *Xkey;
- *
- *	      Prints all extended keys prefixed by Xkey and their associated
- *	      commands.
- *
- *	      Restrictions:
- *	      -------------
- *	        1) It is not possible to have one Xkey that is a
- *		   substring of another.
- */
-/*-
- * Copyright (c) 1980, 1991 The Regents of the University of California.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 3. Neither the name of the University nor the names of its contributors
- *    may be used to endorse or promote products derived from this software
- *    without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE REGENTS AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "sh.h"
 

@@ -1,5 +1,18 @@
-/*	$NetBSD: s3c2410.c,v 1.4 2003/08/27 03:46:05 bsh Exp $ */
 
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/*	$NetBSD: s3c2410.c,v 1.4 2003/08/27 03:46:05 bsh Exp $ */
 /*
  * Copyright (c) 2003  Genetec corporation.  All rights reserved.
  * Written by Hiroyuki Bessho for Genetec corporation.

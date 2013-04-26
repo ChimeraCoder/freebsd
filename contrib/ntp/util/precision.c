@@ -1,24 +1,17 @@
-#include "ntp_unixtime.h"
 
-#include <stdio.h>
-
-#define	DEFAULT_SYS_PRECISION	-99
-
-int default_get_resolution();
-int default_get_precision();
-
-int
-main(
-	int argc,
-	char *argv[]
-	)
-{
-	printf("log2(resolution) = %d, log2(precision) = %d\n",
-	       default_get_resolution(),
-	       default_get_precision());
-	return 0;
-}
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* Find the resolution of the system clock by watching how the current time
  * changes as we read it repeatedly.
  *
@@ -49,7 +42,6 @@ main(
  * Reducing MINSTEP may be necessary as this sets an upper bound for the time
  * to actually call gettimeofday.
  */
-
 #define	DUSECS	1000000
 #define	HUSECS	(1024 * 1024)
 #define	MINSTEP	5	/* some systems increment uS on each call */

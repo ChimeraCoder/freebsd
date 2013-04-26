@@ -1,24 +1,16 @@
+
 /*
- * hostapd / EAP-SIM database/authenticator gateway
- * Copyright (c) 2005-2007, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This is an example implementation of the EAP-SIM/AKA database/authentication
- * gateway interface that is using an external program as an SS7 gateway to
- * GSM/UMTS authentication center (HLR/AuC). hlr_auc_gw is an example
- * implementation of such a gateway program. This eap_sim_db.c takes care of
- * EAP-SIM/AKA pseudonyms and re-auth identities. It can be used with different
- * gateway implementations for HLR/AuC access. Alternatively, it can also be
- * completely replaced if the in-memory database of pseudonyms/re-auth
- * identities is not suitable for some cases.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

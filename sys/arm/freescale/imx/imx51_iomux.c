@@ -1,5 +1,18 @@
-/*	$NetBSD: imx51_iomux.c,v 1.3 2012/04/15 09:51:31 bsh Exp $	*/
 
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/*	$NetBSD: imx51_iomux.c,v 1.3 2012/04/15 09:51:31 bsh Exp $	*/
 /*
  * Copyright (c) 2009, 2010  Genetec Corporation.  All rights reserved.
  * Written by Hashimoto Kenichi for Genetec Corporation.
@@ -229,4 +242,3 @@ static devclass_t imx_iomux_devclass;
 
 EARLY_DRIVER_MODULE(imx_iomux, simplebus, imx_iomux_driver,
     imx_iomux_devclass, 0, 0, BUS_PASS_BUS - 1);
-

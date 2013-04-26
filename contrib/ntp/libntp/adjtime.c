@@ -1,8 +1,17 @@
-#ifdef HAVE_CONFIG_H
-# include <config.h>
-#endif
 
-#ifdef MPE 
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * MPE lacks adjtime(), so we define our own.  But note that time slewing has
  * a sub-second accuracy bug documented in SR 5003462838 which prevents ntpd
@@ -18,8 +27,7 @@
  * The one-time clock adjustment functionality of ntpdate and ntp_timeset can
  * be used without screwing up the PDC clock.
  * 
- */
-#include <time.h>
+ */#include <time.h>
 
 int adjtime(struct timeval *delta, struct timeval *olddelta);
 

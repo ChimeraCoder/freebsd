@@ -1,17 +1,19 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <openssl/pkcs7.h>
-#include <openssl/asn1_mac.h>
-#include <openssl/x509.h>
 
-int add_signed_time(PKCS7_SIGNER_INFO *si)
-	{
-	ASN1_UTCTIME *sign_time;
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 	/* The last parameter is the amount to add/subtract from the current
-	 * time (in seconds) */
-	sign_time=X509_gmtime_adj(NULL,0);
+	 * time (in seconds) */	sign_time=X509_gmtime_adj(NULL,0);
 	PKCS7_add_signed_attribute(si,NID_pkcs9_signingTime,
 		V_ASN1_UTCTIME,(char *)sign_time);
 	return(1);
@@ -325,5 +327,3 @@ int sk_get_seq2string(STACK_OF(X509_ATTRIBUTE) *sk, char **str1, char **str2)
 err:
 	return(0);
 	}
-
-

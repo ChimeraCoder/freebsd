@@ -1,31 +1,17 @@
-//===-- llvm-bcanalyzer.cpp - Bitcode Analyzer --------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This tool may be invoked in the following manner:
-//  llvm-bcanalyzer [options]      - Read LLVM bitcode from stdin
-//  llvm-bcanalyzer [options] x.bc - Read LLVM bitcode from the x.bc file
-//
-//  Options:
-//      --help      - Output information about command line switches
-//      --dump      - Dump low-level bitcode structure in readable format
-//
-// This tool provides analytical information about a bitcode file. It is
-// intended as an aid to developers of bitcode reading and writing software. It
-// produces on std::out a summary of the bitcode file that shows various
-// statistics about the contents of the file. By default this information is
-// detailed and contains information about individual bitcode blocks and the
-// functions in the module.
-// The tool is also able to print a bitcode file in a straight forward text
-// format that shows the containment and relationships of the information in
-// the bitcode file (-dump option).
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/ADT/OwningPtr.h"
 #include "llvm/Analysis/Verifier.h"

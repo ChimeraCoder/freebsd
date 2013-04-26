@@ -1,16 +1,17 @@
-//===- ChainedIncludesSource.cpp - Chained PCHs in Memory -------*- C++ -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This file defines the ChainedIncludesSource class, which converts headers
-//  to chained PCHs in memory, mainly used for testing.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "clang/Frontend/ChainedIncludesSource.h"
 #include "clang/Basic/TargetInfo.h"
@@ -242,4 +243,3 @@ void ChainedIncludesSource::ReadMethodPool(Selector Sel) {
 bool ChainedIncludesSource::LookupUnqualified(LookupResult &R, Scope *S) {
   return getFinalReader().LookupUnqualified(R, S);
 }
-

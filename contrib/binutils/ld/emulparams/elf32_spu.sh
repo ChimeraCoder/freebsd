@@ -1,20 +1,12 @@
-SCRIPT_NAME=elf
-TEMPLATE_NAME=elf32
-EXTRA_EM_FILE=spuelf
-OUTPUT_FORMAT="elf32-spu"
-ARCH=spu
-MACHINE=
-ALIGNMENT=16
-TEXT_START_ADDR=0
-INITIAL_READONLY_SECTIONS='.interrupt : { KEEP(*(.interrupt)) }'
-if test -z "${CREATE_SHLIB}"; then
-  INITIAL_READONLY_SECTIONS="${INITIAL_READONLY_SECTIONS}
-  .interp       ${RELOCATING-0} : { *(.interp) }"
-fi
-OTHER_END_SYMBOLS='PROVIDE (__stack = 0x3fff0);'
-NO_SMALL_DATA=true
-EMBEDDED=true
-MAXPAGESIZE=0x80
-DATA_ADDR="ALIGN(${MAXPAGESIZE})"
-OTHER_BSS_SECTIONS=".toe ALIGN(128) : { *(.toe) } = 0"
-OTHER_SECTIONS=".note.spu_name 0 : { KEEP(*(.note.spu_name)) }"
+
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.

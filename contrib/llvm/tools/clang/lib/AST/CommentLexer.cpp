@@ -1,53 +1,18 @@
-#include "clang/AST/CommentLexer.h"
-#include "clang/AST/CommentCommandTraits.h"
-#include "clang/Basic/CharInfo.h"
-#include "llvm/ADT/StringExtras.h"
-#include "llvm/ADT/StringSwitch.h"
-#include "llvm/Support/ConvertUTF.h"
-#include "llvm/Support/ErrorHandling.h"
 
-namespace clang {
-namespace comments {
-
-void Token::dump(const Lexer &L, const SourceManager &SM) const {
-  llvm::errs() << "comments::Token Kind=" << Kind << " ";
-  Loc.dump(SM);
-  llvm::errs() << " " << Length << " \"" << L.getSpelling(*this, SM) << "\"\n";
-}
-
-static inline bool isHTMLNamedCharacterReferenceCharacter(char C) {
-  return isLetter(C);
-}
-
-static inline bool isHTMLDecimalCharacterReferenceCharacter(char C) {
-  return isDigit(C);
-}
-
-static inline bool isHTMLHexCharacterReferenceCharacter(char C) {
-  return isHexDigit(C);
-}
-
-static inline StringRef convertCodePointToUTF8(
-                                      llvm::BumpPtrAllocator &Allocator,
-                                      unsigned CodePoint) {
-  char *Resolved = Allocator.Allocate<char>(UNI_MAX_UTF8_BYTES_PER_CODE_POINT);
-  char *ResolvedPtr = Resolved;
-  if (llvm::ConvertCodePointToUTF8(CodePoint, ResolvedPtr))
-    return StringRef(Resolved, ResolvedPtr - Resolved);
-  else
-    return StringRef();
-}
-
-namespace {
-
-#include "clang/AST/CommentHTMLTags.inc"
-#include "clang/AST/CommentHTMLNamedCharacterReferences.inc"
-
-} // unnamed namespace
-
-StringRef Lexer::resolveHTMLNamedCharacterReference(StringRef Name) const {
-  // Fast path, first check a few most widely used named character references.
-  return llvm::StringSwitch<StringRef>(Name)
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+  // Fast path, first check a few most widely used named character references.  return llvm::StringSwitch<StringRef>(Name)
       .Case("amp", "&")
       .Case("lt", "<")
       .Case("gt", ">")
@@ -815,4 +780,3 @@ StringRef Lexer::getSpelling(const Token &Tok,
 
 } // end namespace comments
 } // end namespace clang
-

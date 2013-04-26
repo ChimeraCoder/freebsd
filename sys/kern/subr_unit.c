@@ -1,70 +1,16 @@
-/*-
- * Copyright (c) 2004 Poul-Henning Kamp
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- * $FreeBSD$
- *
- *
- * Unit number allocation functions.
- *
- * These functions implement a mixed run-length/bitmap management of unit
- * number spaces in a very memory efficient manner.
- *
- * Allocation policy is always lowest free number first.
- *
- * A return value of -1 signals that no more unit numbers are available.
- *
- * There is no cost associated with the range of unitnumbers, so unless
- * the resource really is finite, specify INT_MAX to new_unrhdr() and
- * forget about checking the return value.
- *
- * If a mutex is not provided when the unit number space is created, a
- * default global mutex is used.  The advantage to passing a mutex in, is
- * that the alloc_unrl() function can be called with the mutex already
- * held (it will not be released by alloc_unrl()).
- *
- * The allocation function alloc_unr{l}() never sleeps (but it may block on
- * the mutex of course).
- *
- * Freeing a unit number may require allocating memory, and can therefore
- * sleep so the free_unr() function does not come in a pre-locked variant.
- *
- * A userland test program is included.
- *
- * Memory usage is a very complex function of the exact allocation
- * pattern, but always very compact:
- *    * For the very typical case where a single unbroken run of unit
- *      numbers are allocated 44 bytes are used on i386.
- *    * For a unit number space of 1000 units and the random pattern
- *      in the usermode test program included, the worst case usage
- *	was 252 bytes on i386 for 500 allocated and 500 free units.
- *    * For a unit number space of 10000 units and the random pattern
- *      in the usermode test program included, the worst case usage
- *	was 798 bytes on i386 for 5000 allocated and 5000 free units.
- *    * The worst case is where every other unit number is allocated and
- *	the rest are free.  In that case 44 + N/4 bytes are used where
- *	N is the number of the highest unit allocated.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/types.h>

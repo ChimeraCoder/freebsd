@@ -1,27 +1,14 @@
-sub make {
-    open MAKE, "make 2>&1 1>/dev/null |";
-    while(<MAKE>) {
-	if (($file, $line, $msg) = /([^: ]*):(\d*):(.+)/) {
-	    if ($file == $prevfile && $line == $prevline) {
-		$error[-1]->[2] .= "\n$msg";
-	    } else {
-		push @error, [$file, $line, $msg];
-		($prevline, $prevfile) = ($line, $file);
-	    }
-	}
-    }
-    close MAKE;
-}
 
-sub nexterror {
-    if ($index <= $#error) {
-    	my $error = $error[$index++];
-    	$curscr->Edit($error->[0]);
-	$curscr->SetCursor($error->[1],0);
-	$curscr->Msg($error->[2]);
-    }
-}
-
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # preverror is left as an exercise
-
 1;

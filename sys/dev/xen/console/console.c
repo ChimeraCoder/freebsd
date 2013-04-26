@@ -1,45 +1,18 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/param.h>
-#include <sys/module.h>
-#include <sys/systm.h>
-#include <sys/consio.h>
-#include <sys/priv.h>
-#include <sys/proc.h>
-#include <sys/uio.h>
-#include <sys/tty.h>
-#include <sys/systm.h>
-#include <sys/taskqueue.h>
-#include <sys/conf.h>
-#include <sys/kernel.h>
-#include <sys/bus.h>
-#include <machine/stdarg.h>
-#include <machine/xen/xen-os.h>
-#include <xen/hypervisor.h>
-#include <xen/xen_intr.h>
-#include <sys/cons.h>
-#include <sys/kdb.h>
-#include <sys/proc.h>
-
-#include <dev/xen/console/xencons_ring.h>
-#include <xen/interface/io/console.h>
-
-
-#include "opt_ddb.h"
-#ifdef DDB
-#include <ddb/ddb.h>
-#endif
-
-static char driver_name[] = "xc";
-devclass_t xc_devclass; /* do not make static */
-static void	xcoutwakeup(struct tty *);
-static void	xc_timeout(void *);
-static void __xencons_tx_flush(void);
-static boolean_t xcons_putc(int c);
-
-/* switch console so that shutdown can occur gracefully */
-static void xc_shutdown(void *arg, int howto);
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* switch console so that shutdown can occur gracefully */static void xc_shutdown(void *arg, int howto);
 static int xc_mute;
 
 static void xcons_force_flush(void);

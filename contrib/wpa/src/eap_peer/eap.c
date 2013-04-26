@@ -1,24 +1,16 @@
+
 /*
- * EAP peer state machines (RFC 4137)
- * Copyright (c) 2004-2010, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This file implements the Peer State Machine as defined in RFC 4137. The used
- * states and state transitions match mostly with the RFC. However, there are
- * couple of additional transitions for working around small issues noticed
- * during testing. These exceptions are explained in comments within the
- * functions in this file. The method functions, m.func(), are similar to the
- * ones used in RFC 4137, but some small changes have used here to optimize
- * operations and to add functionality needed for fast re-authentication
- * (session resumption).
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

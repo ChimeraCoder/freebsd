@@ -1,36 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# May 2011
-#
-# The module implements bn_GF2m_mul_2x2 polynomial multiplication used
-# in bn_gf2m.c. It's kind of low-hanging mechanical port from C for
-# the time being... Except that it has three code paths: pure integer
-# code suitable for any x86 CPU, MMX code suitable for PIII and later
-# and PCLMULQDQ suitable for Westmere and later. Improvement varies
-# from one benchmark and µ-arch to another. Below are interval values
-# for 163- and 571-bit ECDH benchmarks relative to compiler-generated
-# code:
-#
-# PIII		16%-30%
-# P4		12%-12%
-# Opteron	18%-40%
-# Core2		19%-44%
-# Atom		38%-64%
-# Westmere	53%-121%(PCLMULQDQ)/20%-32%(MMX)
-# Sandy Bridge	72%-127%(PCLMULQDQ)/27%-23%(MMX)
-#
-# Note that above improvement coefficients are not coefficients for
-# bn_GF2m_mul_2x2 itself. For example 120% ECDH improvement is result
-# of bn_GF2m_mul_2x2 being >4x faster. As it gets faster, benchmark
-# is more and more dominated by other subroutines, most notably by
-# BN_GF2m_mod[_mul]_arr...
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $0 =~ m/(.*[\/\\])[^\/\\]+$/; $dir=$1;
 push(@INC,"${dir}","${dir}../../perlasm");

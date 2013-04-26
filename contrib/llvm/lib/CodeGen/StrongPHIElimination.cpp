@@ -1,42 +1,17 @@
-//===- StrongPHIElimination.cpp - Eliminate PHI nodes by inserting copies -===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass eliminates PHI instructions by aggressively coalescing the copies
-// that would be inserted by a naive algorithm and only inserting the copies
-// that are necessary. The coalescing technique initially assumes that all
-// registers appearing in a PHI instruction do not interfere. It then eliminates
-// proven interferences, using dominators to only perform a linear number of
-// interference tests instead of the quadratic number of interference tests
-// that this would naively require. This is a technique derived from:
-// 
-//    Budimlic, et al. Fast copy coalescing and live-range identification.
-//    In Proceedings of the ACM SIGPLAN 2002 Conference on Programming Language
-//    Design and Implementation (Berlin, Germany, June 17 - 19, 2002).
-//    PLDI '02. ACM, New York, NY, 25-32.
-//
-// The original implementation constructs a data structure they call a dominance
-// forest for this purpose. The dominance forest was shown to be unnecessary,
-// as it is possible to emulate the creation and traversal of a dominance forest
-// by directly using the dominator tree, rather than actually constructing the
-// dominance forest.  This technique is explained in:
-//
-//   Boissinot, et al. Revisiting Out-of-SSA Translation for Correctness, Code
-//     Quality and Efficiency,
-//   In Proceedings of the 7th annual IEEE/ACM International Symposium on Code
-//   Generation and Optimization (Seattle, Washington, March 22 - 25, 2009).
-//   CGO '09. IEEE, Washington, DC, 114-125.
-//
-// Careful implementation allows for all of the dominator forest interference
-// checks to be performed at once in a single depth-first traversal of the
-// dominator tree, which is what is implemented here.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "strongphielim"
 #include "llvm/CodeGen/Passes.h"

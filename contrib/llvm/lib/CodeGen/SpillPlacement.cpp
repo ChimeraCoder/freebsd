@@ -1,31 +1,17 @@
-//===-- SpillPlacement.cpp - Optimal Spill Code Placement -----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the spill code placement analysis.
-//
-// Each edge bundle corresponds to a node in a Hopfield network. Constraints on
-// basic blocks are weighted by the block frequency and added to become the node
-// bias.
-//
-// Transparent basic blocks have the variable live through, but don't care if it
-// is spilled or in a register. These blocks become connections in the Hopfield
-// network, again weighted by block frequency.
-//
-// The Hopfield network minimizes (possibly locally) its energy function:
-//
-//   E = -sum_n V_n * ( B_n + sum_{n, m linked by b} V_m * F_b )
-//
-// The energy function represents the expected spill code execution frequency,
-// or the cost of spilling. This is a Lyapunov function which never increases
-// when a node is updated. It is guaranteed to converge to a local minimum.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "spillplacement"
 #include "SpillPlacement.h"

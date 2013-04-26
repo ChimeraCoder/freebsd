@@ -1,34 +1,17 @@
-//===--- SemaPseudoObject.cpp - Semantic Analysis for Pseudo-Objects ------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This file implements semantic analysis for expressions involving
-//  pseudo-object references.  Pseudo-objects are conceptual objects
-//  whose storage is entirely abstract and all accesses to which are
-//  translated through some sort of abstraction barrier.
-//
-//  For example, Objective-C objects can have "properties", either
-//  declared or undeclared.  A property may be accessed by writing
-//    expr.prop
-//  where 'expr' is an r-value of Objective-C pointer type and 'prop'
-//  is the name of the property.  If this expression is used in a context
-//  needing an r-value, it is treated as if it were a message-send
-//  of the associated 'getter' selector, typically:
-//    [expr prop]
-//  If it is used as the LHS of a simple assignment, it is treated
-//  as a message-send of the associated 'setter' selector, typically:
-//    [expr setProp: RHS]
-//  If it is used as the LHS of a compound assignment, or the operand
-//  of a unary increment or decrement, both are required;  for example,
-//  'expr.prop *= 100' would be translated to:
-//    [expr setProp: [expr prop] * 100]
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "clang/Sema/SemaInternal.h"
 #include "clang/AST/ExprObjC.h"

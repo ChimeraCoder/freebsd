@@ -1,29 +1,17 @@
-//===- PrintSCC.cpp - Enumerate SCCs in some key graphs -------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file provides passes to print out SCCs in a CFG or a CallGraph.
-// Normally, you would not use these passes; instead, you would use the
-// scc_iterator directly to enumerate SCCs and process them in some way.  These
-// passes serve three purposes:
-//
-// (1) As a reference for how to use the scc_iterator.
-// (2) To print out the SCCs for a CFG or a CallGraph:
-//       analyze -print-cfg-sccs            to print the SCCs in each CFG of a module.
-//       analyze -print-cfg-sccs -stats     to print the #SCCs and the maximum SCC size.
-//       analyze -print-cfg-sccs -debug > /dev/null to watch the algorithm in action.
-//
-//     and similarly:
-//       analyze -print-callgraph-sccs [-stats] [-debug] to print SCCs in the CallGraph
-//
-// (3) To test the scc_iterator.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/ADT/SCCIterator.h"
 #include "llvm/Analysis/CallGraph.h"

@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * $Id: kern_gzio.c,v 1.6 2008-10-18 22:54:45 lbazinet Exp $
  *
@@ -5,7 +19,6 @@
  *
  * This file is derived from src/lib/libz/gzio.c in FreeBSD.
  */
-
 /* gzio.c -- IO on .gz files
  * Copyright (C) 1995-1998 Jean-loup Gailly.
  * For conditions of distribution and use, see copyright notice in zlib.h
@@ -397,4 +410,3 @@ gz_free(void *opaque __unused, void *ptr)
 {
     FREE(ptr, M_TEMP);
 }
-

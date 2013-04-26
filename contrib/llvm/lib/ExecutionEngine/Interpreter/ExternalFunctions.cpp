@@ -1,23 +1,17 @@
-//===-- ExternalFunctions.cpp - Implement External Functions --------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//  This file contains both code to deal with invoking "external" functions, but
-//  also contains code that implements "exported" external functions.
-//
-//  There are currently two mechanisms for handling external functions in the
-//  Interpreter.  The first is to implement lle_* wrapper functions that are
-//  specific to well-known library functions which manually translate the
-//  arguments from GenericValues and make the call.  If such a wrapper does
-//  not exist, and libffi is available, then the Interpreter will attempt to
-//  invoke the function using libffi, after finding its address.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "Interpreter.h"
 #include "llvm/Config/config.h"     // Detect libffi

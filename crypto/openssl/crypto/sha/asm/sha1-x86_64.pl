@@ -1,33 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# sha1_block procedure for x86_64.
-#
-# It was brought to my attention that on EM64T compiler-generated code
-# was far behind 32-bit assembler implementation. This is unlike on
-# Opteron where compiler-generated code was only 15% behind 32-bit
-# assembler, which originally made it hard to motivate the effort.
-# There was suggestion to mechanically translate 32-bit code, but I
-# dismissed it, reasoning that x86_64 offers enough register bank
-# capacity to fully utilize SHA-1 parallelism. Therefore this fresh
-# implementation:-) However! While 64-bit code does perform better
-# on Opteron, I failed to beat 32-bit assembler on EM64T core. Well,
-# x86_64 does offer larger *addressable* bank, but out-of-order core
-# reaches for even more registers through dynamic aliasing, and EM64T
-# core must have managed to run-time optimize even 32-bit code just as
-# good as 64-bit one. Performance improvement is summarized in the
-# following table:
-#
-#		gcc 3.4		32-bit asm	cycles/byte
-# Opteron	+45%		+20%		6.8
-# Xeon P4	+65%		+0%		9.9
-# Core2		+60%		+10%		7.0
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # August 2009.
 #

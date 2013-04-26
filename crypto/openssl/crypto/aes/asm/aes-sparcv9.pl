@@ -1,34 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. Rights for redistribution and usage in source and binary
-# forms are granted according to the OpenSSL license.
-# ====================================================================
-#
-# Version 1.1
-#
-# The major reason for undertaken effort was to mitigate the hazard of
-# cache-timing attack. This is [currently and initially!] addressed in
-# two ways. 1. S-boxes are compressed from 5KB to 2KB+256B size each.
-# 2. References to them are scheduled for L2 cache latency, meaning
-# that the tables don't have to reside in L1 cache. Once again, this
-# is an initial draft and one should expect more countermeasures to
-# be implemented...
-#
-# Version 1.1 prefetches T[ed]4 in order to mitigate attack on last
-# round.
-#
-# Even though performance was not the primary goal [on the contrary,
-# extra shifts "induced" by compressed S-box and longer loop epilogue
-# "induced" by scheduling for L2 have negative effect on performance],
-# the code turned out to run in ~23 cycles per processed byte en-/
-# decrypted with 128-bit key. This is pretty good result for code
-# with mentioned qualities and UltraSPARC core. Compared to Sun C
-# generated code my encrypt procedure runs just few percents faster,
-# while decrypt one - whole 50% faster [yes, Sun C failed to generate
-# optimal decrypt procedure]. Compared to GNU C generated code both
-# procedures are more than 60% faster:-)
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $bits=32;
 for (@ARGV)	{ $bits=64 if (/\-m64/ || /\-xarch\=v9/); }

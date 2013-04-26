@@ -1,54 +1,17 @@
-//===- TailRecursionElimination.cpp - Eliminate Tail Calls ----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file transforms calls of the current function (self recursion) followed
-// by a return instruction with a branch to the entry of the function, creating
-// a loop.  This pass also implements the following extensions to the basic
-// algorithm:
-//
-//  1. Trivial instructions between the call and return do not prevent the
-//     transformation from taking place, though currently the analysis cannot
-//     support moving any really useful instructions (only dead ones).
-//  2. This pass transforms functions that are prevented from being tail
-//     recursive by an associative and commutative expression to use an
-//     accumulator variable, thus compiling the typical naive factorial or
-//     'fib' implementation into efficient code.
-//  3. TRE is performed if the function returns void, if the return
-//     returns the result returned by the call, or if the function returns a
-//     run-time constant on all exits from the function.  It is possible, though
-//     unlikely, that the return returns something else (like constant 0), and
-//     can still be TRE'd.  It can be TRE'd if ALL OTHER return instructions in
-//     the function return the exact same value.
-//  4. If it can prove that callees do not access their caller stack frame,
-//     they are marked as eligible for tail call elimination (by the code
-//     generator).
-//
-// There are several improvements that could be made:
-//
-//  1. If the function has any alloca instructions, these instructions will be
-//     moved out of the entry block of the function, causing them to be
-//     evaluated each time through the tail recursion.  Safely keeping allocas
-//     in the entry block requires analysis to proves that the tail-called
-//     function does not read or write the stack object.
-//  2. Tail recursion is only performed if the call immediately precedes the
-//     return instruction.  It's possible that there could be a jump between
-//     the call and the return.
-//  3. There can be intervening operations between the call and the return that
-//     prevent the TRE from occurring.  For example, there could be GEP's and
-//     stores to memory that will not be read or written by the call.  This
-//     requires some substantial analysis (such as with DSA) to prove safe to
-//     move ahead of the call, but doing so could allow many more TREs to be
-//     performed, for example in TreeAdd/TreeAlloc from the treeadd benchmark.
-//  4. The algorithm we use to detect if callees access their caller stack
-//     frames is very primitive.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "tailcallelim"
 #include "llvm/Transforms/Scalar.h"

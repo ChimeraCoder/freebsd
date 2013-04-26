@@ -1,44 +1,18 @@
-#ifdef HAVE_CONFIG_H
-# include "config.h"
-#endif
 
-#include <stdio.h>
-
-#ifdef STDC_HEADERS
-# include <stdlib.h>
-#endif
-
-#ifdef HAVE_UNISTD_H
-# include <unistd.h>
-#endif
-
-#ifdef HAVE_FCNTL_H
-# include <sys/types.h>
-# include <fcntl.h>
-#else
-# include <sys/file.h>
-#endif
-
-#ifdef HAVE_DIRECT_H
-# include <direct.h>
-#endif
-
-#ifdef HAVE_IO_H
-# include <io.h>
-#endif
-
-#include <errno.h>
-# ifndef errno
-extern int errno;
-#endif
-
-#include "savecwd.h"
-#include "error.h"
-
-char *xgetwd __PROTO((void));
-
-/* Record the location of the current working directory in CWD so that
-   the program may change to other directories and later use restore_cwd
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Record the location of the current working directory in CWD so that   the program may change to other directories and later use restore_cwd
    to return to the recorded location.  This function may allocate
    space using malloc (via xgetwd) or leave a file descriptor open;
    use free_cwd to perform the necessary free or close.  Upon failure,
@@ -139,4 +113,3 @@ free_cwd (cwd)
   if (cwd->name)
     free (cwd->name);
 }
-

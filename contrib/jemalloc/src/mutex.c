@@ -1,17 +1,19 @@
-#define	JEMALLOC_MUTEX_C_
-#include "jemalloc/internal/jemalloc_internal.h"
 
-#if defined(JEMALLOC_LAZY_LOCK) && !defined(_WIN32)
-#include <dlfcn.h>
-#endif
-
-#ifndef _CRT_SPINCOUNT
-#define _CRT_SPINCOUNT 4000
-#endif
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /******************************************************************************/
 /* Data. */
-
 #ifdef JEMALLOC_LAZY_LOCK
 bool isthreaded = false;
 #endif

@@ -1,46 +1,17 @@
-//===- LoopVectorize.cpp - A Loop Vectorizer ------------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This is the LLVM loop vectorizer. This pass modifies 'vectorizable' loops
-// and generates target-independent LLVM-IR. Legalization of the IR is done
-// in the codegen. However, the vectorizer uses (will use) the codegen
-// interfaces to generate IR that is likely to result in an optimal binary.
-//
-// The loop vectorizer combines consecutive loop iterations into a single
-// 'wide' iteration. After this transformation the index is incremented
-// by the SIMD vector width, and not by one.
-//
-// This pass has three parts:
-// 1. The main loop pass that drives the different parts.
-// 2. LoopVectorizationLegality - A unit that checks for the legality
-//    of the vectorization.
-// 3. InnerLoopVectorizer - A unit that performs the actual
-//    widening of instructions.
-// 4. LoopVectorizationCostModel - A unit that checks for the profitability
-//    of vectorization. It decides on the optimal vector width, which
-//    can be one, if vectorization is not profitable.
-//
-//===----------------------------------------------------------------------===//
-//
-// The reduction-variable vectorization is based on the paper:
-//  D. Nuzman and R. Henderson. Multi-platform Auto-vectorization.
-//
-// Variable uniformity checks are inspired by:
-//  Karrenberg, R. and Hack, S. Whole Function Vectorization.
-//
-// Other ideas/concepts are from:
-//  A. Zaks and D. Nuzman. Autovectorization in GCC-two years later.
-//
-//  S. Maleki, Y. Gao, M. Garzaran, T. Wong and D. Padua.  An Evaluation of
-//  Vectorizing Compilers.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define LV_NAME "loop-vectorize"
 #define DEBUG_TYPE LV_NAME

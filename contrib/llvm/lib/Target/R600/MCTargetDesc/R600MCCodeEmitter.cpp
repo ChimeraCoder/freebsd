@@ -1,22 +1,17 @@
-//===- R600MCCodeEmitter.cpp - Code Emitter for R600->Cayman GPU families -===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-/// \file
-///
-/// This code emitter outputs bytecode that is understood by the r600g driver
-/// in the Mesa [1] project.  The bytecode is very similar to the hardware's ISA,
-/// but it still needs to be run through a finalizer in order to be executed
-/// by the GPU.
-///
-/// [1] http://www.mesa3d.org/
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "R600Defines.h"
 #include "MCTargetDesc/AMDGPUMCCodeEmitter.h"

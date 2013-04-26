@@ -1,22 +1,17 @@
-//===----- SchedulePostRAList.cpp - list scheduler ------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This implements a top-down list scheduler, using standard algorithms.
-// The basic approach uses a priority queue of available nodes to schedule.
-// One at a time, nodes are taken from the priority queue (thus in priority
-// order), checked for legality to schedule, and emitted if legal.
-//
-// Nodes may not be legal to schedule either due to structural hazards (e.g.
-// pipeline or resource constraints) or because an input to the instruction has
-// not completed execution.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "post-RA-sched"
 #include "llvm/CodeGen/Passes.h"

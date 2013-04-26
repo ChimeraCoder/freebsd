@@ -1,56 +1,16 @@
+
 /*
- * NAME:
- *      sigcompat - BSD compat signals via POSIX
- *
- * SYNOPSIS:
- *	void (*signal(int  "sig", void (*"handler")(int)))(int);
- *	int sigsetmask(int "mask");
- *	int sigblock(int "mask");
- *	int sigpause(int "mask");
- *	int sigvec(int "signo", struct sigvec *"sv", struct sigvec *"osv");
- *
- * DESCRIPTION:
- *	These implement the old BSD routines via the POSIX equivalents.
- *	This module can be used to provide the missing routines, or if
- *	'FORCE_POSIX_SIGNALS' is defined, force use of these.
- *
- *	Note that signal() is identical to my Signal() routine except
- *	for checking for recursion.  Within libsig, signal() just
- *	calls Signal().
- *
- * BUGS:
- *      This package assumes POSIX signal handling is available and
- *	NOT implemeneted using these routines.  To be safe, we check
- *	for recursion and abort(3) if detected.
- *
- *	Sadly, on some systems, sigset_t is an array, and we cannot
- *	test for this via #if sizeof(sigset_t) ..., so unless
- *	'SIGSET_T_INT' is defined, we have to assume the worst and use
- *	memcpy(3) to handle args and return values.
- *
- * HISTORY:
- *	These routines originate from BSD, and are derrived from the
- *	NetBSD 1.1 implementation.  They have been seriously hacked to
- *	make them portable to other systems.
- *
- * AUTHOR:
- *      Simon J. Gerraty <sjg@crufty.net>
- */
-/*
- *      @(#)Copyright (c) 1994, Simon J. Gerraty.
- *
- *      This is free software.  It comes with NO WARRANTY.
- *      Permission to use, modify and distribute this source code
- *      is granted subject to the following conditions.
- *      1/ that the above copyright notice and this notice
- *      are preserved in all copies and that due credit be given
- *      to the author.
- *      2/ that any changes to this code are clearly commented
- *      as such so that the author does not get blamed for bugs
- *      other than his own.
- *
- *      Please send copies of changes and bug-fixes to:
- *      sjg@crufty.net
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*

@@ -1,29 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# May 2011
-#
-# The module implements bn_GF2m_mul_2x2 polynomial multiplication used
-# in bn_gf2m.c. It's kind of low-hanging mechanical port from C for
-# the time being... gcc 4.3 appeared to generate poor code, therefore
-# the effort. And indeed, the module delivers 55%-90%(*) improvement
-# on haviest ECDSA verify and ECDH benchmarks for 163- and 571-bit
-# key lengths on z990, 30%-55%(*) - on z10, and 70%-110%(*) - on z196.
-# This is for 64-bit build. In 32-bit "highgprs" case improvement is
-# even higher, for example on z990 it was measured 80%-150%. ECDSA
-# sign is modest 9%-12% faster. Keep in mind that these coefficients
-# are not ones for bn_GF2m_mul_2x2 itself, as not all CPU time is
-# burnt in it...
-#
-# (*)	gcc 4.1 was observed to deliver better results than gcc 4.3,
-#	so that improvement coefficients can vary from one specific
-#	setup to another.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 

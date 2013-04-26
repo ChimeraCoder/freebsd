@@ -1,23 +1,16 @@
+
 /*
- * Marko Kiiskila carnil@cs.tut.fi
- *
- * Tampere University of Technology - Telecommunications Laboratory
- *
- * Permission to use, copy, modify and distribute this
- * software and its documentation is hereby granted,
- * provided that both the copyright notice and this
- * permission notice appear in all copies of the software,
- * derivative works or modified versions, and any portions
- * thereof, that both notices appear in supporting
- * documentation, and that the use of this software is
- * acknowledged in any publications resulting from using
- * the software.
- *
- * TUT ALLOWS FREE USE OF THIS SOFTWARE IN ITS "AS IS"
- * CONDITION AND DISCLAIMS ANY LIABILITY OF ANY KIND FOR
- * ANY DAMAGES WHATSOEVER RESULTING FROM THE USE OF THIS
- * SOFTWARE.
- *
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef lint

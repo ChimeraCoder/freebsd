@@ -1,21 +1,17 @@
-SCRIPT_NAME=elf
-ELFSIZE=64
-OUTPUT_FORMAT="elf64-s390"
-TEXT_START_ADDR=0x80000000
-MAXPAGESIZE="CONSTANT (MAXPAGESIZE)"
-COMMONPAGESIZE="CONSTANT (COMMONPAGESIZE)"
-NONPAGED_TEXT_START_ADDR=0x80000000
-ARCH="s390:64-bit"
-MACHINE=
-NOP=0x07070707
-TEMPLATE_NAME=elf32
-GENERATE_SHLIB_SCRIPT=yes 
-GENERATE_PIE_SCRIPT=yes
-NO_SMALL_DATA=yes
 
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # Treat a host that matches the target with the possible exception of "x"
-# in the name as if it were native.
-if test `echo "$host" | sed -e s/390x/390/` \
+# in the name as if it were native.if test `echo "$host" | sed -e s/390x/390/` \
    = `echo "$target" | sed -e s/390x/390/`; then
   case " $EMULATION_LIBPATH " in
     *" ${EMULATION_NAME} "*)

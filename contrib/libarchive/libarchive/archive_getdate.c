@@ -1,15 +1,16 @@
+
 /*
- * This code is in the public domain and has no copyright.
- *
- * This is a plain C recursive-descent translation of an old
- * public-domain YACC grammar that has been used for parsing dates in
- * very many open-source projects.
- *
- * Since the original authors were generous enough to donate their
- * work to the public domain, I feel compelled to match their
- * generosity.
- *
- * Tim Kientzle, February 2009.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 /*

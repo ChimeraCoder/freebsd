@@ -1,41 +1,22 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <port_before.h>
-#ifdef DO_PTHREADS
-#include <pthread.h>
-#ifdef _LIBC
-#include <pthread_np.h>
-#endif
-#endif
-#include <errno.h>
-#include <netdb.h>
-#include <stdlib.h>
-#include <string.h>
-#include <resolv_mt.h>
-#include <port_after.h>
-
-#ifdef DO_PTHREADS
-static pthread_key_t	key;
-static int		mt_key_initialized = 0;
-
-static int		__res_init_ctx(void);
-static void		__res_destroy_ctx(void *);
-
-#if defined(sun) && !defined(__GNUC__)
-#pragma init	(_mtctxres_init)
-#endif
-#endif
-
-static mtctxres_t	sharedctx;
-
-#ifdef DO_PTHREADS
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * Initialize the TSD key. By doing this at library load time, we're
  * implicitly running without interference from other threads, so there's
  * no need for locking.
- */
-static void
+ */static void
 _mtctxres_init(void) {
 	int pthread_keycreate_ret;
 

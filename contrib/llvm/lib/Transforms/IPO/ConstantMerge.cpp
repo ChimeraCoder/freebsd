@@ -1,21 +1,17 @@
-//===- ConstantMerge.cpp - Merge duplicate global constants ---------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines the interface to a pass that merges duplicate global
-// constants together into a single constant that is shared.  This is useful
-// because some passes (ie TraceValues) insert a lot of string constants into
-// the program, regardless of whether or not an existing string is available.
-//
-// Algorithm: ConstantMerge is designed to build up a map of available constants
-// and eliminate duplicates when it is initialized.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "constmerge"
 #include "llvm/Transforms/IPO.h"

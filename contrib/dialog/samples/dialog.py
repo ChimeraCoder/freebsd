@@ -1,60 +1,15 @@
-# $Id: dialog.py,v 1.3 2004/09/21 00:52:15 tom Exp $
-# Module: dialog.py
-# Copyright (c) 2000 Robb Shecter <robb@acm.org>
-# All rights reserved.
-# This source is covered by the GNU GPL.
-#
-# This module is a Python wrapper around the Linux "dialog" utility
-# by Savio Lam and Stuart Herbert.  My goals were to make dialog as
-# easy to use from Python as possible.  The demo code at the end of
-# the module is a good example of how to use it.  To run the demo,
-# execute:
-#
-#                       python dialog.py
-#
-# This module has one class in it, "Dialog".  An application typically
-# creates an instance of it, and possibly sets the background title option.
-# Then, methods can be called on it for interacting with the user.
-#
-# I wrote this because I want to use my 486-33 laptop as my main
-# development computer (!), and I wanted a way to nicely interact with the
-# user in console mode.  There are apparently other modules out there
-# with similar functionality, but they require the Python curses library.
-# Writing this module from scratch was easier than figuring out how to
-# recompile Python with curses enabled. :)
-#
-# One interesting feature is that the menu and selection windows allow
-# *any* objects to be displayed and selected, not just strings.
-#
-# TO DO:
-#   Add code so that the input buffer is flushed before a dialog box is
-#     shown.  This would make the UI more predictable for users.  This
-#     feature could be turned on and off through an instance method.
-#   Drop using temporary files when interacting with 'dialog'
-#     (it's possible -- I've already tried :-).
-#   Try detecting the terminal window size in order to make reasonable
-#     height and width defaults.  Hmmm - should also then check for 
-#     terminal resizing...
-#   Put into a package name to make more reusable - reduce the possibility
-#     of name collisions.
-#
-# NOTES:
-#         there is a bug in (at least) Linux-Mandrake 7.0 Russian Edition
-#         running on AMD K6-2 3D that causes core dump when 'dialog' 
-#         is running with --gauge option;
-#         in this case you'll have to recompile 'dialog' program.
-#
-# Modifications:
-# Jul 2000, Sultanbek Tezadov (http://sultan.da.ru)
-#    Added:
-#       - 'gauge' widget *)
-#       - 'title' option to some widgets
-#       - 'checked' option to checklist dialog; clicking "Cancel" is now
-#           recognizable
-#       - 'selected' option to radiolist dialog; clicking "Cancel" is now
-#           recognizable
-#       - some other cosmetic changes and improvements
-#   
+
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 from tempfile import mktemp

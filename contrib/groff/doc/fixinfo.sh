@@ -1,4 +1,15 @@
 #! /bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Fix a problem with HTML output produced by makeinfo 4.8.
 #
@@ -20,7 +31,6 @@
 # Note that this script is a quick hack and tightly bound to the current
 # groff.texinfo macro code.  Hopefully, a new texinfo version makes it
 # unnecessary.
-
 t=${TMPDIR-.}/gro$$.tmp
 
 cat $1 | sed '

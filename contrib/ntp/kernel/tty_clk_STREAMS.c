@@ -1,26 +1,16 @@
-/* tty_clk_STREAMS.c,v 3.1 1993/07/06 01:07:34 jbj Exp
- * Timestamp STREAMS module for SunOS 4.1
- *
- * Copyright 1991, Nick Sayer
- *
- * Special thanks to Greg Onufer for his debug assists.
- *
- * Should be PUSHed directly on top of a serial I/O channel.
- * For any character in a user-designated set, adds a kernel
- * timestamp to that character.
- *
- * BUGS:
- *
- * Only so many characters can be timestamped. This number, however,
- * is adjustable.
- *
- * The null character ($00) cannot be timestamped.
- *
- * The M_DATA messages passed upstream will not be the same
- * size as when they arrive from downstream, even if no
- * timestamp character is in the message. This, however,
- * should not affect anything.
- *
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "clk.h"

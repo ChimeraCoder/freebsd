@@ -1,6 +1,19 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* krb5_asn.c */
-/* Written by Vern Staats <staatsvr@asc.hpc.mil> for the OpenSSL project,
-** using ocsp/{*.h,*asn*.c} as a starting point
+/* Written by Vern Staats <staatsvr@asc.hpc.mil> for the OpenSSL project,** using ocsp/{*.h,*asn*.c} as a starting point
 */
 /* ====================================================================
  * Copyright (c) 2000 The OpenSSL Project.  All rights reserved.
@@ -164,4 +177,3 @@ ASN1_ITEM_TEMPLATE(KRB5_AUTHENT) =
 ASN1_ITEM_TEMPLATE_END(KRB5_AUTHENT)
 
 IMPLEMENT_ASN1_FUNCTIONS(KRB5_AUTHENT)
-

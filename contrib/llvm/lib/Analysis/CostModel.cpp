@@ -1,21 +1,17 @@
-//===- CostModel.cpp ------ Cost Model Analysis ---------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines the cost model analysis. It provides a very basic cost
-// estimation for LLVM-IR. This analysis uses the services of the codegen
-// to approximate the cost of any IR instruction when lowered to machine
-// instructions. The cost results are unit-less and the cost number represents
-// the throughput of the machine assuming that all loads hit the cache, all
-// branches are predicted, etc. The cost numbers can be added in order to
-// compare two or more transformation alternatives.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define CM_NAME "cost-model"
 #define DEBUG_TYPE CM_NAME

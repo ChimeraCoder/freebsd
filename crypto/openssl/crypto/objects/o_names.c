@@ -1,19 +1,22 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-#include <openssl/err.h>
-#include <openssl/lhash.h>
-#include <openssl/objects.h>
-#include <openssl/safestack.h>
-#include <openssl/e_os2.h>
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* Later versions of DEC C has started to add lnkage information to certain
  * functions, which makes it tricky to use them as values to regular function
  * pointers.  One way is to define a macro that takes care of casting them
  * correctly.
- */
-#ifdef OPENSSL_SYS_VMS_DECC
+ */#ifdef OPENSSL_SYS_VMS_DECC
 # define OPENSSL_strcmp (int (*)(const char *,const char *))strcmp
 #else
 # define OPENSSL_strcmp strcmp
@@ -369,4 +372,3 @@ void OBJ_NAME_cleanup(int type)
 	else
 		lh_OBJ_NAME_down_load(names_lh)=down_load;
 	}
-

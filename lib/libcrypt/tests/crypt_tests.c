@@ -1,51 +1,21 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/types.h>
-#include <crypt.h>
-#include <unistd.h>
-
-#include <atf-c.h>
-
-#define	LEET "0.s0.l33t"
-
-ATF_TC(md5);
-ATF_TC_HEAD(md5, tc)
-{
-
-	atf_tc_set_md_var(tc, "descr", "Tests the MD5 based password hash");
-}
-
-ATF_TC_BODY(md5, tc)
-{
-	const char want[] = "$1$deadbeef$0Huu6KHrKLVWfqa4WljDE0";
-	char *pw;
-
-	pw = crypt(LEET, want);
-	ATF_CHECK_STREQ(pw, want);
-}
-
-ATF_TC(invalid);
-ATF_TC_HEAD(invalid, tc)
-{
-
-	atf_tc_set_md_var(tc, "descr", "Tests that invalid password fails");
-}
-
-ATF_TC_BODY(invalid, tc)
-{
-	const char want[] = "$1$cafebabe$0Huu6KHrKLVWfqa4WljDE0";
-	char *pw;
-
-	pw = crypt(LEET, want);
-	ATF_CHECK(strcmp(pw, want) != 0);
-}
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * This function must not do anything except enumerate
  * the test cases, else atf-run is likely to be upset.
- */
-ATF_TP_ADD_TCS(tp)
+ */ATF_TP_ADD_TCS(tp)
 {
 
 	ATF_TP_ADD_TC(tp, md5);

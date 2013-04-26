@@ -1,21 +1,21 @@
-#include <yaml.h>
 
-YAML_DECLARE(int)
-yaml_parser_update_buffer(yaml_parser_t *parser, size_t length);
-
-#include <stdlib.h>
-#include <stdio.h>
-
-#ifdef NDEBUG
-#undef NDEBUG
-#endif
-#include <assert.h>
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * Test cases are stolen from
  * http://www.cl.cam.ac.uk/~mgk25/ucs/examples/UTF-8-test.txt
  */
-
 typedef struct {
     char *title;
     char *test;

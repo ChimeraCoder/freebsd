@@ -1,39 +1,18 @@
-#include <openssl/opensslconf.h>
 
-#ifdef OPENSSL_NO_JPAKE
-
-#include <stdio.h>
-
-int main(int argc, char *argv[])
-{
-    printf("No J-PAKE support\n");
-    return(0);
-}
-
-#else
-
-#include <openssl/jpake.h>
-#include <openssl/err.h>
-
-static void showbn(const char *name, const BIGNUM *bn)
-    {
-    fputs(name, stdout);
-    fputs(" = ", stdout);
-    BN_print_fp(stdout, bn);
-    putc('\n', stdout);
-    }
-
-static int run_jpake(JPAKE_CTX *alice, JPAKE_CTX *bob)
-    {
-    JPAKE_STEP1 alice_s1;
-    JPAKE_STEP1 bob_s1;
-    JPAKE_STEP2 alice_s2;
-    JPAKE_STEP2 bob_s2;
-    JPAKE_STEP3A alice_s3a;
-    JPAKE_STEP3B bob_s3b;
-
-   /* Alice -> Bob: step 1 */
-    puts("A->B s1");
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+   /* Alice -> Bob: step 1 */    puts("A->B s1");
     JPAKE_STEP1_init(&alice_s1);
     JPAKE_STEP1_generate(&alice_s1, alice);
     if(!JPAKE_STEP1_process(bob, &alice_s1))

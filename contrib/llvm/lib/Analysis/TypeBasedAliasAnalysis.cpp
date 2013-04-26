@@ -1,61 +1,17 @@
-//===- TypeBasedAliasAnalysis.cpp - Type-Based Alias Analysis -------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file defines the TypeBasedAliasAnalysis pass, which implements
-// metadata-based TBAA.
-//
-// In LLVM IR, memory does not have types, so LLVM's own type system is not
-// suitable for doing TBAA. Instead, metadata is added to the IR to describe
-// a type system of a higher level language. This can be used to implement
-// typical C/C++ TBAA, but it can also be used to implement custom alias
-// analysis behavior for other languages.
-//
-// The current metadata format is very simple. TBAA MDNodes have up to
-// three fields, e.g.:
-//   !0 = metadata !{ metadata !"an example type tree" }
-//   !1 = metadata !{ metadata !"int", metadata !0 }
-//   !2 = metadata !{ metadata !"float", metadata !0 }
-//   !3 = metadata !{ metadata !"const float", metadata !2, i64 1 }
-//
-// The first field is an identity field. It can be any value, usually
-// an MDString, which uniquely identifies the type. The most important
-// name in the tree is the name of the root node. Two trees with
-// different root node names are entirely disjoint, even if they
-// have leaves with common names.
-//
-// The second field identifies the type's parent node in the tree, or
-// is null or omitted for a root node. A type is considered to alias
-// all of its descendants and all of its ancestors in the tree. Also,
-// a type is considered to alias all types in other trees, so that
-// bitcode produced from multiple front-ends is handled conservatively.
-//
-// If the third field is present, it's an integer which if equal to 1
-// indicates that the type is "constant" (meaning pointsToConstantMemory
-// should return true; see
-// http://llvm.org/docs/AliasAnalysis.html#OtherItfs).
-//
-// TODO: The current metadata format doesn't support struct
-// fields. For example:
-//   struct X {
-//     double d;
-//     int i;
-//   };
-//   void foo(struct X *x, struct X *y, double *p) {
-//     *x = *y;
-//     *p = 0.0;
-//   }
-// Struct X has a double member, so the store to *x can alias the store to *p.
-// Currently it's not possible to precisely describe all the things struct X
-// aliases, so struct assignments must use conservative TBAA nodes. There's
-// no scheme for attaching metadata to @llvm.memcpy yet either.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/Analysis/Passes.h"
 #include "llvm/Analysis/AliasAnalysis.h"

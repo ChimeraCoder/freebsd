@@ -1,40 +1,18 @@
-#include <stdio.h>
-#include <strings.h>
-#include <errno.h>
-#include <sys/types.h>
-#include <sys/time.h>
-#include <netinet/in.h>
-#include <netdb.h>
-#include "arlib.h"
 
-#ifndef	lint
-static	char	sccsid[] = "@(#)sample.c	1.1 12/21/92 (C)1992 Darren Reed. ASYNC DNS";
-#endif
-
-char	line[512];
-
-int	lookup = 0, seq = 0;
-long	expire = 0;
-
-main()
-{
-	struct	in_addr adr;
-	struct	timeval	tv2;
-	fd_set	rd;
-	long	now;
-	char	*s;
-	int	afd, nfd, pid = getpid(), del;
-
-	afd = ar_init(ARES_INITLIST|ARES_CALLINIT|ARES_INITSOCK);
-
-	(void)printf("afd = %d pid = %d\n",afd, pid);
-
-	while (1)
-	{
-		(void)printf("Host =>");
-		(void)fflush(stdout);
-		*line = '\0';
-		FD_ZERO(&rd);
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+		*line = '\0';		FD_ZERO(&rd);
 		FD_SET(0,&rd);
 		FD_SET(afd,&rd);
 		now = time(NULL);

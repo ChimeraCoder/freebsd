@@ -1,25 +1,17 @@
-//===-- ConstantRange.cpp - ConstantRange implementation ------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Represent a range of possible values that may occur when the program is run
-// for an integral value.  This keeps track of a lower and upper bound for the
-// constant, which MAY wrap around the end of the numeric range.  To do this, it
-// keeps track of a [lower, upper) bound, which specifies an interval just like
-// STL iterators.  When used with boolean values, the following are important
-// ranges (other integral ranges use min/max values for special range values):
-//
-//  [F, F) = {}     = Empty set
-//  [T, F) = {T}
-//  [F, T) = {F}
-//  [T, T) = {F, T} = Full set
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/IR/InstrTypes.h"
 #include "llvm/Support/ConstantRange.h"

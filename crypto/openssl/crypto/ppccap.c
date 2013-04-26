@@ -1,33 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <setjmp.h>
-#include <signal.h>
-#include <unistd.h>
-#include <crypto.h>
-#include <openssl/bn.h>
 
-#define PPC_FPU64	(1<<0)
-#define PPC_ALTIVEC	(1<<1)
-
-static int OPENSSL_ppccap_P = 0;
-
-static sigset_t all_masked;
-
-#ifdef OPENSSL_BN_ASM_MONT
-int bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num)
-	{
-	int bn_mul_mont_fpu64(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
-	int bn_mul_mont_int(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np, const BN_ULONG *n0, int num);
-
-	if (sizeof(size_t)==4)
-		{
-#if (defined(__APPLE__) && defined(__MACH__))
-		if (num>=8 && (num&3)==0 && (OPENSSL_ppccap_P&PPC_FPU64))
-			return bn_mul_mont_fpu64(rp,ap,bp,np,n0,num);
-#else
-		/* boundary of 32 was experimentally determined on
-		   Linux 2.6.22, might have to be adjusted on AIX... */
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+		/* boundary of 32 was experimentally determined on		   Linux 2.6.22, might have to be adjusted on AIX... */
 		if (num>=32 && (num&3)==0 && (OPENSSL_ppccap_P&PPC_FPU64))
 			{
 			sigset_t oset;

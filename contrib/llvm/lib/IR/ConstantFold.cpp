@@ -1,21 +1,17 @@
-//===- ConstantFold.cpp - LLVM constant folder ----------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements folding of constants for LLVM.  This implements the
-// (internal) ConstantFold.h interface, which is used by the
-// ConstantExpr::get* methods to automatically fold constants when possible.
-//
-// The current constant folding implementation is implemented in two pieces: the
-// pieces that don't need DataLayout, and the pieces that do. This is to avoid
-// a dependence in IR on Target.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ConstantFold.h"
 #include "llvm/ADT/SmallVector.h"

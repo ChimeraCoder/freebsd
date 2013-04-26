@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
  /*
   * This module determines the type of socket (datagram, stream), the client
   * socket address and port, the server socket address and port. In addition,
@@ -16,7 +30,6 @@
   *
   * $FreeBSD$
   */
-
 #ifndef lint
 static char sccsid[] = "@(#) socket.c 1.15 97/03/21 19:27:24";
 #endif

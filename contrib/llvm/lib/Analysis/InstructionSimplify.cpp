@@ -1,21 +1,17 @@
-//===- InstructionSimplify.cpp - Fold instruction operands ----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements routines for folding instructions into simpler forms
-// that do not require creating new instructions.  This does constant folding
-// ("add i32 1, 1" -> "2") but can also handle non-constant operands, either
-// returning a constant ("and i32 %x, 0" -> "0") or an already existing value
-// ("and i32 %x, %x" -> "%x").  All operands are assumed to have already been
-// simplified: This is usually true and assuming it simplifies the logic (if
-// they have not been simplified then results are correct but maybe suboptimal).
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "instsimplify"
 #include "llvm/Analysis/InstructionSimplify.h"

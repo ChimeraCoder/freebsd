@@ -1,22 +1,16 @@
+
 /*
- * EAP peer method: EAP-MSCHAPV2 (draft-kamath-pppext-eap-mschapv2-00.txt)
- * Copyright (c) 2004-2008, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This file implements EAP peer part of EAP-MSCHAPV2 method (EAP type 26).
- * draft-kamath-pppext-eap-mschapv2-00.txt defines the Microsoft EAP CHAP
- * Extensions Protocol, Version 2, for mutual authentication and key
- * derivation. This encapsulates MS-CHAP-v2 protocol which is defined in
- * RFC 2759. Use of EAP-MSCHAPV2 derived keys with MPPE cipher is described in
- * RFC 3079.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

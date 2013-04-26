@@ -1,127 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    grammar_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      grammar_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    grammar_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     grammar_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      grammar_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     grammar_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    grammar_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    grammar_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  grammar_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      grammar_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      grammar_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   grammar_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    grammar_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   grammar_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   grammar_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   grammar_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    grammar_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    grammar_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     grammar_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     grammar_rule
-#endif /* yyrule */
-#define YYPREFIX "grammar_"
-
-#define YYPURE 0
-
-#line 9 "grammar.y"
-#ifdef YYBISON
-#include <stdlib.h>
-#define YYSTYPE_IS_DECLARED
-#define yyerror yaccError
-#endif
-
-#if defined(YYBISON) || !defined(YYBYACC)
-static void yyerror(const char *s);
-#endif
-#line 81 "grammar.y"
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-
-#define OPT_LINTLIBRARY 1
-
-#ifndef TRUE
-#define	TRUE	(1)
-#endif
-
-#ifndef FALSE
-#define	FALSE	(0)
-#endif
-
-/* #include "cproto.h" */
-#define MAX_TEXT_SIZE 1024
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* #include "cproto.h" */#define MAX_TEXT_SIZE 1024
 
 /* Prototype styles */
 #if OPT_LINTLIBRARY

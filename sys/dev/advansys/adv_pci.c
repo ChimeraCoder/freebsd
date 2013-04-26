@@ -1,61 +1,16 @@
-/*-
- * Device probe and attach routines for the following
- * Advanced Systems Inc. SCSI controllers:
- *
- *   Connectivity Products:
- *	ABP902/3902	- Bus-Master PCI (16 CDB)
- *	ABP3905		- Bus-Master PCI (16 CDB)
- *	ABP915		- Bus-Master PCI (16 CDB)
- *	ABP920		- Bus-Master PCI (16 CDB)
- *	ABP3922		- Bus-Master PCI (16 CDB)
- *	ABP3925		- Bus-Master PCI (16 CDB)
- *	ABP930		- Bus-Master PCI (16 CDB) *
- *	ABP930U		- Bus-Master PCI Ultra (16 CDB)
- *	ABP930UA	- Bus-Master PCI Ultra (16 CDB)
- *	ABP960		- Bus-Master PCI MAC/PC (16 CDB) **
- *	ABP960U		- Bus-Master PCI MAC/PC (16 CDB) **
- *
- *   Single Channel Products:
- *	ABP940		- Bus-Master PCI (240 CDB)
- *	ABP940U		- Bus-Master PCI Ultra (240 CDB)
- *	ABP940UA/3940UA - Bus-Master PCI Ultra (240 CDB)
- *	ABP3960UA	- Bus-Master PCI MAC/PC (240 CDB)
- *	ABP970		- Bus-Master PCI MAC/PC (240 CDB)
- *	ABP970U		- Bus-Master PCI MAC/PC Ultra (240 CDB)
- *
- *   Dual Channel Products:  
- *	ABP950 - Dual Channel Bus-Master PCI (240 CDB Per Channel)
- *      ABP980 - Four Channel Bus-Master PCI (240 CDB Per Channel)
- *      ABP980U - Four Channel Bus-Master PCI Ultra (240 CDB Per Channel)
- *	ABP980UA/3980UA - Four Channel Bus-Master PCI Ultra (16 CDB Per Chan.)
- *
- *   Footnotes:
- *	 * This board has been sold by SIIG as the Fast SCSI Pro PCI.
- *	** This board has been sold by Iomega as a Jaz Jet PCI adapter. 
- *
- * Copyright (c) 1997 Justin Gibbs.
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions, and the following disclaimer,
- *    without modification.
- * 2. The name of the author may not be used to endorse or promote products
- *    derived from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

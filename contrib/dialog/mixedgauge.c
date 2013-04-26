@@ -1,27 +1,16 @@
+
 /*
- *  $Id: mixedgauge.c,v 1.24 2011/06/27 08:16:38 tom Exp $
- *
- *  mixedgauge.c -- implements the mixedgauge dialog
- *
- *  Copyright 2007-2010,2011	Thomas E. Dickey
- *
- *  This program is free software; you can redistribute it and/or modify
- *  it under the terms of the GNU Lesser General Public License, version 2.1
- *  as published by the Free Software Foundation.
- *
- *  This program is distributed in the hope that it will be useful, but
- *  WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
- *  Lesser General Public License for more details.
- *
- *  You should have received a copy of the GNU Lesser General Public
- *  License along with this program; if not, write to
- *	Free Software Foundation, Inc.
- *	51 Franklin St., Fifth Floor
- *	Boston, MA 02110, USA.
- *
- *  This is inspired by a patch from Kiran Cherupally
- *  (but different interface design).
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <dialog.h>

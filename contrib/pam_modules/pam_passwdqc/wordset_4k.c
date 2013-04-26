@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * 4096 English words for generation of easy to memorize random passphrases.
  * This list comes from a passphrase generator mentioned on sci.crypt, and I
@@ -5,7 +19,6 @@
  *
  * I've replaced two 7-character words to save space.
  */
-
 #include "passwdqc.h"
 
 char _passwdqc_wordset_4k[0x1000][6] = {

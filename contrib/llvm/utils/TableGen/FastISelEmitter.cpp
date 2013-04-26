@@ -1,21 +1,17 @@
-//===- FastISelEmitter.cpp - Generate an instruction selector -------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This tablegen backend emits code for use by the "fast" instruction
-// selection algorithm. See the comments at the top of
-// lib/CodeGen/SelectionDAG/FastISel.cpp for background.
-//
-// This file scans through the target's tablegen instruction-info files
-// and extracts instructions with obvious-looking patterns, and it emits
-// code to look up these instructions by type and operator.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "CodeGenDAGPatterns.h"
 #include "llvm/ADT/SmallString.h"

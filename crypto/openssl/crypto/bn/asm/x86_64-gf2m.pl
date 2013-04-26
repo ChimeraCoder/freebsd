@@ -1,24 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# May 2011
-#
-# The module implements bn_GF2m_mul_2x2 polynomial multiplication used
-# in bn_gf2m.c. It's kind of low-hanging mechanical port from C for
-# the time being... Except that it has two code paths: code suitable
-# for any x86_64 CPU and PCLMULQDQ one suitable for Westmere and
-# later. Improvement varies from one benchmark and µ-arch to another.
-# Vanilla code path is at most 20% faster than compiler-generated code
-# [not very impressive], while PCLMULQDQ - whole 85%-160% better on
-# 163- and 571-bit ECDH benchmarks on Intel CPUs. Keep in mind that
-# these coefficients are not ones for bn_GF2m_mul_2x2 itself, as not
-# all CPU time is burnt in it...
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 $output  = shift;

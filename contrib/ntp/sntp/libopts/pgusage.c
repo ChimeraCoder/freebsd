@@ -1,5 +1,18 @@
 
 /*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/*
  *  $Id: pgusage.c,v 4.12 2007/04/28 22:19:23 bkorb Exp $
  * Time-stamp:      "2006-07-16 08:13:26 bkorb"
  *
@@ -8,7 +21,6 @@
  *  This routine will run run-on options through a pager so the
  *  user may examine, print or edit them at their leisure.
  */
-
 /*
  *  Automated Options copyright 1992-2007 Bruce Korb
  *

@@ -1,83 +1,21 @@
-#include "mech_locl.h"
-#include "heim_threads.h"
 
-struct mg_thread_ctx {
-    gss_OID mech;
-    OM_uint32 maj_stat;
-    OM_uint32 min_stat;
-    gss_buffer_desc maj_error;
-    gss_buffer_desc min_error;
-};
-
-static HEIMDAL_MUTEX context_mutex = HEIMDAL_MUTEX_INITIALIZER;
-static int created_key;
-static HEIMDAL_thread_key context_key;
-
-
-static void
-destroy_context(void *ptr)
-{
-    struct mg_thread_ctx *mg = ptr;
-    OM_uint32 junk;
-
-    if (mg == NULL)
-	return;
-
-    gss_release_buffer(&junk, &mg->maj_error);
-    gss_release_buffer(&junk, &mg->min_error);
-    free(mg);
-}
-
-
-static struct mg_thread_ctx *
-_gss_mechglue_thread(void)
-{
-    struct mg_thread_ctx *ctx;
-    int ret = 0;
-
-    HEIMDAL_MUTEX_lock(&context_mutex);
-
-    if (!created_key) {
-	HEIMDAL_key_create(&context_key, destroy_context, ret);
-	if (ret) {
-	    HEIMDAL_MUTEX_unlock(&context_mutex);
-	    return NULL;
-	}
-	created_key = 1;
-    }
-    HEIMDAL_MUTEX_unlock(&context_mutex);
-
-    ctx = HEIMDAL_getspecific(context_key);
-    if (ctx == NULL) {
-
-	ctx = calloc(1, sizeof(*ctx));
-	if (ctx == NULL)
-	    return NULL;
-	HEIMDAL_setspecific(context_key, ctx, ret);
-	if (ret) {
-	    free(ctx);
-	    return NULL;
-	}
-    }
-    return ctx;
-}
-
-OM_uint32
-_gss_mg_get_error(const gss_OID mech, OM_uint32 type,
-		  OM_uint32 value, gss_buffer_t string)
-{
-    struct mg_thread_ctx *mg;
-
-    mg = _gss_mechglue_thread();
-    if (mg == NULL)
-	return GSS_S_BAD_STATUS;
-
-#if 0
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
     /*
      * We cant check the mech here since a pseudo-mech might have
      * called an lower layer and then the mech info is all broken
-     */
-    if (mech != NULL && gss_oid_equal(mg->mech, mech) == 0)
+     */    if (mech != NULL && gss_oid_equal(mg->mech, mech) == 0)
 	return GSS_S_BAD_STATUS;
 #endif
 

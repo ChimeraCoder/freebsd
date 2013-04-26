@@ -1,22 +1,17 @@
-// MallocOverflowSecurityChecker.cpp - Check for malloc overflows -*- C++ -*-=//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This checker detects a common memory allocation security flaw.
-// Suppose 'unsigned int n' comes from an untrusted source. If the
-// code looks like 'malloc (n * 4)', and an attacker can make 'n' be
-// say MAX_UINT/4+2, then instead of allocating the correct 'n' 4-byte
-// elements, this will actually allocate only two because of overflow.
-// Then when the rest of the program attempts to store values past the
-// second element, these values will actually overwrite other items in
-// the heap, probably allowing the attacker to execute arbitrary code.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "ClangSACheckers.h"
 #include "clang/AST/EvaluatedExprVisitor.h"

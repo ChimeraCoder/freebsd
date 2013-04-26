@@ -1,27 +1,16 @@
+
 /*
- * copy diverted (or tee'd) packets to a file in 'tcpdump' format
- * (ie. this uses the '-lpcap' routines).
- *
- * example usage:
- *	# ipfwpcap -r 8091 divt.log &
- *	# ipfw add 2864 divert 8091 ip from 128.432.53.82 to any
- *	# ipfw add 2864 divert 8091 ip from any to 128.432.53.82
- *
- *   the resulting dump file can be read with ...
- *	# tcpdump -nX -r divt.log
- */
-/*
- * Written by P Kern { pkern [AT] cns.utoronto.ca }
- *
- * Copyright (c) 2004 University of Toronto. All rights reserved.
- * Anyone may use or copy this software except that this copyright
- * notice remain intact and that credit is given where it is due.
- * The University of Toronto and the author make no warranty and
- * accept no liability for this software.
- *
- * From: Header: /local/src/local.lib/SRC/ipfwpcap/RCS/ipfwpcap.c,v 1.4 2004/01/15 16:19:07 pkern Exp
- *
- * $FreeBSD$
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <stdio.h>

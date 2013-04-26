@@ -1,12 +1,17 @@
-/**********************************************************************
- *                          keywrap.c                                 *
- *             Copyright (c) 2005-2006 Cryptocom LTD                  *
- *         This file is distributed under the same license as OpenSSL *
- *                                                                    *
- * Implementation of CryptoPro key wrap algorithm, as defined in      *
- *               RFC 4357 p 6.3 and 6.4                               *
- *                  Doesn't need OpenSSL                              *
- **********************************************************************/
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include <string.h>
 #include "gost89.h"
 #include "gost_keywrap.h"
@@ -105,5 +110,3 @@ int keyUnwrapCryptoPro(gost_ctx *ctx,const unsigned char *keyExchangeKey,
 		}		
 	return 1;		
 	}	
-
-

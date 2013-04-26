@@ -1,25 +1,17 @@
-//===--- ParseExpr.cpp - Expression Parsing -------------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-///
-/// \file
-/// \brief Provides the Expression parsing implementation.
-///
-/// Expressions in C99 basically consist of a bunch of binary operators with
-/// unary operators and other random stuff at the leaves.
-///
-/// In the C99 grammar, these unary operators bind tightest and are represented
-/// as the 'cast-expression' production.  Everything else is either a binary
-/// operator (e.g. '/') or a ternary operator ("?:").  The unary leaves are
-/// handled by ParseCastExpression, the higher level pieces are handled by
-/// ParseBinaryExpression.
-///
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "clang/Parse/Parser.h"
 #include "RAIIObjectsForParser.h"

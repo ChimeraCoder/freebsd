@@ -1,23 +1,17 @@
-//===- ResourcePriorityQueue.cpp - A DFA-oriented priority queue -*- C++ -*-==//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements the ResourcePriorityQueue class, which is a
-// SchedulingPriorityQueue that prioritizes instructions using DFA state to
-// reduce the length of the critical path through the basic block
-// on VLIW platforms.
-// The scheduler is basically a top-down adaptable list scheduler with DFA
-// resource tracking added to the cost function.
-// DFA is queried as a state machine to model "packets/bundles" during
-// schedule. Currently packets/bundles are discarded at the end of
-// scheduling, affecting only order of instructions.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "scheduler"
 #include "llvm/CodeGen/ResourcePriorityQueue.h"

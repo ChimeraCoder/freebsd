@@ -1,61 +1,18 @@
-#include <yaml.h>
 
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-
-#ifdef NDEBUG
-#undef NDEBUG
-#endif
-#include <assert.h>
-
-#define BUFFER_SIZE 65536
-#define MAX_DOCUMENTS  16
-
-int copy_document(yaml_document_t *document_to, yaml_document_t *document_from)
-{
-    yaml_node_t *node;
-    yaml_node_item_t *item;
-    yaml_node_pair_t *pair;
-
-    if (!yaml_document_initialize(document_to, document_from->version_directive,
-                document_from->tag_directives.start,
-                document_from->tag_directives.end,
-                document_from->start_implicit, document_from->end_implicit))
-        return 0;
-
-    for (node = document_from->nodes.start;
-            node < document_from->nodes.top; node ++) {
-        switch (node->type) {
-            case YAML_SCALAR_NODE:
-                if (!yaml_document_add_scalar(document_to, node->tag,
-                            node->data.scalar.value, node->data.scalar.length,
-                            node->data.scalar.style)) goto error;
-                break;
-            case YAML_SEQUENCE_NODE:
-                if (!yaml_document_add_sequence(document_to, node->tag,
-                            node->data.sequence.style)) goto error;
-                break;
-            case YAML_MAPPING_NODE:
-                if (!yaml_document_add_mapping(document_to, node->tag,
-                            node->data.mapping.style)) goto error;
-                break;
-            default:
-                assert(0);
-                break;
-        }
-    }
-
-    for (node = document_from->nodes.start;
-            node < document_from->nodes.top; node ++) {
-        switch (node->type) {
-            case YAML_SEQUENCE_NODE:
-                for (item = node->data.sequence.items.start;
-                        item < node->data.sequence.items.top; item ++) {
-                    if (!yaml_document_append_sequence_item(document_to,
-                                node - document_from->nodes.start + 1,
-                                *item)) goto error;
-                }
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+                                *item)) goto error;                }
                 break;
             case YAML_MAPPING_NODE:
                 for (pair = node->data.mapping.pairs.start;

@@ -1,4 +1,15 @@
 #!/usr/bin/perl
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # Attempt to generate a similar HTML file akin to vop_table.tcl output.
 # This is all fairly poor perl code... but whatever, will be cleaned up
@@ -8,7 +19,6 @@
 # All Rights Reserved.
 #
 # $FreeBSD$
-
 # XXX todo: Make $src_dir modificationable
 
 $src_dir = "/usr/src";

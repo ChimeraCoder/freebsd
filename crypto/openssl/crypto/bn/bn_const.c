@@ -1,6 +1,19 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* crypto/bn/knownprimes.c */
 /* Insert boilerplate */
-
 #include "bn.h"
 
 /* "First Oakley Default Group" from RFC2409, section 6.1.
@@ -399,4 +412,3 @@ BIGNUM *get_rfc3526_prime_8192(BIGNUM *bn)
 		};
 	return BN_bin2bn(RFC3526_PRIME_8192,sizeof(RFC3526_PRIME_8192),bn);
 	}
-

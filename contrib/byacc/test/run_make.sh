@@ -1,7 +1,17 @@
 #!/bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # $Id: run_make.sh,v 1.9 2012/01/15 22:35:01 tom Exp $
 # vi:ts=4 sw=4:
-
 # do a test-compile on each of the ".c" files in the test-directory
 
 BISON=`bison --version 2>/dev/null | head -n 1 | sed -e 's/^[^0-9.]*//' -e 's/[^0-9.]*$//'`

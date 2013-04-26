@@ -1,103 +1,18 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/param.h>
-#include <sys/module.h>
-#include <sys/systm.h>
-#include <sys/consio.h>
-#include <sys/proc.h>
-#include <sys/uio.h>
-#include <sys/tty.h>
-#include <sys/systm.h>
-#include <sys/taskqueue.h>
-#include <sys/conf.h>
-#include <sys/kernel.h>
-#include <sys/bus.h>
-#include <sys/cons.h>
-
-#include <machine/stdarg.h>
-#include <machine/xen/xen-os.h>
-#include <xen/hypervisor.h>
-#include <xen/xen_intr.h>
-#include <sys/cons.h>
-
-#include <xen/xen_intr.h>
-#include <xen/evtchn.h>
-#include <xen/interface/io/console.h>
-
-#include <dev/xen/console/xencons_ring.h>
-#include <xen/evtchn.h>
-#include <xen/interface/io/console.h>
-
-#define console_evtchn	console.domU.evtchn
-static unsigned int console_irq;
-extern char *console_page;
-extern struct mtx              cn_mtx;
-
-static inline struct xencons_interface *
-xencons_interface(void)
-{
-	return (struct xencons_interface *)console_page;
-}
-
-
-int
-xencons_has_input(void)
-{
-	struct xencons_interface *intf; 
-
-	intf = xencons_interface();		
-
-	return (intf->in_cons != intf->in_prod);
-}
-
-
-int 
-xencons_ring_send(const char *data, unsigned len)
-{
-	struct xencons_interface *intf; 
-	XENCONS_RING_IDX cons, prod;
-	int sent;
-
-	intf = xencons_interface();
-	cons = intf->out_cons;
-	prod = intf->out_prod;
-	sent = 0;
-
-	mb();
-	KASSERT((prod - cons) <= sizeof(intf->out),
-		("console send ring inconsistent"));
-	
-	while ((sent < len) && ((prod - cons) < sizeof(intf->out)))
-		intf->out[MASK_XENCONS_IDX(prod++, intf->out)] = data[sent++];
-
-	wmb();
-	intf->out_prod = prod;
-
-	notify_remote_via_evtchn(xen_start_info->console_evtchn);
-
-	return sent;
-
-}	
-
-
-static xencons_receiver_func *xencons_receiver;
-
-void 
-xencons_handle_input(void *unused)
-{
-	struct xencons_interface *intf;
-	XENCONS_RING_IDX cons, prod;
-
-	CN_LOCK(cn_mtx);
-	intf = xencons_interface();
-
-	cons = intf->in_cons;
-	prod = intf->in_prod;
-	CN_UNLOCK(cn_mtx);
-	
-	/* XXX needs locking */
-	while (cons != prod) {
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+	/* XXX needs locking */	while (cons != prod) {
 		xencons_rx(intf->in + MASK_XENCONS_IDX(cons, intf->in), 1);
 		cons++;
 	}

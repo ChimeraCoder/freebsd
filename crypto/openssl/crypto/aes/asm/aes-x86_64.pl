@@ -1,29 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@fy.chalmers.se> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# Version 2.1.
-#
-# aes-*-cbc benchmarks are improved by >70% [compared to gcc 3.3.2 on
-# Opteron 240 CPU] plus all the bells-n-whistles from 32-bit version
-# [you'll notice a lot of resemblance], such as compressed S-boxes
-# in little-endian byte order, prefetch of these tables in CBC mode,
-# as well as avoiding L1 cache aliasing between stack frame and key
-# schedule and already mentioned tables, compressed Td4...
-#
-# Performance in number of cycles per processed byte for 128-bit key:
-#
-#		ECB encrypt	ECB decrypt	CBC large chunk
-# AMD64		33		41		13.0
-# EM64T		38		59		18.6(*)
-# Core 2	30		43		14.5(*)
-#
-# (*) with hyper-threading off
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 $output  = shift;

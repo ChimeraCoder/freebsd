@@ -1,25 +1,17 @@
-//===-- InstrinsicInst.cpp - Intrinsic Instruction Wrappers -----*- C++ -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements methods that make it really easy to deal with intrinsic
-// functions.
-//
-// All intrinsic function calls are instances of the call instruction, so these
-// are all subclasses of the CallInst class.  Note that none of these classes
-// has state or virtual methods, which is an important part of this gross/neat
-// hack working.
-// 
-// In some cases, arguments to intrinsics need to be generic and are defined as
-// type pointer to empty struct { }*.  To access the real item of interest the
-// cast instruction needs to be stripped away. 
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/IR/IntrinsicInst.h"
 #include "llvm/IR/Constants.h"

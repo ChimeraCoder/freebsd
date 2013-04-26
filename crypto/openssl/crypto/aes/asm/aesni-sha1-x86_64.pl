@@ -1,52 +1,15 @@
 #!/usr/bin/env perl
-#
-# ====================================================================
-# Written by Andy Polyakov <appro@openssl.org> for the OpenSSL
-# project. The module is, however, dual licensed under OpenSSL and
-# CRYPTOGAMS licenses depending on where you obtain it. For further
-# details see http://www.openssl.org/~appro/cryptogams/.
-# ====================================================================
-#
-# June 2011
-#
-# This is AESNI-CBC+SHA1 "stitch" implementation. The idea, as spelled
-# in http://download.intel.com/design/intarch/papers/323686.pdf, is
-# that since AESNI-CBC encrypt exhibit *very* low instruction-level
-# parallelism, interleaving it with another algorithm would allow to
-# utilize processor resources better and achieve better performance.
-# SHA1 instruction sequences(*) are taken from sha1-x86_64.pl and
-# AESNI code is weaved into it. Below are performance numbers in
-# cycles per processed byte, less is better, for standalone AESNI-CBC
-# encrypt, sum of the latter and standalone SHA1, and "stitched"
-# subroutine:
-#
-#		AES-128-CBC	+SHA1		stitch      gain
-# Westmere	3.77[+5.6]	9.37		6.65	    +41%
-# Sandy Bridge	5.05[+5.2(6.3)]	10.25(11.35)	6.16(7.08)  +67%(+60%)
-#
-#		AES-192-CBC
-# Westmere	4.51		10.11		6.97	    +45%
-# Sandy Bridge	6.05		11.25(12.35)	6.34(7.27)  +77%(+70%)
-#
-#		AES-256-CBC
-# Westmere	5.25		10.85		7.25	    +50%
-# Sandy Bridge	7.05		12.25(13.35)	7.06(7.70)  +74%(+73%)
-#
-# (*)	There are two code paths: SSSE3 and AVX. See sha1-568.pl for
-#	background information. Above numbers in parentheses are SSSE3
-#	results collected on AVX-capable CPU, i.e. apply on OSes that
-#	don't support AVX.
-#
-# Needless to mention that it makes no sense to implement "stitched"
-# *decrypt* subroutine. Because *both* AESNI-CBC decrypt and SHA1
-# fully utilize parallelism, so stitching would not give any gain
-# anyway. Well, there might be some, e.g. because of better cache
-# locality... For reference, here are performance results for
-# standalone AESNI-CBC decrypt:
-#
-#		AES-128-CBC	AES-192-CBC	AES-256-CBC
-# Westmere	1.31		1.55		1.80
-# Sandy Bridge	0.93		1.06		1.22
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 $flavour = shift;
 $output  = shift;

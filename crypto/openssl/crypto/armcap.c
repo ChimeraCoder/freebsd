@@ -1,24 +1,21 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <setjmp.h>
-#include <signal.h>
-#include <crypto.h>
 
-#include "arm_arch.h"
-
-unsigned int OPENSSL_armcap_P;
-
-static sigset_t all_masked;
-
-static sigjmp_buf ill_jmp;
-static void ill_handler (int sig) { siglongjmp(ill_jmp,sig); }
-
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * Following subroutines could have been inlined, but it's not all
  * ARM compilers support inline assembler...
- */
-void _armv7_neon_probe(void);
+ */void _armv7_neon_probe(void);
 unsigned int _armv7_tick(void);
 
 unsigned int OPENSSL_rdtsc(void)

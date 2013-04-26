@@ -1,42 +1,17 @@
-//===-- lib/extendsfdf2.c - single -> double conversion -----------*- C -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is dual licensed under the MIT and the University of Illinois Open
-// Source Licenses. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements a fairly generic conversion from a narrower to a wider
-// IEEE-754 floating-point type.  The constants and types defined following the
-// includes below parameterize the conversion.
-//
-// This routine can be trivially adapted to support conversions from 
-// half-precision or to quad-precision. It does not support types that don't
-// use the usual IEEE-754 interchange formats; specifically, some work would be
-// needed to adapt it to (for example) the Intel 80-bit format or PowerPC
-// double-double format.
-//
-// Note please, however, that this implementation is only intended to support
-// *widening* operations; if you need to convert to a *narrower* floating-point
-// type (e.g. double -> float), then this routine will not do what you want it
-// to.
-//
-// It also requires that integer types at least as large as both formats
-// are available on the target platform; this may pose a problem when trying
-// to add support for quad on some 32-bit systems, for example.  You also may
-// run into trouble finding an appropriate CLZ function for wide source types;
-// you will likely need to roll your own on some platforms.
-//
-// Finally, the following assumptions are made:
-//
-// 1. floating-point types and integer types have the same endianness on the
-//    target platform
-//
-// 2. quiet NaNs, if supported, are indicated by the leading bit of the
-//    significand field being set
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "int_lib.h"
 

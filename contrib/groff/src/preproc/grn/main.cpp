@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* Last non-groff version: main.c 1.23  (Berkeley)  85/08/05
  *
  * Adapted to GNU troff by Daniel Senderowicz 99/12/29.
@@ -65,7 +79,6 @@
  * picture, and g2 is the height.  g3, and g4, save information, g8 and g9
  * are used for text processing and g5-g7 are reserved.
  */
-
 
 #include "lib.h"
 

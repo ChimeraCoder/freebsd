@@ -1,46 +1,15 @@
 #! /bin/sh
-# CGEN generic assembler support code.
-#
-#  Copyright 2000, 2003, 2005 Free Software Foundation, Inc.
-#
-#   This file is part of the GNU Binutils and GDB, the GNU debugger.
-#
-#   This program is free software; you can redistribute it and/or modify
-#   it under the terms of the GNU General Public License as published by
-#   the Free Software Foundation; either version 2, or (at your option)
-#   any later version.
-#
-#   This program is distributed in the hope that it will be useful,
-#   but WITHOUT ANY WARRANTY; without even the implied warranty of
-#   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#   GNU General Public License for more details.
-#
-#   You should have received a copy of the GNU General Public License along
-#   with this program; if not, write to the Free Software Foundation, Inc.,
-#   51 Franklin Street - Fifth Floor, Boston, MA 02110-1301, USA.  */
-#
-# Generate CGEN opcode files: arch-desc.[ch], arch-opc.[ch],
-# arch-asm.c, arch-dis.c, arch-opinst.c, arch-ibld.[ch].
-#
-# Usage:
-# cgen.sh action srcdir cgen cgendir cgenflags arch prefix \
-#         arch-file opc-file options [extrafiles]
-#
-# ACTION is currently always "opcodes". It exists to be consistent with the 
-# simulator.
-# ARCH is the name of the architecture.
-# It is substituted into @arch@ and @ARCH@ in the generated files.
-# PREFIX is both the generated file prefix and is substituted into
-# @prefix@ in the generated files.
-# ARCH-FILE is the name of the .cpu file (including path).
-# OPC-FILE is the name of the .opc file (including path).
-# OPTIONS is comma separated list of options (???).
-# EXTRAFILES is a space separated list (1 arg still) of extra files to build:
-#	- opinst - arch-opinst.c is being made, causes semantic analysis
-#
-# We store the generated files in the source directory until we decide to
-# ship a Scheme interpreter (or other implementation) with gdb/binutils.
-# Maybe we never will.
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 # We want to behave like make, any error forces us to stop.
 set -e

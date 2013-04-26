@@ -1,6 +1,18 @@
 
-/* Data references and dependences detectors.
-   Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Data references and dependences detectors.   Copyright (C) 2003, 2004, 2005, 2006 Free Software Foundation, Inc.
    Contributed by Sebastian Pop <pop@cri.ensmp.fr>
 
 This file is part of GCC.
@@ -4492,4 +4504,3 @@ free_data_refs (VEC (data_reference_p, heap) *datarefs)
     free_data_ref (dr);
   VEC_free (data_reference_p, heap, datarefs);
 }
-

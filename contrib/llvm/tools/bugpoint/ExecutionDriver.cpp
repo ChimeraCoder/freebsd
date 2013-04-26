@@ -1,16 +1,17 @@
-//===- ExecutionDriver.cpp - Allow execution of LLVM program --------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file contains code used to execute the program utilizing one of the
-// various ways of running LLVM bitcode.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "BugDriver.h"
 #include "ToolRunner.h"
@@ -469,4 +470,3 @@ bool BugDriver::diffProgram(const Module *Program,
 bool BugDriver::isExecutingJIT() {
   return InterpreterSel == RunJIT;
 }
-

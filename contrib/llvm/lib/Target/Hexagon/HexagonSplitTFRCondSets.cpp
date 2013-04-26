@@ -1,30 +1,17 @@
-//===-- HexagonSplitTFRCondSets.cpp - split TFR condsets into xfers -------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//
-//===----------------------------------------------------------------------===//
-// This pass tries to provide opportunities for better optimization of muxes.
-// The default code generated for something like: flag = (a == b) ? 1 : 3;
-// would be:
-//
-//   {p0 = cmp.eq(r0,r1)}
-//   {r3 = mux(p0,#1,#3)}
-//
-// This requires two packets.  If we use .new predicated immediate transfers,
-// then we can do this in a single packet, e.g.:
-//
-//   {p0 = cmp.eq(r0,r1)
-//    if (p0.new) r3 = #1
-//    if (!p0.new) r3 = #3}
-//
-// Note that the conditional assignments are not generated in .new form here.
-// We assume opptimisically that they will be formed later.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "xfer"
 #include "Hexagon.h"

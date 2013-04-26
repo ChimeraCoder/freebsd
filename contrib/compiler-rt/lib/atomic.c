@@ -1,28 +1,16 @@
-/*===-- atomic.c - Implement support functions for atomic operations.------===
- *
- *                     The LLVM Compiler Infrastructure
- *
- * This file is dual licensed under the MIT and the University of Illinois Open
- * Source Licenses. See LICENSE.TXT for details.
- *
- *===----------------------------------------------------------------------===
- *
- *  atomic.c defines a set of functions for performing atomic accesses on
- *  arbitrary-sized memory locations.  This design uses locks that should
- *  be fast in the uncontended case, for two reasons:
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- *  1) This code must work with C programs that do not link to anything
- *     (including pthreads) and so it should not depend on any pthread
- *     functions.
- *  2) Atomic operations, rather than explicit mutexes, are most commonly used
- *     on code where contended operations are rate.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- *  To avoid needing a per-object lock, this code allocates an array of
- *  locks and hashes the object pointers to find the one that it should use.
- *  For operations that must be atomic on two locations, the lower lock is
- *  always acquired first, to avoid deadlock.
- *
- *===----------------------------------------------------------------------===
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <stdint.h>

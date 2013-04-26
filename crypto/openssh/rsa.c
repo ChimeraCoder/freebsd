@@ -1,63 +1,16 @@
-/* $OpenBSD: rsa.c,v 1.29 2006/11/06 21:25:28 markus Exp $ */
+
 /*
- * Author: Tatu Ylonen <ylo@cs.hut.fi>
- * Copyright (c) 1995 Tatu Ylonen <ylo@cs.hut.fi>, Espoo, Finland
- *                    All rights reserved
- *
- * As far as I am concerned, the code I have written for this software
- * can be used freely for any purpose.  Any derived versions of this
- * software must be clearly marked as such, and if the derived work is
- * incompatible with the protocol description in the RFC file, it must be
- * called by a name other than "ssh" or "Secure Shell".
- *
- *
- * Copyright (c) 1999 Niels Provos.  All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR
- * IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
- * OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
- * IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT,
- * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
- * NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
- * DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
- * THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
- * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
- * THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- *
- *
- * Description of the RSA algorithm can be found e.g. from the following
- * sources:
- *
- *   Bruce Schneier: Applied Cryptography.  John Wiley & Sons, 1994.
- *
- *   Jennifer Seberry and Josed Pieprzyk: Cryptography: An Introduction to
- *   Computer Security.  Prentice-Hall, 1989.
- *
- *   Man Young Rhee: Cryptography and Secure Data Communications.  McGraw-Hill,
- *   1994.
- *
- *   R. Rivest, A. Shamir, and L. M. Adleman: Cryptographic Communications
- *   System and Method.  US Patent 4,405,829, 1983.
- *
- *   Hans Riesel: Prime Numbers and Computer Methods for Factorization.
- *   Birkhauser, 1994.
- *
- *   The RSA Frequently Asked Questions document by RSA Data Security,
- *   Inc., 1995.
- *
- *   RSA in 3 lines of perl by Adam Back <aba@atlax.ex.ac.uk>, 1995, as
- * included below:
- *
- *     [gone - had to be deleted - what a pity]
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"
@@ -148,4 +101,3 @@ rsa_generate_additional_parameters(RSA *rsa)
 	BN_clear_free(aux);
 	BN_CTX_free(ctx);
 }
-

@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /*
  * modified for ldns by Jelte Jansen, original taken from OpenBSD:
  * 
@@ -11,8 +25,7 @@
  * "abcdbcdecdefdefgefghfghighijhijkijkljklmklmnlmnomnopnopq"
  *   84983E44 1C3BD26E BAAE4AA1 F95129E5 E54670F1
  * A million repetitions of "a"
- *   34AA973C D4C4DAA4 F61EEB2B DBAD2731 6534016F
-*/
+ *   34AA973C D4C4DAA4 F61EEB2B DBAD2731 6534016F*/
 
 /* #define LITTLE_ENDIAN * This should be #define'd already, if true. */
 /* #define SHA1HANDSOFF * Copies data before messing with it. */

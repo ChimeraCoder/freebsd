@@ -1,46 +1,16 @@
+
 /*
- * HLR/AuC testing gateway for hostapd EAP-SIM/AKA database/authenticator
- * Copyright (c) 2005-2007, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This is an example implementation of the EAP-SIM/AKA database/authentication
- * gateway interface to HLR/AuC. It is expected to be replaced with an
- * implementation of SS7 gateway to GSM/UMTS authentication center (HLR/AuC) or
- * a local implementation of SIM triplet and AKA authentication data generator.
- *
- * hostapd will send SIM/AKA authentication queries over a UNIX domain socket
- * to and external program, e.g., this hlr_auc_gw. This interface uses simple
- * text-based format:
- *
- * EAP-SIM / GSM triplet query/response:
- * SIM-REQ-AUTH <IMSI> <max_chal>
- * SIM-RESP-AUTH <IMSI> Kc1:SRES1:RAND1 Kc2:SRES2:RAND2 [Kc3:SRES3:RAND3]
- * SIM-RESP-AUTH <IMSI> FAILURE
- *
- * EAP-AKA / UMTS query/response:
- * AKA-REQ-AUTH <IMSI>
- * AKA-RESP-AUTH <IMSI> <RAND> <AUTN> <IK> <CK> <RES>
- * AKA-RESP-AUTH <IMSI> FAILURE
- *
- * EAP-AKA / UMTS AUTS (re-synchronization):
- * AKA-AUTS <IMSI> <AUTS> <RAND>
- *
- * IMSI and max_chal are sent as an ASCII string,
- * Kc/SRES/RAND/AUTN/IK/CK/RES/AUTS as hex strings.
- *
- * The example implementation here reads GSM authentication triplets from a
- * text file in IMSI:Kc:SRES:RAND format, IMSI in ASCII, other fields as hex
- * strings. This is used to simulate an HLR/AuC. As such, it is not very useful
- * for real life authentication, but it is useful both as an example
- * implementation and for EAP-SIM testing.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

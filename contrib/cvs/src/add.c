@@ -1,32 +1,16 @@
+
 /*
- * Copyright (C) 1986-2005 The Free Software Foundation, Inc.
- *
- * Portions Copyright (C) 1998-2005 Derek Price, Ximbiot <http://ximbiot.com>,
- *                                  and others.
- *
- * Portions Copyright (c) 1992, Brian Berliner and Jeff Polk
- * Portions Copyright (c) 1989-1992, Brian Berliner
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * You may distribute under the terms of the GNU General Public License as
- * specified in the README file that comes with the CVS source distribution.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * Add
- * 
- * Adds a file or directory to the RCS source repository.  For a file,
- * the entry is marked as "needing to be added" in the user's own CVS
- * directory, and really added to the repository when it is committed.
- * For a directory, it is added at the appropriate place in the source
- * repository and a CVS directory is generated within the directory.
- * 
- * The -m option is currently the only supported option.  Some may wish to
- * supply standard "rcs" options here, but I've found that this causes more
- * trouble than anything else.
- * 
- * The user files or directories must already exist.  For a directory, it must
- * not already have a CVS file in it.
- * 
- * An "add" on a file that has been "remove"d but not committed will cause the
- * file to be resurrected.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <assert.h>

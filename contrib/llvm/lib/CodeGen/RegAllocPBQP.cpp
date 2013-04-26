@@ -1,33 +1,17 @@
-//===------ RegAllocPBQP.cpp ---- PBQP Register Allocator -------*- C++ -*-===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file contains a Partitioned Boolean Quadratic Programming (PBQP) based
-// register allocator for LLVM. This allocator works by constructing a PBQP
-// problem representing the register allocation problem under consideration,
-// solving this using a PBQP solver, and mapping the solution back to a
-// register assignment. If any variables are selected for spilling then spill
-// code is inserted and the process repeated.
-//
-// The PBQP solver (pbqp.c) provided for this allocator uses a heuristic tuned
-// for register allocation. For more information on PBQP for register
-// allocation, see the following papers:
-//
-//   (1) Hames, L. and Scholz, B. 2006. Nearly optimal register allocation with
-//   PBQP. In Proceedings of the 7th Joint Modular Languages Conference
-//   (JMLC'06). LNCS, vol. 4228. Springer, New York, NY, USA. 346-361.
-//
-//   (2) Scholz, B., Eckstein, E. 2002. Register allocation for irregular
-//   architectures. In Proceedings of the Joint Conference on Languages,
-//   Compilers and Tools for Embedded Systems (LCTES'02), ACM Press, New York,
-//   NY, USA, 139-148.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "regalloc"
 

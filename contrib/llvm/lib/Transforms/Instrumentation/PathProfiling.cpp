@@ -1,48 +1,17 @@
-//===- PathProfiling.cpp - Inserts counters for path profiling ------------===//
-//
-//                      The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass instruments functions for Ball-Larus path profiling.  Ball-Larus
-// profiling converts the CFG into a DAG by replacing backedges with edges
-// from entry to the start block and from the end block to exit.  The paths
-// along the new DAG are enumrated, i.e. each path is given a path number.
-// Edges are instrumented to increment the path number register, such that the
-// path number register will equal the path number of the path taken at the
-// exit.
-//
-// This file defines classes for building a CFG for use with different stages
-// in the Ball-Larus path profiling instrumentation [Ball96].  The
-// requirements are formatting the llvm CFG into the Ball-Larus DAG, path
-// numbering, finding a spanning tree, moving increments from the spanning
-// tree to chords.
-//
-// Terms:
-// DAG            - Directed Acyclic Graph.
-// Ball-Larus DAG - A CFG with an entry node, an exit node, and backedges
-//                  removed in the following manner.  For every backedge
-//                  v->w, insert edge ENTRY->w and edge v->EXIT.
-// Path Number    - The number corresponding to a specific path through a
-//                  Ball-Larus DAG.
-// Spanning Tree  - A subgraph, S, is a spanning tree if S covers all
-//                  vertices and is a tree.
-// Chord          - An edge not in the spanning tree.
-//
-// [Ball96]
-//  T. Ball and J. R. Larus. "Efficient Path Profiling."
-//  International Symposium on Microarchitecture, pages 46-57, 1996.
-//  http://portal.acm.org/citation.cfm?id=243857
-//
-// [Ball94]
-//  Thomas Ball.  "Efficiently Counting Program Events with Support for
-//  On-line queries."
-//  ACM Transactions on Programmmg Languages and Systems, Vol 16, No 5,
-//  September 1994, Pages 1399-1410.
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #define DEBUG_TYPE "insert-path-profiling"
 
 #include "llvm/Transforms/Instrumentation.h"

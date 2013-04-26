@@ -1,3 +1,17 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
  /*
   * Routine to disable IP-level socket options. This code was taken from 4.4BSD
   * rlogind and kernel source, but all mistakes in it are my fault.
@@ -6,7 +20,6 @@
   *
   * $FreeBSD$
   */
-
 #ifndef lint
 static char sccsid[] = "@(#) fix_options.c 1.6 97/04/08 02:29:19";
 #endif

@@ -1,75 +1,16 @@
+
 /*
- * $FreeBSD$
- *
- * Copyright (c) 2002-2004 David Boggs. <boggs@boggs.palo-alto.ca.us>
- * All rights reserved.
- *
- * BSD License:
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- * 2. Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND
- * ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
- * FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
- * OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
- * HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- *
- * GNU General Public License:
- *
- * This program is free software; you can redistribute it and/or modify it 
- * under the terms of the GNU General Public License as published by the Free 
- * Software Foundation; either version 2 of the License, or (at your option) 
- * any later version.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * This program is distributed in the hope that it will be useful, but WITHOUT 
- * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
- * FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for 
- * more details.
- *
- * You should have received a copy of the GNU General Public License along with
- * this program; if not, write to the Free Software Foundation, Inc., 59 
- * Temple Place - Suite 330, Boston, MA  02111-1307, USA.
- *
- * Description:
- *
- * This is an open-source Unix device driver for PCI-bus WAN interface cards.
- * It sends and receives packets in HDLC frames over synchronous links.
- * A generic PC plus Unix plus some SBE/LMC cards makes an OPEN router.
- * This driver works with FreeBSD, NetBSD, OpenBSD, BSD/OS and Linux.
- * It has been tested on i386 (32-bit little-end), Sparc (64-bit big-end),
- * and Alpha (64-bit little-end) architectures.
- *
- * History and Authors:
- *
- * Ron Crane had the neat idea to use a Fast Ethernet chip as a PCI
- * interface and add an Ethernet-to-HDLC gate array to make a WAN card.
- * David Boggs designed the Ethernet-to-HDLC gate arrays and PC cards.
- * We did this at our company, LAN Media Corporation (LMC).
- * SBE Corp acquired LMC and continues to make the cards.
- *
- * Since the cards use Tulip Ethernet chips, we started with Matt Thomas'
- * ubiquitous "de" driver.  Michael Graff stripped out the Ethernet stuff
- * and added HSSI stuff.  Basil Gunn ported it to Solaris (lost) and
- * Rob Braun ported it to Linux.  Andrew Stanley-Jones added support
- * for three more cards and wrote the first version of lmcconfig.
- * During 2002-5 David Boggs rewrote it and now feels responsible for it.
- *
- * Responsible Individual:
- *
- * Send bug reports and improvements to <boggs@boggs.palo-alto.ca.us>.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #ifdef __FreeBSD__
 # include <sys/param.h>	/* OS version */

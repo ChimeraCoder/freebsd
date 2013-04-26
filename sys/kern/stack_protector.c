@@ -1,31 +1,14 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
 
-#include <sys/types.h>
-#include <sys/param.h>
-#include <sys/kernel.h>
-#include <sys/systm.h>
-#include <sys/libkern.h>
-
-long __stack_chk_guard[8] = {};
-void __stack_chk_fail(void);
-
-void
-__stack_chk_fail(void)
-{
-
-	panic("stack overflow detected; backtrace may be corrupted");
-}
-
-#define __arraycount(__x)	(sizeof(__x) / sizeof(__x[0]))
-static void
-__stack_chk_init(void *dummy __unused)
-{
-	size_t i;
-	long guard[__arraycount(__stack_chk_guard)];
-
-	arc4rand(guard, sizeof(guard), 0);
-	for (i = 0; i < __arraycount(guard); i++)
-		__stack_chk_guard[i] = guard[i];
-}
-SYSINIT(stack_chk, SI_SUB_RANDOM, SI_ORDER_ANY, __stack_chk_init, NULL);
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */

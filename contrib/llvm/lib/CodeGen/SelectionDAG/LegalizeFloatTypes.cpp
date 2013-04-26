@@ -1,23 +1,17 @@
-//===-------- LegalizeFloatTypes.cpp - Legalization of float types --------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements float type expansion and softening for LegalizeTypes.
-// Softening is the act of turning a computation in an illegal floating point
-// type into a computation in an integer type of the same size; also known as
-// "soft float".  For example, turning f32 arithmetic into operations using i32.
-// The resulting integer value is the same as what you would get by performing
-// the floating point operation and bitcasting the result to the integer type.
-// Expansion is the act of changing a computation in an illegal type to be a
-// computation in two identical registers of a smaller type.  For example,
-// implementing ppcf128 arithmetic in two f64 registers.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "LegalizeTypes.h"
 #include "llvm/Support/ErrorHandling.h"

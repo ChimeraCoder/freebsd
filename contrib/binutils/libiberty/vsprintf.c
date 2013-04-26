@@ -1,5 +1,18 @@
-/* Simple implementation of vsprintf for systems without it.
-   Highly system-dependent, but should work on most "traditional"
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* Simple implementation of vsprintf for systems without it.   Highly system-dependent, but should work on most "traditional"
    implementations of stdio; newer ones should already have vsprintf.
    Written by Per Bothner of Cygnus Support.
    Based on libg++'s "form" (written by Doug Lea; dl@rocky.oswego.edu).

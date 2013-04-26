@@ -1,70 +1,16 @@
+
 /*
- * CDDL HEADER START
- *
- * The contents of this file are subject to the terms of the
- * Common Development and Distribution License (the "License").
- * You may not use this file except in compliance with the License.
- *
- * You can obtain a copy of the license at usr/src/OPENSOLARIS.LICENSE
- * or http://www.opensolaris.org/os/licensing.
- * See the License for the specific language governing permissions
- * and limitations under the License.
- *
- * When distributing Covered Code, include this CDDL HEADER in each
- * file and include the License file at usr/src/OPENSOLARIS.LICENSE.
- * If applicable, add the following below this CDDL HEADER, with the
- * fields enclosed by brackets "[]" replaced with your own identifying
- * information: Portions Copyright [yyyy] [name of copyright owner]
- *
- * CDDL HEADER END
- */
-/*
- * Copyright 2008 Sun Microsystems, Inc.  All rights reserved.
- * Use is subject to license terms.
- *
- * sgsmsg generates several message files from an input template file.  Messages
- * are constructed for use with gettext(3i) - the default - or catgets(3c).  The
- * files generate are:
- *
- * msg.h	a header file containing definitions for each message.  The -h
- *		option triggers the creation of these definitions and specifies
- *		the name to use.
- *
- * msg.c	a data array of message strings.  The msg.h definitions are
- *		offsets into this array.  The -d option triggers the creation of
- *		these definitions and specifies the name to use.
- *
- * messages	a message file suitable for catgets(3c) or gettext(3i) use.  The
- *		-m option triggers this output and specifies the filename to be
- *		used.
- *
- * The template file is processed based on the first character of each line:
- *
- * # or $	entries are copied (as is) to the message file (messages).
- *
- * @ token(s)	entries are translated.  Two translations are possible dependent
- *		on whether one or more tokens are supplied:
- *
- *		A single token is interpreted as one of two reserved message
- *		output indicators, or a message identifier.  The reserved output
- *		indicator _START_ enables output to the message file - Note that
- *		the occurance of any other @ token will also enable message
- *		output.  The reserved output indicator _END_ disables output to
- *		the message file.  The use of these two indicators provides for
- *		only those message strings that require translation to be output
- *		to the message file.
- *
- *		Besides the reserved output indicators, a single token is taken
- *		to be a message identifier which will be subsituted for a
- *		`setid' for catgets(3c) output, or a `domain' name for
- *		gettext(3i) output.  This value is determine by substituting the
- *		token for the associated definition found in the message
- *		identifier file (specified with the -i option).
- *
- *		Multiple tokens are taken to be a message definition followed by
- *		the associated message string.  The message string is copied to
- *		the data array being built in msg.c.  The index into this array
- *		becomes the `message' identifier created in the msg.h file.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #pragma ident	"%Z%%M%	%I%	%E% SMI"
 

@@ -1,33 +1,17 @@
-//===-- PPCCTRLoops.cpp - Identify and generate CTR loops -----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass identifies loops where we can generate the PPC branch instructions
-// that decrement and test the count register (CTR) (bdnz and friends).
-// This pass is based on the HexagonHardwareLoops pass.
-//
-// The pattern that defines the induction variable can changed depending on
-// prior optimizations.  For example, the IndVarSimplify phase run by 'opt'
-// normalizes induction variables, and the Loop Strength Reduction pass
-// run by 'llc' may also make changes to the induction variable.
-// The pattern detected by this phase is due to running Strength Reduction.
-//
-// Criteria for CTR loops:
-//  - Countable loops (w/ ind. var for a trip count)
-//  - Assumes loops are normalized by IndVarSimplify
-//  - Try inner-most loops first
-//  - No nested CTR loops.
-//  - No function calls in loops.
-//
-//  Note: As with unconverted loops, PPCBranchSelector must be run after this
-//  pass in order to convert long-displacement jumps into jump pairs.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "ctrloops"
 #include "PPC.h"
@@ -772,4 +756,3 @@ bool PPCCTRLoops::convertToCTRLoop(MachineLoop *L) {
   ++NumCTRLoops;
   return true;
 }
-

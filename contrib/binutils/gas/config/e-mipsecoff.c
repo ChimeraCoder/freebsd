@@ -1,37 +1,14 @@
-#include "as.h"
-#include "emul.h"
 
-static const char *mipsecoff_bfd_name PARAMS ((void));
-
-static const char *
-mipsecoff_bfd_name ()
-{
-  abort ();
-  return NULL;
-}
-
-#define emul_bfd_name	mipsecoff_bfd_name
-#define emul_format	&ecoff_format_ops
-
-#define emul_name	"mipsbecoff"
-#define emul_struct_name mipsbecoff
-#define emul_default_endian 1
-#include "emul-target.h"
-
-#undef  emul_name
-#undef  emul_struct_name
-#undef  emul_default_endian
-
-#define emul_name	"mipslecoff"
-#define emul_struct_name mipslecoff
-#define emul_default_endian 0
-#include "emul-target.h"
-
-#undef emul_name
-#undef emul_struct_name
-#undef emul_default_endian
-
-#define emul_name	"mipsecoff"
-#define emul_struct_name mipsecoff
-#define emul_default_endian 2
-#include "emul-target.h"
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */

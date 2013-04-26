@@ -1,74 +1,16 @@
-/*-
- * Copyright (c) 2005 by David E. O'Brien <obrien@FreeBSD.org>.
- * Copyright (c) 2003,2004 by Quinton Dolan <q@onthenet.com.au>. 
- * All rights reserved.
- * 
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions 
- * are met: 
- * 1. Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer. 
- * 2. Redistributions in binary form must reproduce the above copyright 
- *    notice, this list of conditions and the following disclaimer in the 
- *    documentation and/or other materials provided with the distribution.
- * 
- * THIS SOFTWARE IS PROVIDED BY THE AUTHOR AND CONTRIBUTORS ``AS IS'' AND ANY
- * EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
- * WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
- * DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE FOR
- * ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
- * DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
- * SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
- * CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
- * LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
- * OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
- * SUCH DAMAGE.
- * 
- * $Id: if_nv.c,v 1.19 2004/08/12 14:00:05 q Exp $
- */
+
 /*
- * NVIDIA nForce MCP Networking Adapter driver
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * This is a port of the NVIDIA MCP Linux ethernet driver distributed by NVIDIA
- * through their web site.
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * All mainstream nForce and nForce2 motherboards are supported. This module
- * is as stable, sometimes more stable, than the linux version. (Recent
- * Linux stability issues seem to be related to some issues with newer
- * distributions using GCC 3.x, however this don't appear to effect FreeBSD
- * 5.x).
- * 
- * In accordance with the NVIDIA distribution license it is necessary to
- * link this module against the nvlibnet.o binary object included in the
- * Linux driver source distribution. The binary component is not modified in
- * any way and is simply linked against a FreeBSD equivalent of the nvnet.c
- * linux kernel module "wrapper".
- * 
- * The Linux driver uses a common code API that is shared between Win32 and
- * i386 Linux. This abstracts the low level driver functions and uses
- * callbacks and hooks to access the underlying hardware device. By using
- * this same API in a FreeBSD kernel module it is possible to support the
- * hardware without breaching the Linux source distributions licensing
- * requirements, or obtaining the hardware programming specifications.
- * 
- * Although not conventional, it works, and given the relatively small
- * amount of hardware centric code, it's hopefully no more buggy than its
- * linux counterpart.
- *
- * NVIDIA now support the nForce3 AMD64 platform, however I have been
- * unable to access such a system to verify support. However, the code is
- * reported to work with little modification when compiled with the AMD64
- * version of the NVIDIA Linux library. All that should be necessary to make
- * the driver work is to link it directly into the kernel, instead of as a
- * module, and apply the docs/amd64.diff patch in this source distribution to
- * the NVIDIA Linux driver source.
- *
- * This driver should work on all versions of FreeBSD since 4.9/5.1 as well
- * as recent versions of DragonFly.
- *
- * Written by Quinton Dolan <q@onthenet.com.au> 
- * Portions based on existing FreeBSD network drivers. 
- * NVIDIA API usage derived from distributed NVIDIA NVNET driver source files.
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

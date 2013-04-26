@@ -1,4 +1,15 @@
 #! /bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # eqn2graph -- compile EQN equation descriptions to bitmap images
 #
@@ -17,7 +28,6 @@
 # clipping effect on the output, mangling equations that are very wide 
 # or deep.  Besides, this tool can supply its own delimiters.
 #
-
 # Requires the groff suite and the ImageMagick tools.  Both are open source.
 # This code is released to the public domain.
 #

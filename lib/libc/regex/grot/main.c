@@ -1,30 +1,18 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
-
-#include <stdio.h>
-#include <string.h>
-#include <sys/types.h>
-#include <regex.h>
-#include <assert.h>
-
-#include "main.ih"
-
-char *progname;
-int debug = 0;
-int line = 0;
-int status = 0;
-
-int copts = REG_EXTENDED;
-int eopts = 0;
-regoff_t startoff = 0;
-regoff_t endoff = 0;
-
-
-extern int split();
-extern void regprint();
 
 /*
- - main - do the simple case, hand off to regress() for regression
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* - main - do the simple case, hand off to regress() for regression
  */
 main(argc, argv)
 int argc;

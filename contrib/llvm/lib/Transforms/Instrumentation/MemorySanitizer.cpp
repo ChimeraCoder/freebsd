@@ -1,72 +1,17 @@
-//===-- MemorySanitizer.cpp - detector of uninitialized reads -------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-/// \file
-/// This file is a part of MemorySanitizer, a detector of uninitialized
-/// reads.
-///
-/// Status: early prototype.
-///
-/// The algorithm of the tool is similar to Memcheck
-/// (http://goo.gl/QKbem). We associate a few shadow bits with every
-/// byte of the application memory, poison the shadow of the malloc-ed
-/// or alloca-ed memory, load the shadow bits on every memory read,
-/// propagate the shadow bits through some of the arithmetic
-/// instruction (including MOV), store the shadow bits on every memory
-/// write, report a bug on some other instructions (e.g. JMP) if the
-/// associated shadow is poisoned.
-///
-/// But there are differences too. The first and the major one:
-/// compiler instrumentation instead of binary instrumentation. This
-/// gives us much better register allocation, possible compiler
-/// optimizations and a fast start-up. But this brings the major issue
-/// as well: msan needs to see all program events, including system
-/// calls and reads/writes in system libraries, so we either need to
-/// compile *everything* with msan or use a binary translation
-/// component (e.g. DynamoRIO) to instrument pre-built libraries.
-/// Another difference from Memcheck is that we use 8 shadow bits per
-/// byte of application memory and use a direct shadow mapping. This
-/// greatly simplifies the instrumentation code and avoids races on
-/// shadow updates (Memcheck is single-threaded so races are not a
-/// concern there. Memcheck uses 2 shadow bits per byte with a slow
-/// path storage that uses 8 bits per byte).
-///
-/// The default value of shadow is 0, which means "clean" (not poisoned).
-///
-/// Every module initializer should call __msan_init to ensure that the
-/// shadow memory is ready. On error, __msan_warning is called. Since
-/// parameters and return values may be passed via registers, we have a
-/// specialized thread-local shadow for return values
-/// (__msan_retval_tls) and parameters (__msan_param_tls).
-///
-///                           Origin tracking.
-///
-/// MemorySanitizer can track origins (allocation points) of all uninitialized
-/// values. This behavior is controlled with a flag (msan-track-origins) and is
-/// disabled by default.
-///
-/// Origins are 4-byte values created and interpreted by the runtime library.
-/// They are stored in a second shadow mapping, one 4-byte value for 4 bytes
-/// of application memory. Propagation of origins is basically a bunch of
-/// "select" instructions that pick the origin of a dirty argument, if an
-/// instruction has one.
-///
-/// Every 4 aligned, consecutive bytes of application memory have one origin
-/// value associated with them. If these bytes contain uninitialized data
-/// coming from 2 different allocations, the last store wins. Because of this,
-/// MemorySanitizer reports can show unrelated origins, but this is unlikely in
-/// practice.
-///
-/// Origins are meaningless for fully initialized values, so MemorySanitizer
-/// avoids storing origin to memory when a fully initialized value is stored.
-/// This way it avoids needless overwritting origin of the 4-byte region on
-/// a short (i.e. 1 byte) clean store, and it is also good for performance.
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "msan"
 

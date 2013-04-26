@@ -1,4 +1,15 @@
 #!/usr/local/bin/perl -w
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 # bounce-resender: constructs mail queue from bounce spool for
 #  subsequent reprocessing by sendmail
@@ -20,7 +31,6 @@
 # you are in the EECS Instructional group at UC Berkeley. (Search forward
 # for two occurrences of "FIXME".)
 #
-
 $state = "MSG_START";
 $ctr = 0;
 $lineno = 0;
@@ -279,4 +289,3 @@ print STDERR "$myname: to test the newly generated queue:\n";
 print STDERR "$myname:      # sendmail -bp -oQ$pwd | more\n";
 
 exit 0;
-

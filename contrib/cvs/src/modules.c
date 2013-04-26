@@ -1,29 +1,16 @@
+
 /*
- * Copyright (C) 1986-2005 The Free Software Foundation, Inc.
- *
- * Portions Copyright (C) 1998-2005 Derek Price, Ximbiot <http://ximbiot.com>,
- *                                  and others.
- *
- * Portions Copyright (C) 1992, Brian Berliner and Jeff Polk
- * Portions Copyright (C) 1989-1992, Brian Berliner
- *
- *    You may distribute under the terms of the GNU General Public License
- *    as specified in the README file that comes with the CVS source
- *    distribution.
- *
- * Modules
- *
- *	Functions for accessing the modules file.
- *
- *	The modules file supports basically three formats of lines:
- *		key [options] directory files... [ -x directory [files] ] ...
- *		key [options] directory [ -x directory [files] ] ...
- *		key -a aliases...
- *
- *	The -a option allows an aliasing step in the parsing of the modules
- *	file.  The "aliases" listed on a line following the -a are
- *	processed one-by-one, as if they were specified as arguments on the
- *	command line.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <assert.h>

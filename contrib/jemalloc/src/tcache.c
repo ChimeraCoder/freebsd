@@ -1,9 +1,19 @@
-#define	JEMALLOC_TCACHE_C_
-#include "jemalloc/internal/jemalloc_internal.h"
 
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /******************************************************************************/
 /* Data. */
-
 malloc_tsd_data(, tcache, tcache_t *, NULL)
 malloc_tsd_data(, tcache_enabled, tcache_enabled_t, tcache_enabled_default)
 

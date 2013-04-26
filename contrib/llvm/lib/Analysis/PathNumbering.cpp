@@ -1,27 +1,17 @@
-//===- PathNumbering.cpp --------------------------------------*- C++ -*---===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Ball-Larus path numbers uniquely identify paths through a directed acyclic
-// graph (DAG) [Ball96].  For a CFG backedges are removed and replaced by phony
-// edges to obtain a DAG, and thus the unique path numbers [Ball96].
-//
-// The purpose of this analysis is to enumerate the edges in a CFG in order
-// to obtain paths from path numbers in a convenient manner.  As described in
-// [Ball96] edges can be enumerated such that given a path number by following
-// the CFG and updating the path number, the path is obtained.
-//
-// [Ball96]
-//  T. Ball and J. R. Larus. "Efficient Path Profiling."
-//  International Symposium on Microarchitecture, pages 46-57, 1996.
-//  http://portal.acm.org/citation.cfm?id=243857
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #define DEBUG_TYPE "ball-larus-numbering"
 
 #include "llvm/Analysis/PathNumbering.h"

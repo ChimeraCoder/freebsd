@@ -1,24 +1,16 @@
+
 /*
- * Synchronous PPP/Cisco/Frame Relay link level subroutines.
- * Keepalive protocol implemented in both Cisco and PPP modes.
- */
-/*-
- * Copyright (C) 1994-2000 Cronyx Engineering.
- * Author: Serge Vakulenko, <vak@cronyx.ru>
- *
- * Heavily revamped to conform to RFC 1661.
- * Copyright (C) 1997, 2001 Joerg Wunsch.
- *
- * This software is distributed with NO WARRANTIES, not even the implied
- * warranties for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
- *
- * Authors grant any other persons or organisations permission to use
- * or modify this software as long as this message is kept with the software,
- * all derivative works or modified versions.
- *
- * From: Version 2.4, Thu Apr 30 17:17:21 MSD 1997
- *
- * $FreeBSD$
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/param.h>

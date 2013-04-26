@@ -1,33 +1,15 @@
 #! /bin/sh
-# ------------------------------------------------------------------------------
-#
-# Function: Format PDF Output from groff Markup
-#
-# Copyright (C) 2005, Free Software Foundation, Inc.
-# Written by Keith Marshall (keith.d.marshall@ntlworld.com)
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
 # 
-# This file is part of groff.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 # 
-# groff is free software; you can redistribute it and/or modify it under
-# the terms of the GNU General Public License as published by the Free
-# Software Foundation; either version 2, or (at your option) any later
-# version.
-# 
-# groff is distributed in the hope that it will be useful, but WITHOUT ANY
-# WARRANTY; without even the implied warranty of MERCHANTABILITY or
-# FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License
-# for more details.
-# 
-# You should have received a copy of the GNU General Public License along
-# with groff; see the file COPYING.  If not, write to the Free Software
-# Foundation, 51 Franklin St - Fifth Floor, Boston, MA 02110-1301, USA.
-#
-# ------------------------------------------------------------------------------
-#
-# Set up an identifier for the NULL device.
-# In most cases "/dev/null" will be correct, but some shells on
-# MS-DOS/MS-Windows systems may require us to use "NUL".
-#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
   NULLDEV="/dev/null"
   test -c $NULLDEV || NULLDEV="NUL"
 #

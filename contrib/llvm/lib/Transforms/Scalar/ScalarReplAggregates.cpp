@@ -1,23 +1,17 @@
-//===- ScalarReplAggregates.cpp - Scalar Replacement of Aggregates --------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This transformation implements the well known scalar replacement of
-// aggregates transformation.  This xform breaks up alloca instructions of
-// aggregate type (structure or array) into individual alloca instructions for
-// each member (if possible).  Then, if possible, it transforms the individual
-// alloca instructions into nice clean scalar SSA form.
-//
-// This combines a simple SRoA algorithm with the Mem2Reg algorithm because they
-// often interact, especially for C++ programs.  As such, iterating between
-// SRoA, then Mem2Reg until we run out of things to promote works well.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "scalarrepl"
 #include "llvm/Transforms/Scalar.h"

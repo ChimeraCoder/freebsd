@@ -1,31 +1,14 @@
-#ifdef HAVE_CONFIG_H
-#include <ldns/config.h>
-#endif
 
-#include <stdio.h>
-
-#ifdef HAVE_STDLIB_H
-#include <stdlib.h>
-#endif
-
-#include <time.h>
-
-time_t
-timegm (struct tm *tm) {
-	time_t ret;
-	char *tz;
-	
-	tz = getenv("TZ");
-	putenv((char*)"TZ=");
-	tzset();
-	ret = mktime(tm);
-	if (tz) {
-		char buf[256];
-		snprintf(buf, sizeof(buf), "TZ=%s", tz);
-		putenv(tz);
-	}
-	else
-		putenv((char*)"TZ");
-	tzset();
-	return ret;
-}
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */

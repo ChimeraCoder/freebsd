@@ -1,45 +1,15 @@
 #! /bin/sh
-#
-# Copyright (C) 1997-2005 The Free Software Foundation, Inc.
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation; either version 2, or (at your option)
-# any later version.
-#
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 # GNU General Public License for more details.
-#
-#	cvs2vendor - move revsisions from files in A to files in B
 # 
-# The primary reason for this script is to move deltas from a
-# non-vendor branched repository onto a fresh vendor branched one,
-# skipping the initial checkin in assumption that it is the same in
-# both repositories.  This way you can take a project that was moved
-# into CVS without the benefit of the vendor branch and for all
-# intents and purposes add the vendor branch underneath the existing
-# deltas.
-# 
-# This script is also a decent example of repository maintenance using
-# raw RCS commands (if I do say so myself! ;-).
-# 
-# Tags are preserved.
-# 
-# The timestamp of the initial vendor branch revision will be adjusted
-# to be the same as the 1.1 revision of each source file.
-# 
-# Extra branches in the source directory will cause breakage.
-# 
-# Intermediate files are created in the current working directory
-# where this script is started.
-# 
-# Written by Greg A. Woods <woods@planix.com>, based on rcs2sccs
-# (retains some of the rlog parsing from it).
-# 
-# The copyright is in the Public Domain.
-#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 if [ $# -ne 2 ]; then
 	echo USAGE: $0 srcdir dstdir

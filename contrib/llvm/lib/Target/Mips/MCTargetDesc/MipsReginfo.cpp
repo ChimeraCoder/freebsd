@@ -1,36 +1,17 @@
-//===-- MipsReginfo.cpp - Registerinfo handling  --------------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-// .reginfo
-//    Elf32_Word ri_gprmask
-//    Elf32_Word ri_cprmask[4]
-//    Elf32_Word ri_gp_value
-//
-// .MIPS.options - N64
-//    Elf64_Byte    kind (ODK_REGINFO)
-//    Elf64_Byte    size (40 bytes)
-//    Elf64_Section section (0)
-//    Elf64_Word    info (unused)
-//    Elf64_Word    ri_gprmask ()
-//    Elf64_Word    ri_pad ()
-//    Elf64_Word[4] ri_cprmask ()
-//    Elf64_Addr    ri_gp_value ()
-//
-// .MIPS.options - N32
-//    Elf32_Byte    kind (ODK_REGINFO)
-//    Elf32_Byte    size (36 bytes)
-//    Elf32_Section section (0)
-//    Elf32_Word    info (unused)
-//    Elf32_Word    ri_gprmask ()
-//    Elf32_Word    ri_pad ()
-//    Elf32_Word[4] ri_cprmask ()
-//    Elf32_Addr    ri_gp_value ()
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 #include "MCTargetDesc/MipsReginfo.h"
 #include "MipsSubtarget.h"
 #include "MipsTargetObjectFile.h"
@@ -77,4 +58,3 @@ MipsReginfo::emitMipsReginfoSectionCG(MCStreamer &OS,
   }
   else llvm_unreachable("Unsupported abi for reginfo");
 }
-

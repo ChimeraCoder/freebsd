@@ -1,16 +1,17 @@
-TEMPLATE_NAME=elf32
-SCRIPT_NAME=elf
-OUTPUT_FORMAT="elf32-bigmips"
-BIG_OUTPUT_FORMAT="elf32-bigmips"
-LITTLE_OUTPUT_FORMAT="elf32-littlemips"
-ARCH=mips
-MACHINE=
-EMBEDDED=yes
-MAXPAGESIZE=0x40000
 
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 # The data below is taken from the windiss.dld linker script that comes with
-# the Diab linker.
-TEXT_START_ADDR=0x100000
+# the Diab linker.TEXT_START_ADDR=0x100000
 DATA_START_SYMBOLS='__DATA_ROM = .; __DATA_RAM = .;'
 SDATA_START_SYMBOLS='_SDA_BASE_ = .; _gp = . + 0x7ff0;'
 SDATA2_START_SYMBOLS='_SDA2_BASE_ = .;'

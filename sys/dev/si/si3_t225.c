@@ -1,30 +1,16 @@
-/*-
- * Copyright (C) 1996-2000 Specialix International.
- *
- * Download code for SX host cards.
- *
- * Redistribution and use in binary forms (this file is a binary form),
- * with or without modification, are permitted provided that the following
- * conditions are met:
- * 1. Redistributions in binary form must reproduce the above copyright
- *    notices, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- * 2. All advertising materials mentioning features or use of this software
- *    must display the following acknowledgement:
- *      This product includes software developed by Specialix International.
- * 3. The name of Specialix International may not be used to endorse or
- *    promote products derived from this software without specific prior
- *    written permission.
- * 4. No attempt is made to decompile, reverse engineer or otherwise
- *    discover the source code of the contents of this file. The source
- *    code is regarded as an unpublished trade secret held by Specialix
- *    International.
- *
- * THIS SOFTWARE IS PROVIDED BY ``AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
- * MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN
- * NO EVENT SHALL THE AUTHORS BE LIABLE.
- *
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

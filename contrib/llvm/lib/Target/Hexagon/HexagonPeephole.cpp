@@ -1,36 +1,17 @@
-//===-- HexagonPeephole.cpp - Hexagon Peephole Optimiztions ---------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-// This peephole pass optimizes in the following cases.
-// 1. Optimizes redundant sign extends for the following case
-//    Transform the following pattern
-//    %vreg170<def> = SXTW %vreg166
-//    ...
-//    %vreg176<def> = COPY %vreg170:subreg_loreg
-//
-//    Into
-//    %vreg176<def> = COPY vreg166
-//
-//  2. Optimizes redundant negation of predicates.
-//     %vreg15<def> = CMPGTrr %vreg6, %vreg2
-//     ...
-//     %vreg16<def> = NOT_p %vreg15<kill>
-//     ...
-//     JMP_c %vreg16<kill>, <BB#1>, %PC<imp-def,dead>
-//
-//     Into
-//     %vreg15<def> = CMPGTrr %vreg6, %vreg2;
-//     ...
-//     JMP_cNot %vreg15<kill>, <BB#1>, %PC<imp-def,dead>;
-//
-// Note: The peephole pass makes the instrucstions like
-// %vreg170<def> = SXTW %vreg166 or %vreg16<def> = NOT_p %vreg15<kill>
-// redundant and relies on some form of dead removal instrucions, like
-// DCE or DIE to actually eliminate them.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 
 //===----------------------------------------------------------------------===//

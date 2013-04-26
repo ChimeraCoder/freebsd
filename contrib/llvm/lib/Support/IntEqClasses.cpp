@@ -1,22 +1,17 @@
-//===-- llvm/ADT/IntEqClasses.cpp - Equivalence Classes of Integers -------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// Equivalence classes for small integers. This is a mapping of the integers
-// 0 .. N-1 into M equivalence classes numbered 0 .. M-1.
-//
-// Initially each integer has its own equivalence class. Classes are joined by
-// passing a representative member of each class to join().
-//
-// Once the classes are built, compress() will number them 0 .. M-1 and prevent
-// further changes.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/ADT/IntEqClasses.h"
 

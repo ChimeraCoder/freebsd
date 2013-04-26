@@ -1,21 +1,16 @@
-/* $OpenBSD: deattack.c,v 1.30 2006/09/16 19:53:37 djm Exp $ */
+
 /*
- * Cryptographic attack detector for ssh - source code
- *
- * Copyright (c) 1998 CORE SDI S.A., Buenos Aires, Argentina.
- *
- * All rights reserved. Redistribution and use in source and binary
- * forms, with or without modification, are permitted provided that
- * this copyright notice is retained.
- *
- * THIS SOFTWARE IS PROVIDED ``AS IS'' AND ANY EXPRESS OR IMPLIED
- * WARRANTIES ARE DISCLAIMED. IN NO EVENT SHALL CORE SDI S.A. BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY OR
- * CONSEQUENTIAL DAMAGES RESULTING FROM THE USE OR MISUSE OF THIS
- * SOFTWARE.
- *
- * Ariel Futoransky <futo@core-sdi.com>
- * <http://www.core-sdi.com>
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

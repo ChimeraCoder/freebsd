@@ -1,30 +1,17 @@
-//===-- BasicBlockPlacement.cpp - Basic Block Code Layout optimization ----===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements a very simple profile guided basic block placement
-// algorithm.  The idea is to put frequently executed blocks together at the
-// start of the function, and hopefully increase the number of fall-through
-// conditional branches.  If there is no profile information for a particular
-// function, this pass basically orders blocks in depth-first order
-//
-// The algorithm implemented here is basically "Algo1" from "Profile Guided Code
-// Positioning" by Pettis and Hansen, except that it uses basic block counts
-// instead of edge counts.  This should be improved in many ways, but is very
-// simple for now.
-//
-// Basically we "place" the entry block, then loop over all successors in a DFO,
-// placing the most frequently executed successor until we run out of blocks.  I
-// told you this was _extremely_ simplistic. :) This is also much slower than it
-// could be.  When it becomes important, this pass will be rewritten to use a
-// better algorithm, and then we can worry about efficiency.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "block-placement"
 #include "llvm/Transforms/Scalar.h"

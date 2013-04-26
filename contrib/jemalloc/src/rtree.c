@@ -1,28 +1,18 @@
-#define	JEMALLOC_RTREE_C_
-#include "jemalloc/internal/jemalloc_internal.h"
 
-rtree_t *
-rtree_new(unsigned bits)
-{
-	rtree_t *ret;
-	unsigned bits_per_level, height, i;
-
-	bits_per_level = ffs(pow2_ceil((RTREE_NODESIZE / sizeof(void *)))) - 1;
-	height = bits / bits_per_level;
-	if (height * bits_per_level != bits)
-		height++;
-	assert(height * bits_per_level >= bits);
-
-	ret = (rtree_t*)base_alloc(offsetof(rtree_t, level2bits) +
-	    (sizeof(unsigned) * height));
-	if (ret == NULL)
-		return (NULL);
-	memset(ret, 0, offsetof(rtree_t, level2bits) + (sizeof(unsigned) *
-	    height));
-
-	if (malloc_mutex_init(&ret->mutex)) {
-		/* Leak the rtree. */
-		return (NULL);
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+		/* Leak the rtree. */		return (NULL);
 	}
 	ret->height = height;
 	if (bits_per_level * height > bits)

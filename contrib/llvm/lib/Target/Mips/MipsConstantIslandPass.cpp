@@ -1,27 +1,17 @@
-//===-- MipsConstantIslandPass.cpp - Emit Pc Relative loads----------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-//
-// This pass is used to make Pc relative loads of constants.
-// For now, only Mips16 will use this. While it has the same name and
-// uses many ideas from the LLVM ARM Constant Island Pass, it's not intended
-// to reuse any of the code from the ARM version.
-//
-// Loading constants inline is expensive on Mips16 and it's in general better
-// to place the constant nearby in code space and then it can be loaded with a
-// simple 16 bit load instruction.
-//
-// The constants can be not just numbers but addresses of functions and labels.
-// This can be particularly helpful in static relocation mode for embedded
-// non linux targets.
-//
-//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "mips-constant-islands"
 
@@ -82,4 +72,3 @@ FunctionPass *llvm::createMipsConstantIslandPass(MipsTargetMachine &tm) {
 bool MipsConstantIslands::runOnMachineFunction(MachineFunction &F) {
   return true;
 }
-

@@ -1,22 +1,17 @@
-//===- BarrierNoopPass.cpp - A barrier pass for the pass manager ----------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// NOTE: DO NOT USE THIS IF AVOIDABLE
-//
-// This pass is a nonce pass intended to allow manipulation of the implicitly
-// nesting pass manager. For example, it can be used to cause a CGSCC pass
-// manager to be closed prior to running a new collection of function passes.
-//
-// FIXME: This is a huge HACK. This should be removed when the pass manager's
-// nesting is made explicit instead of implicit.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #include "llvm/Pass.h"
 #include "llvm/Transforms/IPO.h"

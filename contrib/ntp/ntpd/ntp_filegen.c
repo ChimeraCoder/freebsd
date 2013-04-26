@@ -1,15 +1,16 @@
+
 /*
- * ntp_filegen.c,v 3.12 1994/01/25 19:06:11 kardel Exp
- *
- *  implements file generations support for NTP
- *  logfiles and statistic files
- *
- *
- * Copyright (C) 1992, 1996 by Rainer Pruy
- * Friedrich-Alexander Universität Erlangen-Nürnberg, Germany
- *
- * This code may be modified and used freely
- * provided credits remain intact.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifdef HAVE_CONFIG_H

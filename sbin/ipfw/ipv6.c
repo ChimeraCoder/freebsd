@@ -1,25 +1,16 @@
+
 /*
- * Copyright (c) 2002-2003 Luigi Rizzo
- * Copyright (c) 1996 Alex Nash, Paul Traina, Poul-Henning Kamp
- * Copyright (c) 1994 Ugen J.S.Antsilevich
- *
- * Idea and grammar partially left from:
- * Copyright (c) 1993 Daniel Boulet
- *
- * Redistribution and use in source forms, with and without modification,
- * are permitted provided that this entire comment appears intact.
- *
- * Redistribution in binary form may occur without any restrictions.
- * Obviously, it would be nice if you gave credit where credit is due
- * but requiring it would be too onerous.
- *
- * This software is provided ``AS IS'' without any warranties of any kind.
- *
- * NEW command line interface for IP firewall facility
- *
- * $FreeBSD$
- *
- * ipv6 support
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/types.h>

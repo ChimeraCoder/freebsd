@@ -1,55 +1,20 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <setjmp.h>
-#include <signal.h>
-#include <sys/time.h>
-#include <openssl/bn.h>
 
-#define SPARCV9_TICK_PRIVILEGED	(1<<0)
-#define SPARCV9_PREFER_FPU	(1<<1)
-#define SPARCV9_VIS1		(1<<2)
-#define SPARCV9_VIS2		(1<<3)	/* reserved */
-#define SPARCV9_FMADD		(1<<4)	/* reserved for SPARC64 V */
-
-static int OPENSSL_sparcv9cap_P=SPARCV9_TICK_PRIVILEGED;
-
-int bn_mul_mont(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np,const BN_ULONG *n0, int num)
-	{
-	int bn_mul_mont_fpu(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np,const BN_ULONG *n0, int num);
-	int bn_mul_mont_int(BN_ULONG *rp, const BN_ULONG *ap, const BN_ULONG *bp, const BN_ULONG *np,const BN_ULONG *n0, int num);
-
-	if (num>=8 && !(num&1) &&
-	    (OPENSSL_sparcv9cap_P&(SPARCV9_PREFER_FPU|SPARCV9_VIS1)) ==
-		(SPARCV9_PREFER_FPU|SPARCV9_VIS1))
-		return bn_mul_mont_fpu(rp,ap,bp,np,n0,num);
-	else
-		return bn_mul_mont_int(rp,ap,bp,np,n0,num);
-	}
-
-unsigned long	_sparcv9_rdtick(void);
-void		_sparcv9_vis1_probe(void);
-unsigned long	_sparcv9_vis1_instrument(void);
-void		_sparcv9_vis2_probe(void);
-void		_sparcv9_fmadd_probe(void);
-
-unsigned long OPENSSL_rdtsc(void)
-	{
-	if (OPENSSL_sparcv9cap_P&SPARCV9_TICK_PRIVILEGED)
-#if defined(__sun) && defined(__SVR4)
-		return gethrtime();
-#else
-		return 0;
-#endif
-	else
-		return _sparcv9_rdtick();
-	}
-
-#if 0 && defined(__sun) && defined(__SVR4)
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* This code path is disabled, because of incompatibility of
  * libdevinfo.so.1 and libmalloc.so.1 (see below for details)
- */
-#include <malloc.h>
+ */#include <malloc.h>
 #include <dlfcn.h>
 #include <libdevinfo.h>
 #include <sys/systeminfo.h>

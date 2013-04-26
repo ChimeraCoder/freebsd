@@ -1,24 +1,17 @@
-//===- Reassociate.cpp - Reassociate binary expressions -------------------===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This pass reassociates commutative expressions in an order that is designed
-// to promote better constant propagation, GCSE, LICM, PRE, etc.
-//
-// For example: 4 + (x + 5) -> x + (4 + 5)
-//
-// In the implementation of this algorithm, constants are assigned rank = 0,
-// function arguments are rank = 1, and other values are assigned ranks
-// corresponding to the reverse post order traversal of current function
-// (starting at 2), which effectively gives values in deep loops higher rank
-// than values not in loops.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "reassociate"
 #include "llvm/Transforms/Scalar.h"

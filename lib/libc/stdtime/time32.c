@@ -1,14 +1,16 @@
-/*-
- * Copyright (c) 2001 FreeBSD Inc.
- * All rights reserved.
- *
- * These routines are for converting time_t to fixed-bit representations
- * for use in protocols or storage.  When converting time to a larger
- * representation of time_t these routines are expected to assume temporal
- * locality and use the 50-year rule to properly set the msb bits.  XXX
- *
- * Redistribution and use under the terms of the COPYRIGHT file at the
- * base of the source tree.
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

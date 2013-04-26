@@ -1,4 +1,15 @@
 #!/bin/sh
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #   convert_bootptab	Jeroen.Scheerder@let.ruu.nl 02/25/94
 #	This script can be used to convert bootptab files in old format
 #	to new (termcap-like) bootptab files
@@ -9,7 +20,6 @@
 # The first section has two entries:
 # First, a line that specifies the home directory
 # (where boot file paths are relative to)
-
 ###/tftpboot
 
 # The next non-empty non-comment line specifies the default bootfile

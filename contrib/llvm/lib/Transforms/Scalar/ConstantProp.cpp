@@ -1,22 +1,17 @@
-//===- ConstantProp.cpp - Code to perform Simple Constant Propagation -----===//
-//
-//                     The LLVM Compiler Infrastructure
-//
-// This file is distributed under the University of Illinois Open Source
-// License. See LICENSE.TXT for details.
-//
-//===----------------------------------------------------------------------===//
-//
-// This file implements constant propagation and merging:
-//
-// Specifically, this:
-//   * Converts instructions like "add int 1, 2" into 3
-//
-// Notice that:
-//   * This pass has a habit of making definitions be dead.  It is a good idea
-//     to run a DIE pass sometime after running this pass.
-//
-//===----------------------------------------------------------------------===//
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #define DEBUG_TYPE "constprop"
 #include "llvm/Transforms/Scalar.h"

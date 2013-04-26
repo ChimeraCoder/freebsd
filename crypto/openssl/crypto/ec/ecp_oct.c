@@ -1,8 +1,21 @@
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 /* crypto/ec/ecp_oct.c */
 /* Includes code written by Lenka Fibikova <fibikova@exp-math.uni-essen.de>
  * for the OpenSSL project. 
- * Includes code written by Bodo Moeller for the OpenSSL project.
-*/
+ * Includes code written by Bodo Moeller for the OpenSSL project.*/
 /* ====================================================================
  * Copyright (c) 1998-2002 The OpenSSL Project.  All rights reserved.
  *
@@ -430,4 +443,3 @@ int ec_GFp_simple_oct2point(const EC_GROUP *group, EC_POINT *point,
 		BN_CTX_free(new_ctx);
 	return ret;
 	}
-

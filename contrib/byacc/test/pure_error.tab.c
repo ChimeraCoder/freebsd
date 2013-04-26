@@ -1,119 +1,18 @@
-#ifndef lint
-static const char yysccsid[] = "@(#)yaccpar	1.9 (Berkeley) 02/21/93";
-#endif
 
-#define YYBYACC 1
-#define YYMAJOR 1
-#define YYMINOR 9
-
-#define YYEMPTY        (-1)
-#define yyclearin      (yychar = YYEMPTY)
-#define yyerrok        (yyerrflag = 0)
-#define YYRECOVERING() (yyerrflag != 0)
-
-
-#ifndef yyparse
-#define yyparse    error_parse
-#endif /* yyparse */
-
-#ifndef yylex
-#define yylex      error_lex
-#endif /* yylex */
-
-#ifndef yyerror
-#define yyerror    error_error
-#endif /* yyerror */
-
-#ifndef yychar
-#define yychar     error_char
-#endif /* yychar */
-
-#ifndef yyval
-#define yyval      error_val
-#endif /* yyval */
-
-#ifndef yylval
-#define yylval     error_lval
-#endif /* yylval */
-
-#ifndef yydebug
-#define yydebug    error_debug
-#endif /* yydebug */
-
-#ifndef yynerrs
-#define yynerrs    error_nerrs
-#endif /* yynerrs */
-
-#ifndef yyerrflag
-#define yyerrflag  error_errflag
-#endif /* yyerrflag */
-
-#ifndef yylhs
-#define yylhs      error_lhs
-#endif /* yylhs */
-
-#ifndef yylen
-#define yylen      error_len
-#endif /* yylen */
-
-#ifndef yydefred
-#define yydefred   error_defred
-#endif /* yydefred */
-
-#ifndef yydgoto
-#define yydgoto    error_dgoto
-#endif /* yydgoto */
-
-#ifndef yysindex
-#define yysindex   error_sindex
-#endif /* yysindex */
-
-#ifndef yyrindex
-#define yyrindex   error_rindex
-#endif /* yyrindex */
-
-#ifndef yygindex
-#define yygindex   error_gindex
-#endif /* yygindex */
-
-#ifndef yytable
-#define yytable    error_table
-#endif /* yytable */
-
-#ifndef yycheck
-#define yycheck    error_check
-#endif /* yycheck */
-
-#ifndef yyname
-#define yyname     error_name
-#endif /* yyname */
-
-#ifndef yyrule
-#define yyrule     error_rule
-#endif /* yyrule */
-#define YYPREFIX "error_"
-
-#define YYPURE 1
-
-#line 2 "pure_error.y"
-
-#ifdef YYBISON
-#define YYSTYPE int
-#define YYLEX_PARAM &yylval
-#define YYLEX_DECL() yylex(YYSTYPE *yylval)
-#define YYERROR_DECL() yyerror(const char *s)
-int YYLEX_DECL();
-static void YYERROR_DECL();
-#endif
-
-#line 110 "pure_error.tab.c"
-
-#ifndef YYSTYPE
-typedef int YYSTYPE;
-#endif
-
-/* compatibility with bison */
-#ifdef YYPARSE_PARAM
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* compatibility with bison */#ifdef YYPARSE_PARAM
 /* compatibility with FreeBSD */
 # ifdef YYPARSE_PARAM_TYPE
 #  define YYPARSE_DECL() yyparse(YYPARSE_PARAM_TYPE YYPARSE_PARAM)

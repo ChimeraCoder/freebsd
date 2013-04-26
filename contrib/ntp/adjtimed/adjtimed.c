@@ -1,16 +1,17 @@
-/*************************************************************************/
-/* (c) Copyright Tai Jin, 1988.  All Rights Reserved.                    */
-/*     Hewlett-Packard Laboratories.                                     */
-/*                                                                       */
-/* Permission is hereby granted for unlimited modification, use, and     */
-/* distribution.  This software is made available with no warranty of    */
-/* any kind, express or implied.  This copyright notice must remain      */
-/* intact in all versions of this software.                              */
-/*                                                                       */
-/* The author would appreciate it if any bug fixes and enhancements were */
-/* to be sent back to him for incorporation into future versions of this */
-/* software.  Please send changes to tai@iag.hp.com or ken@sdd.hp.com.   */
-/*************************************************************************/
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 
 #ifndef lint
 static char RCSid[] = "adjtimed.c,v 3.1 1993/07/06 01:04:45 jbj Exp";

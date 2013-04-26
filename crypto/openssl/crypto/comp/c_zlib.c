@@ -1,39 +1,18 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <openssl/objects.h>
-#include <openssl/comp.h>
-#include <openssl/err.h>
 
-COMP_METHOD *COMP_zlib(void );
-
-static COMP_METHOD zlib_method_nozlib={
-	NID_undef,
-	"(undef)",
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	NULL,
-	};
-
-#ifndef ZLIB
-#undef ZLIB_SHARED
-#else
-
-#include <zlib.h>
-
-static int zlib_stateful_init(COMP_CTX *ctx);
-static void zlib_stateful_finish(COMP_CTX *ctx);
-static int zlib_stateful_compress_block(COMP_CTX *ctx, unsigned char *out,
-	unsigned int olen, unsigned char *in, unsigned int ilen);
-static int zlib_stateful_expand_block(COMP_CTX *ctx, unsigned char *out,
-	unsigned int olen, unsigned char *in, unsigned int ilen);
-
-
-/* memory allocations functions for zlib intialization */
-static void* zlib_zalloc(void* opaque, unsigned int no, unsigned int size)
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* memory allocations functions for zlib intialization */static void* zlib_zalloc(void* opaque, unsigned int no, unsigned int size)
 {
 	void *p;
 	

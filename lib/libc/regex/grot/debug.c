@@ -1,22 +1,18 @@
-#include <sys/cdefs.h>
-__FBSDID("$FreeBSD$");
-
-#include <stdio.h>
-#include <string.h>
-#include <ctype.h>
-#include <limits.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <regex.h>
-#include <wchar.h>
-#include <wctype.h>
-
-#include "utils.h"
-#include "regex2.h"
-#include "debug.ih"
 
 /*
- - regprint - print a regexp for debugging
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+/* - regprint - print a regexp for debugging
  == void regprint(regex_t *r, FILE *d);
  */
 void

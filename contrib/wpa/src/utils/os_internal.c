@@ -1,25 +1,16 @@
+
 /*
- * wpa_supplicant/hostapd / Internal implementation of OS specific functions
- * Copyright (c) 2005-2006, Jouni Malinen <j@w1.fi>
- *
- * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License version 2 as
- * published by the Free Software Foundation.
- *
- * Alternatively, this software may be distributed under the terms of BSD
- * license.
- *
- * See README and COPYING for more details.
- *
- * This file is an example of operating system specific  wrapper functions.
- * This version implements many of the functions internally, so it can be used
- * to fill in missing functions from the target system C libraries.
- *
- * Some of the functions are using standard C library calls in order to keep
- * this file in working condition to allow the functions to be tested on a
- * Linux target. Please note that OS_NO_C_LIB_DEFINES needs to be defined for
- * this file to work correctly. Note that these implementations are only
- * examples and are not optimized for speed.
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include "includes.h"

@@ -1,13 +1,16 @@
-/******************************************************************************
- * gnttab.c
+
+/*
+ * You may redistribute this program and/or modify it under the terms of
+ * the GNU General Public License as published by the Free Software Foundation,
+ * either version 3 of the License, or (at your option) any later version.
  * 
- * Two sets of functionality:
- * 1. Granting foreign access to our memory reservation.
- * 2. Accessing others' memory reservations via grant references.
- * (i.e., mechanisms for both sender and recipient of grant references)
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
  * 
- * Copyright (c) 2005, Christopher Clark
- * Copyright (c) 2004, K A Fraser
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <sys/cdefs.h>

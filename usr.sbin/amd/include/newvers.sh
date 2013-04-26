@@ -1,9 +1,20 @@
+
+# You may redistribute this program and/or modify it under the terms of
+# the GNU General Public License as published by the Free Software Foundation,
+# either version 3 of the License, or (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #	$NetBSD: mkconf,v 1.1.1.1 1997/07/24 21:20:12 christos Exp $
 # $FreeBSD$
 # mkconf
 # Generate local configuration parameters for amd
 #
-
 if [ -e $1 ]; then
 	eval `LC_ALL=C egrep '^[A-Z]+=' $1 | grep -v COPYRIGHT`
 	OS=`echo ${TYPE} | LC_ALL=C tr 'A-Z' 'a-z'`
